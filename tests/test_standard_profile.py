@@ -6,7 +6,8 @@ import pytest
 from dicom_deid.standard_profile import (
     DICOMStandard,
     Profile,
-    apply_basic_dicom_deid_profile,
+    apply_attribute_type_actions,
+    apply_basic_dicom_deid_profile_actions,
     apply_module_actions,
     apply_retired_attribute_actions,
 )
@@ -286,7 +287,7 @@ def test_basic_dicom_deid_profile_actions(basic_profile_value, expected_action):
     p.set_action(sop_id="1.1", tag="(0000,0000)", action=None)
     p.set_action(sop_id="1.1", tag="(1111,1111)", action=p.Action.KEEP)
 
-    apply_basic_dicom_deid_profile(
+    apply_basic_dicom_deid_profile_actions(
         profile=p,
         dicom_standard=ds,
     )
@@ -392,7 +393,7 @@ def test_basic_dicom_deid_profile_actions_types(
     p.set_action(sop_id="1.1", tag="(0000,0000)", action=None)
     p.set_action(sop_id="1.1", tag="(1111,1111)", action=p.Action.KEEP)
 
-    apply_basic_dicom_deid_profile(
+    apply_basic_dicom_deid_profile_actions(
         profile=p,
         dicom_standard=ds,
     )
@@ -483,7 +484,146 @@ def test_basic_dicom_deid_unsupported_type_and_basic_profile(
     p.set_action(sop_id="1.1", tag="(0000,0000)", action=None)
 
     with expectation:
-        apply_basic_dicom_deid_profile(
+        apply_basic_dicom_deid_profile_actions(
+            profile=p,
+            dicom_standard=ds,
+        )
+
+
+@pytest.mark.parametrize(
+    "attribute_type,expected_action",
+    (
+        ("1", Profile.Action.KEEP),
+        ("1C", None),
+        ("2", Profile.Action.REPLACE0),
+        ("2C", None),
+        ("3", Profile.Action.REMOVE),
+    ),
+)
+def test_attribute_type_actions(attribute_type, expected_action):
+    ds = DICOMStandard(
+        version="foo",
+        macro_to_attributes=[
+            {
+                "tag": "(0000,0000)",
+                "type": attribute_type,
+            },
+        ],
+        attributes=[
+            {
+                "tag": "(0000,0000)",
+            },
+        ],
+        module_to_attributes=[
+            {
+                "moduleId": "mod0",
+                "tag": "(0000,0000)",
+            },
+            {
+                "moduleId": "mod0",
+                "tag": "(1111,1111)",
+            },
+        ],
+        ciods_to_modules=[
+            {
+                "ciodId": "a-name",
+                "moduleId": "mod0",
+            },
+        ],
+        sops=[
+            {
+                "id": "1.1",
+                "ciod": "A Name",
+            },
+        ],
+        ciods=[
+            {
+                "name": "A Name",
+                "id": "a-name",
+            },
+        ],
+    )
+    p = Profile()
+    p.set_action(sop_id="1.1", tag="(0000,0000)", action=None)
+    p.set_action(sop_id="1.1", tag="(1111,1111)", action=p.Action.KEEP)
+
+    apply_attribute_type_actions(
+        profile=p,
+        dicom_standard=ds,
+    )
+
+    json_profile = json.loads(p.to_json())
+    assert (
+        json_profile["SOPClassUID"]["1.1"]["tag"]["(0000,0000)"]["action"]
+        == expected_action
+    )
+    assert (
+        json_profile["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"]
+        == p.Action.KEEP
+    ), "Already set action is left alone"
+
+
+@pytest.mark.parametrize(
+    "attribute_type,expectation",
+    [
+        (
+            "1",
+            does_not_raise(),
+        ),
+        (
+            "I DO NOT EXIST",
+            pytest.raises(ValueError, match="Unsupported attribute type"),
+        ),
+    ],
+)
+def test_attribute_type_actions_unsupported_type(attribute_type, expectation):
+    ds = DICOMStandard(
+        version="foo",
+        macro_to_attributes=[
+            {
+                "tag": "(0000,0000)",
+                "type": attribute_type,
+            },
+        ],
+        attributes=[
+            {
+                "tag": "(0000,0000)",
+            },
+        ],
+        module_to_attributes=[
+            {
+                "moduleId": "mod0",
+                "tag": "(0000,0000)",
+            },
+            {
+                "moduleId": "mod0",
+                "tag": "(1111,1111)",
+            },
+        ],
+        ciods_to_modules=[
+            {
+                "ciodId": "a-name",
+                "moduleId": "mod0",
+            },
+        ],
+        sops=[
+            {
+                "id": "1.1",
+                "ciod": "A Name",
+            },
+        ],
+        ciods=[
+            {
+                "name": "A Name",
+                "id": "a-name",
+            },
+        ],
+    )
+    p = Profile()
+    p.set_action(sop_id="1.1", tag="(0000,0000)", action=None)
+
+    with expectation:
+        apply_attribute_type_actions(
             profile=p,
             dicom_standard=ds,
         )

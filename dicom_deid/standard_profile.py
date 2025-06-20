@@ -229,7 +229,8 @@ def apply_retired_attribute_actions(
             raise ValueError(f"Unsupported attribute retired: {retired!r}")
 
 
-def apply_basic_dicom_deid_profile(
+def apply_basic_dicom_deid_profile_actions(
+    *,
     profile: Profile,
     dicom_standard: DICOMStandard,
 ):
@@ -289,3 +290,29 @@ def apply_basic_dicom_deid_profile(
                 ) from e
 
         profile.set_action(sop_id=sop, tag=tag, action=action)
+
+
+def apply_attribute_type_actions(
+    *,
+    profile: Profile,
+    dicom_standard: DICOMStandard,
+):
+    for tag, sop in profile.get_unset_action_tags_in_sops():
+        attribute = dicom_standard.get_attribute_via_tag(tag)
+        attribute_type = attribute["type"].lower()
+
+        action = None
+
+        if attribute_type == "1":
+            action = Profile.Action.KEEP
+        elif attribute_type == "2":
+            action = Profile.Action.REPLACE0
+        elif attribute_type == "3":
+            action = Profile.Action.REMOVE
+        elif attribute_type in ("1c", "2c"):
+            pass  # We don't touch it
+        else:
+            raise ValueError(f"Unsupported attribute type: {attribute_type}")
+
+        if action is not None:
+            profile.set_action(sop_id=sop, tag=tag, action=action)
