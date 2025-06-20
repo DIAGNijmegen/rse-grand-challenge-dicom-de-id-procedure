@@ -1,5 +1,6 @@
 import json
 from collections import defaultdict
+from enum import Enum
 
 
 class DICOMStandardError(ValueError):
@@ -120,7 +121,19 @@ class DICOMStandard:
         return self.__attribute_lookup[tag]
 
 
+class ActionChoices(str, Enum):
+    REMOVE = "X"
+    KEEP = "K"
+
+    REPLACE = "D"
+    REPLACE0 = "Z"
+    CLEAN = "C"
+    UID = "U"
+
+
 class Profile:
+
+    Action = ActionChoices
 
     def __init__(self):
 
@@ -163,7 +176,11 @@ def apply_module_actions(
         module = dicom_standard.get_module_via_tag(tag, sop_id=sop)
         usage = module["usage"].lower()
         if usage == "u":
-            profile.set_action(sop_id=sop, tag=tag, action="X")
+            profile.set_action(
+                sop_id=sop,
+                tag=tag,
+                action=profile.Action.REMOVE,
+            )
         elif usage in ("m", "c"):
             continue  # Leave it unset
         else:
@@ -179,7 +196,11 @@ def apply_retired_attribute_actions(
         attribute = dicom_standard.get_attribute_via_tag(tag)
         retired = attribute["retired"].lower()
         if retired == "y":
-            profile.set_action(sop_id=sop, tag=tag, action="X")
+            profile.set_action(
+                sop_id=sop,
+                tag=tag,
+                action=profile.Action.REMOVE,
+            )
         elif retired == "n":
             continue  # Leave it unset
         else:

@@ -13,7 +13,7 @@ from dicom_deid.standard_profile import (
 @pytest.mark.parametrize(
     "module_usage,expected_action",
     (
-        ("U", "X"),
+        ("U", Profile.Action.REMOVE),
         ("M", None),
         ("C", None),
     ),
@@ -54,7 +54,7 @@ def test_module_actions(module_usage, expected_action):
     )
     p = Profile()
     p.set_action(sop_id="1.1", tag="(0000,0000)", action=None)
-    p.set_action(sop_id="1.1", tag="(1111,1111)", action="K")
+    p.set_action(sop_id="1.1", tag="(1111,1111)", action=p.Action.KEEP)
 
     apply_module_actions(
         profile=p,
@@ -67,7 +67,8 @@ def test_module_actions(module_usage, expected_action):
         == expected_action
     )
     assert (
-        json_profile["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"] == "K"
+        json_profile["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"]
+        == p.Action.KEEP
     ), "Already set action is left alone"
 
 
@@ -114,7 +115,7 @@ def test_unsupported_usage_module_actions():
 @pytest.mark.parametrize(
     "retired_state,expected_action",
     (
-        ("Y", "X"),
+        ("Y", Profile.Action.REMOVE),
         ("N", None),
     ),
 )
@@ -158,7 +159,7 @@ def test_retired_attributes(retired_state, expected_action):
     )
     p = Profile()
     p.set_action(sop_id="1.1", tag="(0000,0000)", action=None)
-    p.set_action(sop_id="1.1", tag="(1111,1111)", action="K")
+    p.set_action(sop_id="1.1", tag="(1111,1111)", action=p.Action.KEEP)
 
     apply_retired_attribute_actions(
         profile=p,
@@ -171,7 +172,8 @@ def test_retired_attributes(retired_state, expected_action):
         == expected_action
     )
     assert (
-        json_profile["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"] == "K"
+        json_profile["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"]
+        == p.Action.KEEP
     ), "Already set action is left alone"
 
 
