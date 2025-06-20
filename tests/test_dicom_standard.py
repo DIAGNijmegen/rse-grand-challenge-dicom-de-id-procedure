@@ -1,8 +1,12 @@
+import os
 from contextlib import nullcontext as does_not_raise
+from pathlib import Path
 
 import pytest
 
 from dicom_deid.standard_profile import DICOMStandard, DICOMStandardError
+
+TEST_RESOURCES = Path(os.path.dirname(os.path.realpath(__file__))) / "resources"
 
 
 def test_dicom_standard():
@@ -143,3 +147,16 @@ def test_dicom_standard_inconsistent_modules(ciods_to_modules, expectation):
             sops=[],
             ciods=[],
         )
+
+
+def test_from_path():
+    ds = DICOMStandard.from_path(TEST_RESOURCES / "dicom_standard")
+
+    assert ds.version == "test"
+
+    assert ds.map_sop_to_tags("1.1") == {"(0000,0000)", "(1111,1111)"}
+    assert ds.map_sop_to_tags("2.2") == {"(0000,0000)", "(1111,1111)", "(2222,2222)"}
+
+    assert ds.get_module_via_tag("(0000,0000)", sop_id="1.1")["moduleId"] == "mod0"
+
+    assert ds.get_module_via_tag("(2222,2222)", sop_id="2.2")["moduleId"] == "mod1"

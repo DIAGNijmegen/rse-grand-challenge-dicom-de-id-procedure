@@ -142,13 +142,43 @@ class DICOMStandard:
     def get_confidentiality_profile_via_tag(self, /, tag):
         return self.__confidentiality_profile_lookup[tag]
 
+    @classmethod
+    def from_path(cls, path):
+        with (path / "version.json").open() as f:
+            version = json.load(f)
+        with (path / "sops.json").open() as f:
+            sops = json.load(f)
+        with (path / "module_to_attributes.json").open() as f:
+            module_to_attributes = json.load(f)
+        with (path / "ciods_to_modules.json").open() as f:
+            ciods_to_modules = json.load(f)
+        with (path / "ciods.json").open() as f:
+            ciods = json.load(f)
+        with (path / "attributes.json").open() as f:
+            attributes = json.load(f)
+        with (path / "confidentiality_profile_attributes.json").open() as f:
+            confidentiality_profile_attributes = json.load(f)
+        with (path / "macro_to_attributes.json").open() as f:
+            macro_to_attributes = json.load(f)
+
+        return cls(
+            version=version,
+            sops=sops,
+            module_to_attributes=module_to_attributes,
+            ciods_to_modules=ciods_to_modules,
+            ciods=ciods,
+            attributes=attributes,
+            confidentiality_profile_attributes=confidentiality_profile_attributes,
+            macro_to_attributes=macro_to_attributes,
+        )
+
 
 class ActionChoices(str, Enum):
     REMOVE = "X"
     KEEP = "K"
 
     REPLACE = "D"
-    REPLACE0 = "Z"
+    REPLACE_0 = "Z"
     CLEAN = "C"
     UID = "U"
 
@@ -182,10 +212,6 @@ class Profile:
 
     def to_json(self):
         return json.dumps(self.__profile)
-
-
-def generate_standard_profile(*, dicom_standard_path, output_path):
-    pass
 
 
 def apply_module_actions(
@@ -236,7 +262,7 @@ def apply_basic_dicom_deid_profile_actions(
 ):
     action_map = {
         "d": Profile.Action.REPLACE,
-        "z": Profile.Action.REPLACE0,
+        "z": Profile.Action.REPLACE_0,
         "x": Profile.Action.REMOVE,
         "k": Profile.Action.KEEP,
         "c": Profile.Action.CLEAN,
@@ -246,28 +272,28 @@ def apply_basic_dicom_deid_profile_actions(
     basic_profile_action_type_lookup = {
         ("z/d", "1"): Profile.Action.REPLACE,
         ("z/d", "1c"): Profile.Action.REPLACE,
-        ("z/d", "2"): Profile.Action.REPLACE0,
-        ("z/d", "2c"): Profile.Action.REPLACE0,
+        ("z/d", "2"): Profile.Action.REPLACE_0,
+        ("z/d", "2c"): Profile.Action.REPLACE_0,
         ("z/d", "3"): Profile.Action.REMOVE,
         ("x/z", "1"): Profile.Action.REPLACE,
         ("x/z", "1c"): Profile.Action.REPLACE,
-        ("x/z", "2"): Profile.Action.REPLACE0,
-        ("x/z", "2c"): Profile.Action.REPLACE0,
+        ("x/z", "2"): Profile.Action.REPLACE_0,
+        ("x/z", "2c"): Profile.Action.REPLACE_0,
         ("x/z", "3"): Profile.Action.REMOVE,
         ("x/d", "1"): Profile.Action.REPLACE,
         ("x/d", "1c"): Profile.Action.REPLACE,
-        ("x/d", "2"): Profile.Action.REPLACE0,
-        ("x/d", "2c"): Profile.Action.REPLACE0,
+        ("x/d", "2"): Profile.Action.REPLACE_0,
+        ("x/d", "2c"): Profile.Action.REPLACE_0,
         ("x/d", "3"): Profile.Action.REMOVE,
         ("x/z/d", "1"): Profile.Action.REPLACE,
         ("x/z/d", "1c"): Profile.Action.REPLACE,
-        ("x/z/d", "2"): Profile.Action.REPLACE0,
-        ("x/z/d", "2c"): Profile.Action.REPLACE0,
+        ("x/z/d", "2"): Profile.Action.REPLACE_0,
+        ("x/z/d", "2c"): Profile.Action.REPLACE_0,
         ("x/z/d", "3"): Profile.Action.REMOVE,
         ("x/z/u*", "1"): Profile.Action.UID,
         ("x/z/u*", "1c"): Profile.Action.UID,
-        ("x/z/u*", "2"): Profile.Action.REPLACE0,
-        ("x/z/u*", "2c"): Profile.Action.REPLACE0,
+        ("x/z/u*", "2"): Profile.Action.REPLACE_0,
+        ("x/z/u*", "2c"): Profile.Action.REPLACE_0,
         ("x/z/u*", "3"): Profile.Action.REMOVE,
     }
 
@@ -310,7 +336,7 @@ def apply_attribute_type_actions(
         if attribute_type == "1":
             action = Profile.Action.KEEP
         elif attribute_type == "2":
-            action = Profile.Action.REPLACE0
+            action = Profile.Action.REPLACE_0
         elif attribute_type == "3":
             action = Profile.Action.REMOVE
         elif attribute_type in ("1c", "2c"):
@@ -320,3 +346,9 @@ def apply_attribute_type_actions(
 
         if action is not None:
             profile.set_action(sop_id=sop, tag=tag, action=action)
+
+
+def generate_standard_profile(*, dicom_standard_path, output_path):
+    pass
+    # ds = DICOMStandard.from_path(dicom_standard_path)
+    # sops = []

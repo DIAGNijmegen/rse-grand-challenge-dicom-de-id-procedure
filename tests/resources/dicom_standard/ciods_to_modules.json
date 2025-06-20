@@ -1,0 +1,14 @@
+[
+    {
+        "ciodId": "a-name",
+        "moduleId": "mod0"
+    },
+    {
+        "ciodId": "another-name",
+        "moduleId": "mod0"
+    },
+    {
+        "ciodId": "another-name",
+        "moduleId": "mod1"
+    }
+]
