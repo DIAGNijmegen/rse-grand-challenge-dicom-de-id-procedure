@@ -272,10 +272,14 @@ def apply_basic_dicom_deid_profile_actions(
     }
 
     for tag, sop in profile.get_unset_action_tags_in_sops():
-        conf_profile = dicom_standard.get_confidentiality_profile_via_tag(tag)
+        try:
+            conf_profile = dicom_standard.get_confidentiality_profile_via_tag(tag)
+        except KeyError:
+            continue  # No confidentiality profile set
+
         basic_profile_action = conf_profile["basicProfile"].casefold()
 
-        action = action_map.get(basic_profile_action)
+        action = action_map[basic_profile_action]
         if action is None:
             attribute = dicom_standard.get_attribute_via_tag(tag)
             attribute_type = attribute["type"].casefold()

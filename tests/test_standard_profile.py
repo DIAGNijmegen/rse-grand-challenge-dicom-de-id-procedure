@@ -286,6 +286,9 @@ def test_basic_dicom_deid_profile_actions(basic_profile_value, expected_action):
     p = Profile()
     p.set_action(sop_id="1.1", tag="(0000,0000)", action=None)
     p.set_action(sop_id="1.1", tag="(1111,1111)", action=p.Action.KEEP)
+    p.set_action(
+        sop_id="1.1", tag="(2222,2222)", action=None
+    )  # No confidentiality profile set
 
     apply_basic_dicom_deid_profile_actions(
         profile=p,
