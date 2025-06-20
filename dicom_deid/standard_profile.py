@@ -18,14 +18,21 @@ class DICOMStandard:
     def __init__(
         self,
         *,
-        version,
-        sops,
-        module_to_attributes,
-        ciods_to_modules,
-        ciods,
+        version=None,
+        sops=None,
+        module_to_attributes=None,
+        ciods_to_modules=None,
+        ciods=None,
+        attributes=None,
     ):
 
         self.version = version
+
+        sops = sops or []
+        module_to_attributes = module_to_attributes or []
+        ciods_to_modules = ciods_to_modules or []
+        ciods = ciods or []
+        attributes = attributes or []
 
         # Map CIOD name to CIOD id: SOPClasses and CIOD are linked via name
         ciod_name_to_id = {ciod["name"].lower(): ciod["id"] for ciod in ciods}
@@ -80,6 +87,8 @@ class DICOMStandard:
             else:
                 self.__module_lookup[module_id] = entry
 
+        self.__attribute_lookup = {entry["tag"]: entry for entry in attributes}
+
     def map_sop_to_module_ids(self, /, sop_id):
         coid_id = self.__sop_id_to_ciod_id[sop_id]
         return self.__ciod_id_to_module_ids[coid_id]
@@ -106,6 +115,9 @@ class DICOMStandard:
 
         module_id = matching_modules.pop()
         return self.__module_lookup[module_id]
+
+    def get_attribute_via_tag(self, /, tag):
+        return self.__attribute_lookup[tag]
 
 
 class Profile:
@@ -149,10 +161,26 @@ def apply_module_actions(
 
     for tag, sop in profile.get_unset_action_tags_in_sops():
         module = dicom_standard.get_module_via_tag(tag, sop_id=sop)
-        usage = module["usage"]
-        if usage == "U":
+        usage = module["usage"].lower()
+        if usage == "u":
             profile.set_action(sop_id=sop, tag=tag, action="X")
-        elif usage in ("M", "C"):
+        elif usage in ("m", "c"):
             continue  # Leave it unset
         else:
-            raise ValueError(f"Unsupported module-usage: {usage!r}")
+            raise ValueError(f"Unsupported module usage: {usage!r}")
+
+
+def apply_retired_attribute_actions(
+    *,
+    profile: Profile,
+    dicom_standard: DICOMStandard,
+):
+    for tag, sop in profile.get_unset_action_tags_in_sops():
+        attribute = dicom_standard.get_attribute_via_tag(tag)
+        retired = attribute["retired"].lower()
+        if retired == "y":
+            profile.set_action(sop_id=sop, tag=tag, action="X")
+        elif retired == "n":
+            continue  # Leave it unset
+        else:
+            raise ValueError(f"Unsupported attribute retired: {retired!r}")
