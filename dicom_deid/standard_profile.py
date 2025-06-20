@@ -25,6 +25,8 @@ class DICOMStandard:
         ciods_to_modules=None,
         ciods=None,
         attributes=None,
+        confidentiality_profile_attributes=None,
+        macro_to_attributes=None,
     ):
 
         self.version = version
@@ -34,6 +36,8 @@ class DICOMStandard:
         ciods_to_modules = ciods_to_modules or []
         ciods = ciods or []
         attributes = attributes or []
+        confidentiality_profile_attributes = confidentiality_profile_attributes or []
+        macro_to_attributes = macro_to_attributes or []
 
         # Map CIOD name to CIOD id: SOPClasses and CIOD are linked via name
         ciod_name_to_id = {ciod["name"].lower(): ciod["id"] for ciod in ciods}
@@ -90,6 +94,14 @@ class DICOMStandard:
 
         self.__attribute_lookup = {entry["tag"]: entry for entry in attributes}
 
+        self.__confidentiality_profile_lookup = {
+            entry["tag"]: entry for entry in confidentiality_profile_attributes
+        }
+
+        self.__attribute_type_lookup = {
+            entry["tag"]: entry["type"] for entry in macro_to_attributes
+        }
+
     def map_sop_to_module_ids(self, /, sop_id):
         coid_id = self.__sop_id_to_ciod_id[sop_id]
         return self.__ciod_id_to_module_ids[coid_id]
@@ -118,7 +130,17 @@ class DICOMStandard:
         return self.__module_lookup[module_id]
 
     def get_attribute_via_tag(self, /, tag):
-        return self.__attribute_lookup[tag]
+        attribute = {**self.__attribute_lookup[tag]}
+
+        try:
+            attribute["type"] = self.__attribute_type_lookup[tag]
+        except KeyError:
+            pass  # attribute will simply not have a type
+
+        return attribute
+
+    def get_confidentiality_profile_via_tag(self, /, tag):
+        return self.__confidentiality_profile_lookup[tag]
 
 
 class ActionChoices(str, Enum):
@@ -205,3 +227,65 @@ def apply_retired_attribute_actions(
             continue  # Leave it unset
         else:
             raise ValueError(f"Unsupported attribute retired: {retired!r}")
+
+
+def apply_basic_dicom_deid_profile(
+    profile: Profile,
+    dicom_standard: DICOMStandard,
+):
+    action_map = {
+        "d": Profile.Action.REPLACE,
+        "z": Profile.Action.REPLACE0,
+        "x": Profile.Action.REMOVE,
+        "k": Profile.Action.KEEP,
+        "c": Profile.Action.CLEAN,
+        "u": Profile.Action.UID,
+    }
+
+    basic_profile_action_type_lookup = {
+        ("z/d", "1"): Profile.Action.REPLACE,
+        ("z/d", "1c"): Profile.Action.REPLACE,
+        ("z/d", "2"): Profile.Action.REPLACE0,
+        ("z/d", "2c"): Profile.Action.REPLACE0,
+        ("z/d", "3"): Profile.Action.REMOVE,
+        ("x/z", "1"): Profile.Action.REPLACE,
+        ("x/z", "1c"): Profile.Action.REPLACE,
+        ("x/z", "2"): Profile.Action.REPLACE0,
+        ("x/z", "2c"): Profile.Action.REPLACE0,
+        ("x/z", "3"): Profile.Action.REMOVE,
+        ("x/d", "1"): Profile.Action.REPLACE,
+        ("x/d", "1c"): Profile.Action.REPLACE,
+        ("x/d", "2"): Profile.Action.REPLACE0,
+        ("x/d", "2c"): Profile.Action.REPLACE0,
+        ("x/d", "3"): Profile.Action.REMOVE,
+        ("x/z/d", "1"): Profile.Action.REPLACE,
+        ("x/z/d", "1c"): Profile.Action.REPLACE,
+        ("x/z/d", "2"): Profile.Action.REPLACE0,
+        ("x/z/d", "2c"): Profile.Action.REPLACE0,
+        ("x/z/d", "3"): Profile.Action.REMOVE,
+        ("x/z/u*", "1"): Profile.Action.UID,
+        ("x/z/u*", "1c"): Profile.Action.UID,
+        ("x/z/u*", "2"): Profile.Action.REPLACE0,
+        ("x/z/u*", "2c"): Profile.Action.REPLACE0,
+        ("x/z/u*", "3"): Profile.Action.REMOVE,
+    }
+
+    for tag, sop in profile.get_unset_action_tags_in_sops():
+        conf_profile = dicom_standard.get_confidentiality_profile_via_tag(tag)
+        basic_profile_action = conf_profile["basicProfile"].lower()
+
+        action = action_map.get(basic_profile_action)
+        if action is None:
+            attribute = dicom_standard.get_attribute_via_tag(tag)
+            attribute_type = attribute["type"].lower()
+            try:
+                action = basic_profile_action_type_lookup[
+                    (basic_profile_action, attribute_type)
+                ]
+            except KeyError as e:
+                raise ValueError(
+                    f"Unsupported confidentiality action: {basic_profile_action} for "
+                    f"attribute type {attribute_type}"
+                ) from e
+
+        profile.set_action(sop_id=sop, tag=tag, action=action)
