@@ -40,13 +40,13 @@ class DICOMStandard:
         macro_to_attributes = macro_to_attributes or []
 
         # Map CIOD name to CIOD id: SOPClasses and CIOD are linked via name
-        ciod_name_to_id = {ciod["name"].lower(): ciod["id"] for ciod in ciods}
+        ciod_name_to_id = {ciod["name"].casefold(): ciod["id"] for ciod in ciods}
 
         # Map SOPClassUID to CIOD
         self.__sop_id_to_ciod_id = {}
         for entry in sops:
             sop_id = entry["id"]
-            ciod_name = entry["ciod"].lower()
+            ciod_name = entry["ciod"].casefold()
             ciod_id = ciod_name_to_id[ciod_name]
             if sop_id in self.__sop_id_to_ciod_id:
                 raise DICOMStandardError(
@@ -196,7 +196,7 @@ def apply_module_actions(
 
     for tag, sop in profile.get_unset_action_tags_in_sops():
         module = dicom_standard.get_module_via_tag(tag, sop_id=sop)
-        usage = module["usage"].lower()
+        usage = module["usage"].casefold()
         if usage == "u":
             profile.set_action(
                 sop_id=sop,
@@ -216,7 +216,7 @@ def apply_retired_attribute_actions(
 ):
     for tag, sop in profile.get_unset_action_tags_in_sops():
         attribute = dicom_standard.get_attribute_via_tag(tag)
-        retired = attribute["retired"].lower()
+        retired = attribute["retired"].casefold()
         if retired == "y":
             profile.set_action(
                 sop_id=sop,
@@ -273,12 +273,12 @@ def apply_basic_dicom_deid_profile_actions(
 
     for tag, sop in profile.get_unset_action_tags_in_sops():
         conf_profile = dicom_standard.get_confidentiality_profile_via_tag(tag)
-        basic_profile_action = conf_profile["basicProfile"].lower()
+        basic_profile_action = conf_profile["basicProfile"].casefold()
 
         action = action_map.get(basic_profile_action)
         if action is None:
             attribute = dicom_standard.get_attribute_via_tag(tag)
-            attribute_type = attribute["type"].lower()
+            attribute_type = attribute["type"].casefold()
             try:
                 action = basic_profile_action_type_lookup[
                     (basic_profile_action, attribute_type)
@@ -299,7 +299,7 @@ def apply_attribute_type_actions(
 ):
     for tag, sop in profile.get_unset_action_tags_in_sops():
         attribute = dicom_standard.get_attribute_via_tag(tag)
-        attribute_type = attribute["type"].lower()
+        attribute_type = attribute["type"].casefold()
 
         action = None
 
