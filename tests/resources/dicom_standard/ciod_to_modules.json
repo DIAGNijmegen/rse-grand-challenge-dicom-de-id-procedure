@@ -1,14 +1,17 @@
 [
     {
         "ciodId": "a-name",
-        "moduleId": "mod0"
+        "moduleId": "mod0",
+        "usage": "U"
     },
     {
         "ciodId": "another-name",
-        "moduleId": "mod0"
+        "moduleId": "mod0",
+        "usage": "M"
     },
     {
         "ciodId": "another-name",
-        "moduleId": "mod1"
+        "moduleId": "mod1",
+        "usage": "C"
     }
 ]

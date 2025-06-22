@@ -178,20 +178,21 @@ class DICOMStandard:
             sop_tags.update(module_tags)
         return sop_tags
 
-    def get_modules_via_tag(self, /, tag, *, sop_id):
+    def get_module_usages_via_tag(self, /, tag, *, sop_id):
         sop_module_ids = self.map_sop_to_module_ids(sop_id)
         tag_module_ids = self.__tag_to_module_ids[tag]
 
-        matching_modules = sop_module_ids & tag_module_ids
+        # Limit to the modules that are options given the COID (via SOP)
+        matching_module_ids = sop_module_ids & tag_module_ids
 
-        if len(matching_modules) != 1:
-            raise DICOMStandardError(
-                f"Tag {tag} belongs to {len(matching_modules)} modules, expected 1"
-            )
-
-        module_id = matching_modules.pop()
         ciod_id = self.__sop_id_to_ciod_id[sop_id]
-        return self.__module_lookup[ciod_id][module_id]
+
+        usages = set()
+        for module_id in matching_module_ids:
+            module_details = self.__module_lookup[ciod_id][module_id]
+            usages.add(module_details["usage"])
+
+        return usages
 
     def get_attribute_via_tag(self, /, tag):
         attribute = {**self.__attribute_lookup[tag]}
@@ -285,8 +286,13 @@ def apply_module_actions(
 ):
 
     for tag, sop in profile.get_unset_action_tags_in_sops():
-        module = dicom_standard.get_modules_via_tag(tag, sop_id=sop)
-        usage = module["usage"].casefold()
+        usages = dicom_standard.get_module_usages_via_tag(tag, sop_id=sop)
+
+        if len(usages) != 1:
+            continue
+        else:
+            usage = usages.pop().casefold()
+
         if usage == "u":
             profile.set_action(
                 sop_id=sop,
@@ -427,18 +433,18 @@ def generate_standard_profile(*, dicom_standard_path, output_path):
     ds = DICOMStandard.from_path(dicom_standard_path)
     sops = ["1.2.840.10008.5.1.4.1.1.2"]
 
-    profile = Profile()
+    p = Profile()
     for sop in sops:
         tags = ds.map_sop_to_tags(sop)
         for tag in tags:
-            profile.set_action(sop_id=sop, tag=tag, action=None)
+            p.set_action(sop_id=sop, tag=tag, action=None)
 
-    apply_module_actions(profile)
-    apply_retired_attribute_actions(profile)
-    apply_basic_dicom_deid_profile_actions(profile)
-    apply_attribute_type_actions(profile)
+    apply_module_actions(profile=p, dicom_standard=ds)
+    apply_retired_attribute_actions(profile=p, dicom_standard=ds)
+    apply_basic_dicom_deid_profile_actions(profile=p, dicom_standard=ds)
+    apply_attribute_type_actions(profile=p, dicom_standard=ds)
 
-    json_profile = profile.to_json(
+    json_profile = p.to_json(
         indent=2,
         sort_keys=True,
     )

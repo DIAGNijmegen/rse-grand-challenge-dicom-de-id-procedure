@@ -1,9 +1,7 @@
 import os
 from pathlib import Path
 
-import pytest
-
-from dicom_deid.standard_profile import DICOMStandard, DICOMStandardError
+from dicom_deid.standard_profile import DICOMStandard
 
 TEST_RESOURCES = Path(os.path.dirname(os.path.realpath(__file__))) / "resources"
 
@@ -29,14 +27,17 @@ def test_dicom_standard():
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
+                "usage": "U",
             },
             {
                 "ciodId": "another-name",
                 "moduleId": "mod0",
+                "usage": "M",
             },
             {
                 "ciodId": "another-name",
                 "moduleId": "mod1",
+                "usage": "C",
             },
         ],
         sops=[
@@ -66,53 +67,8 @@ def test_dicom_standard():
     assert ds.map_sop_to_tags("2.2") == {"(0000,0000)", "(1111,1111)", "(2222,2222)"}
 
     # TAG => MODULE
-    assert ds.get_modules_via_tag("(0000,0000)", sop_id="1.1")["moduleId"] == "mod0"
-
-    assert ds.get_modules_via_tag("(2222,2222)", sop_id="2.2")["moduleId"] == "mod1"
-
-
-def test_dicom_standard_module_clash():
-    ds = DICOMStandard(
-        version="foo",
-        module_to_attributes=[
-            {
-                "moduleId": "mod0",
-                "tag": "(0000,0000)",
-            },
-            {
-                "moduleId": "mod1",
-                "tag": "(0000,0000)",
-            },
-        ],
-        ciod_to_modules=[
-            {
-                "ciodId": "a-name",
-                "moduleId": "mod0",
-            },
-            {
-                "ciodId": "a-name",
-                "moduleId": "mod1",
-            },
-        ],
-        sops=[
-            {
-                "id": "1.1",
-                "ciod": "A Name",
-            },
-        ],
-        ciods=[
-            {
-                "name": "A Name",
-                "id": "a-name",
-            },
-        ],
-    )
-
-    with pytest.raises(
-        DICOMStandardError, match=r"Tag \(0000,0000\) belongs to 2 modules"
-    ):
-        # Tag belongs to two different modules, in the same SOP
-        ds.get_modules_via_tag("(0000,0000)", sop_id="1.1")
+    assert ds.get_module_usages_via_tag("(0000,0000)", sop_id="1.1") == {"U"}
+    assert ds.get_module_usages_via_tag("(2222,2222)", sop_id="2.2") == {"C"}
 
 
 def test_from_path():
@@ -123,6 +79,6 @@ def test_from_path():
     assert ds.map_sop_to_tags("1.1") == {"(0000,0000)", "(1111,1111)"}
     assert ds.map_sop_to_tags("2.2") == {"(0000,0000)", "(1111,1111)", "(2222,2222)"}
 
-    assert ds.get_modules_via_tag("(0000,0000)", sop_id="1.1")["moduleId"] == "mod0"
+    assert ds.get_module_usages_via_tag("(0000,0000)", sop_id="1.1") == {"U"}
 
-    assert ds.get_modules_via_tag("(2222,2222)", sop_id="2.2")["moduleId"] == "mod1"
+    assert ds.get_module_usages_via_tag("(2222,2222)", sop_id="2.2") == {"C"}

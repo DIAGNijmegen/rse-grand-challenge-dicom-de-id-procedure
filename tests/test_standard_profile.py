@@ -14,33 +14,47 @@ from dicom_deid.standard_profile import (
 
 
 @pytest.mark.parametrize(
-    "module_usage,expected_action",
+    "module_usages,expected_action",
     (
-        ("U", Profile.Action.REMOVE),
-        ("M", None),
-        ("C", None),
+        (["U"], Profile.Action.REMOVE),
+        (["M"], None),
+        (["C"], None),
+        # Multiple, same
+        (["U"] * 2, Profile.Action.REMOVE),
+        (["M"] * 2, None),
+        (["C"] * 2, None),
+        # Multiple, different
+        (["U", "M"], None),
+        (["M", "C"], None),
+        (["C", "M"], None),
     ),
 )
-def test_module_actions(module_usage, expected_action):
+def test_module_actions(module_usages, expected_action):
 
     ds = DICOMStandard(
         version="foo",
         module_to_attributes=[
-            {
-                "moduleId": "mod0",
-                "tag": "(0000,0000)",
-            },
+            *(
+                {
+                    "moduleId": f"mod{i}",
+                    "tag": "(0000,0000)",
+                }
+                for i in range(len(module_usages))
+            ),
             {
                 "moduleId": "mod0",
                 "tag": "(1111,1111)",
             },
         ],
         ciod_to_modules=[
-            {
-                "ciodId": "a-name",
-                "moduleId": "mod0",
-                "usage": module_usage,
-            },
+            *(
+                {
+                    "ciodId": "a-name",
+                    "moduleId": f"mod{idx}",
+                    "usage": usage,
+                }
+                for idx, usage in enumerate(module_usages)
+            )
         ],
         sops=[
             {
