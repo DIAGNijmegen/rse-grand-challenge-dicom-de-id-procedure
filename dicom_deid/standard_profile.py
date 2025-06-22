@@ -241,6 +241,8 @@ class ActionChoices(str, Enum):
     CLEAN = "C"
     UID = "U"
 
+    REJECT = "REJECT"
+
 
 class Profile:
 
@@ -249,12 +251,23 @@ class Profile:
     def __init__(self):
 
         self.__profile = {
+            "dicomStandardVersion": None,
+            "default": self.Action.REJECT,
             "SOPClassUID": defaultdict(
                 lambda: {
+                    "default": self.Action.REMOVE,
                     "tag": {},
                 },
-            )
+            ),
         }
+
+    @property
+    def dicom_standard_version(self):
+        return self.__profile["dicomStandardVersion"]
+
+    @dicom_standard_version.setter
+    def dicom_standard_version(self, version):
+        self.__profile["dicomStandardVersion"] = version
 
     def set_action(self, sop_id, tag, action):
         self.__profile["SOPClassUID"][sop_id]["tag"][tag] = {
@@ -433,14 +446,15 @@ def generate_standard_profile(*, dicom_standard_path, output_path):
         for tag in tags:
             p.set_action(sop_id=sop, tag=tag, action=None)
 
+    p.dicom_standard_version = ds.version
+
     apply_module_actions(profile=p, dicom_standard=ds)
     apply_retired_attribute_actions(profile=p, dicom_standard=ds)
     apply_basic_dicom_deid_profile_actions(profile=p, dicom_standard=ds)
     apply_attribute_type_actions(profile=p, dicom_standard=ds)
 
     json_profile = p.to_json(
-        indent=2,
-        sort_keys=True,
+        indent=4,
     )
 
     with open(output_path, "w") as f:
