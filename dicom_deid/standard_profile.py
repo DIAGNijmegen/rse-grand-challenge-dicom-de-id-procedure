@@ -41,12 +41,8 @@ class DICOMStandard:
 
         # Object lookups
         self.__module_lookup = self._build_module_lookup(ciod_to_modules)
-
         self.__attribute_lookup = self._build_attribute_lookup(attributes)
-
-        self.__attribute_types_lookup = self._build_attribute_types_lookup(
-            macro_to_attributes
-        )
+        self.__marco_types_lookup = self._build_macro_types_lookup(macro_to_attributes)
         self.__confidentiality_profile_lookup = (
             self._build_confidentiality_profile_lookup(
                 confidentiality_profile_attributes
@@ -154,7 +150,7 @@ class DICOMStandard:
 
         return result
 
-    def _build_attribute_types_lookup(self, macro_to_attributes):
+    def _build_macro_types_lookup(self, macro_to_attributes):
         macro_to_attributes = macro_to_attributes or []
 
         result = defaultdict(set)
@@ -194,18 +190,16 @@ class DICOMStandard:
 
         return usages
 
-    def get_attribute_via_tag(self, /, tag):
-        attribute = {**self.__attribute_lookup[tag]}
+    def get_macro_types_via_tag(self, /, tag):
+        return self.__marco_types_lookup[tag]
 
-        try:
-            attribute["types"] = self.__attribute_types_lookup[tag]
-        except KeyError:
-            pass  # attribute will simply not have a type
+    def get_attribute_retired_via_tag(self, /, tag):
+        attribute = self.__attribute_lookup[tag]
+        return attribute["retired"]
 
-        return attribute
-
-    def get_confidentiality_profile_via_tag(self, /, tag):
-        return self.__confidentiality_profile_lookup[tag]
+    def get_basic_confidentiality_profile_via_tag(self, /, tag):
+        conf_profile = self.__confidentiality_profile_lookup[tag]
+        return conf_profile["basicProfile"]
 
     @classmethod
     def from_path(cls, path):
@@ -311,8 +305,7 @@ def apply_retired_attribute_actions(
     dicom_standard: DICOMStandard,
 ):
     for tag, sop in profile.get_unset_action_tags_in_sops():
-        attribute = dicom_standard.get_attribute_via_tag(tag)
-        retired = attribute["retired"].casefold()
+        retired = dicom_standard.get_attribute_retired_via_tag(tag).casefold()
         if retired == "y":
             profile.set_action(
                 sop_id=sop,
@@ -369,16 +362,17 @@ def apply_basic_dicom_deid_profile_actions(
 
     for tag, sop in profile.get_unset_action_tags_in_sops():
         try:
-            conf_profile = dicom_standard.get_confidentiality_profile_via_tag(tag)
+            basic_profile_action = (
+                dicom_standard.get_basic_confidentiality_profile_via_tag(tag)
+            )
         except KeyError:
             continue  # No confidentiality profile set
 
-        basic_profile_action = conf_profile["basicProfile"].casefold()
+        basic_profile_action = basic_profile_action.casefold()
 
         action = action_map.get(basic_profile_action)
         if action is None:
-            attribute = dicom_standard.get_attribute_via_tag(tag)
-            attribute_types = attribute["types"]
+            attribute_types = dicom_standard.get_macro_types_via_tag(tag)
 
             if len(attribute_types) != 1:
                 continue
@@ -404,8 +398,8 @@ def apply_attribute_type_actions(
     dicom_standard: DICOMStandard,
 ):
     for tag, sop in profile.get_unset_action_tags_in_sops():
-        attribute = dicom_standard.get_attribute_via_tag(tag)
-        attribute_types = attribute["types"]
+
+        attribute_types = dicom_standard.get_macro_types_via_tag(tag)
 
         if len(attribute_types) != 1:
             continue
