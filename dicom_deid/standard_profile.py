@@ -22,7 +22,7 @@ class DICOMStandard:
         version=None,
         sops=None,
         module_to_attributes=None,
-        ciods_to_modules=None,
+        ciod_to_modules=None,
         ciods=None,
         attributes=None,
         confidentiality_profile_attributes=None,
@@ -31,76 +31,139 @@ class DICOMStandard:
 
         self.version = version
 
+        # Relationships
+        self.__sop_id_to_ciod_id = self._build_sop_id_to_ciod_id(sops, ciods)
+        self.__ciod_id_to_module_ids = self._build_ciod_id_to_module_ids(
+            ciod_to_modules
+        )
+        self.__module_id_to_tags = self._build_module_id_to_tags(module_to_attributes)
+        self.__tag_to_module_ids = self._build_tag_to_module_ids()
+
+        # Object lookups
+        self.__module_lookup = self._build_module_lookup(ciod_to_modules)
+
+        self.__attribute_lookup = self._build_attribute_lookup(attributes)
+
+        self.__attribute_types_lookup = self._build_attribute_types_lookup(
+            macro_to_attributes
+        )
+        self.__confidentiality_profile_lookup = (
+            self._build_confidentiality_profile_lookup(
+                confidentiality_profile_attributes
+            )
+        )
+
+    def _build_sop_id_to_ciod_id(self, sops, ciods):
         sops = sops or []
-        module_to_attributes = module_to_attributes or []
-        ciods_to_modules = ciods_to_modules or []
         ciods = ciods or []
-        attributes = attributes or []
-        confidentiality_profile_attributes = confidentiality_profile_attributes or []
-        macro_to_attributes = macro_to_attributes or []
 
-        # Map CIOD name to CIOD id: SOPClasses and CIOD are linked via name
         ciod_name_to_id = {ciod["name"].casefold(): ciod["id"] for ciod in ciods}
-
-        # Map SOPClassUID to CIOD
-        self.__sop_id_to_ciod_id = {}
+        result = {}
         for entry in sops:
             sop_id = entry["id"]
             ciod_name = entry["ciod"].casefold()
             ciod_id = ciod_name_to_id[ciod_name]
-            if sop_id in self.__sop_id_to_ciod_id:
+            if sop_id in result:
                 raise DICOMStandardError(
                     f"SOP {sop_id} is already mapped to another CIOD"
                 )
-            self.__sop_id_to_ciod_id[sop_id] = ciod_id
+            result[sop_id] = ciod_id
 
-        # Map COID to modules
-        self.__ciod_id_to_module_ids = defaultdict(set)
+        return result
 
-        for entry in ciods_to_modules:
+    def _build_ciod_id_to_module_ids(self, ciod_to_modules):
+        ciod_to_modules = ciod_to_modules or []
+
+        result = defaultdict(set)
+
+        for entry in ciod_to_modules:
             ciod_id = entry["ciodId"]
             module_id = entry["moduleId"]
-            self.__ciod_id_to_module_ids[ciod_id].add(module_id)
+            result[ciod_id].add(module_id)
 
-        # Build module to tags, and vice vera
-        self.__module_id_to_tags = defaultdict(set)
-        self.__tag_to_module_ids = defaultdict(set)
+        return result
+
+    def _build_module_id_to_tags(self, module_to_attributes):
+        module_to_attributes = module_to_attributes or []
+
+        result = defaultdict(set)
 
         for entry in module_to_attributes:
             module_id = entry["moduleId"]
             tag = entry["tag"]
 
-            self.__module_id_to_tags[module_id].add(tag)
-            self.__tag_to_module_ids[tag].add(module_id)
+            result[module_id].add(tag)
 
-        # Lookups
+        return result
 
-        # Note: modules ARE defined multiple times in the reference
-        # We do a sanity check if the values are the same
-        self.__module_lookup = {}
-        for entry in ciods_to_modules:
+    def _build_tag_to_module_ids(self):
+        result = defaultdict(set)
+        for module_id, tags in self.__module_id_to_tags.items():
+            for tag in tags:
+                result[tag].add(module_id)
+        return result
+
+    def _build_module_lookup(self, ciod_to_modules):
+        ciod_to_modules = ciod_to_modules or []
+
+        result = defaultdict(dict)
+        for entry in ciod_to_modules:
+            ciod_id = entry["ciodId"]
             module_id = entry["moduleId"]
 
+            module_lookup_for_ciod = result[ciod_id]
+
             # Sanity check on consistency
-            if module_id in self.__module_lookup:
-                existing = self.__module_lookup[module_id]
-                for k, v in entry.items():
-                    if k != "ciodId" and existing[k] != v:
-                        raise DICOMStandardError(
-                            f"Inconsistent definitions found for module {module_id}"
-                        )
+            if module_id in module_lookup_for_ciod:
+                raise DICOMStandardError(
+                    f"Multiple definitions found for "
+                    f"module {module_id} and CIOD {ciod_id}"
+                )
             else:
-                self.__module_lookup[module_id] = entry
+                module_lookup_for_ciod[module_id] = entry
 
-        self.__attribute_lookup = {entry["tag"]: entry for entry in attributes}
+        return result
 
-        self.__confidentiality_profile_lookup = {
-            entry["tag"]: entry for entry in confidentiality_profile_attributes
-        }
+    def _build_attribute_lookup(self, attributes):
+        attributes = attributes or []
 
-        self.__attribute_type_lookup = {
-            entry["tag"]: entry["type"] for entry in macro_to_attributes
-        }
+        result = {}
+        for entry in attributes:
+            tag = entry["tag"]
+            if tag in result:
+                raise DICOMStandardError(
+                    f"Multiple attribute definitions found for tag {tag}"
+                )
+            else:
+                result[tag] = entry
+
+        return result
+
+    def _build_confidentiality_profile_lookup(self, confidentiality_profile_attributes):
+        confidentiality_profile_attributes = confidentiality_profile_attributes or []
+
+        result = {}
+        for entry in confidentiality_profile_attributes:
+            tag = entry["tag"]
+            if tag in result:
+                raise DICOMStandardError(
+                    f"Multiple confidentiality profiles found for tag {tag}"
+                )
+            else:
+                result[tag] = entry
+
+        return result
+
+    def _build_attribute_types_lookup(self, macro_to_attributes):
+        macro_to_attributes = macro_to_attributes or []
+
+        result = defaultdict(set)
+        for entry in macro_to_attributes:
+            tag = entry["tag"]
+            attribute_type = entry["type"]
+            result[tag].add(attribute_type)
+
+        return result
 
     def map_sop_to_module_ids(self, /, sop_id):
         coid_id = self.__sop_id_to_ciod_id[sop_id]
@@ -115,7 +178,7 @@ class DICOMStandard:
             sop_tags.update(module_tags)
         return sop_tags
 
-    def get_module_via_tag(self, /, tag, *, sop_id):
+    def get_modules_via_tag(self, /, tag, *, sop_id):
         sop_module_ids = self.map_sop_to_module_ids(sop_id)
         tag_module_ids = self.__tag_to_module_ids[tag]
 
@@ -127,13 +190,14 @@ class DICOMStandard:
             )
 
         module_id = matching_modules.pop()
-        return self.__module_lookup[module_id]
+        ciod_id = self.__sop_id_to_ciod_id[sop_id]
+        return self.__module_lookup[ciod_id][module_id]
 
     def get_attribute_via_tag(self, /, tag):
         attribute = {**self.__attribute_lookup[tag]}
 
         try:
-            attribute["type"] = self.__attribute_type_lookup[tag]
+            attribute["types"] = self.__attribute_types_lookup[tag]
         except KeyError:
             pass  # attribute will simply not have a type
 
@@ -150,8 +214,8 @@ class DICOMStandard:
             sops = json.load(f)
         with (path / "module_to_attributes.json").open() as f:
             module_to_attributes = json.load(f)
-        with (path / "ciods_to_modules.json").open() as f:
-            ciods_to_modules = json.load(f)
+        with (path / "ciod_to_modules.json").open() as f:
+            ciod_to_modules = json.load(f)
         with (path / "ciods.json").open() as f:
             ciods = json.load(f)
         with (path / "attributes.json").open() as f:
@@ -165,7 +229,7 @@ class DICOMStandard:
             version=version,
             sops=sops,
             module_to_attributes=module_to_attributes,
-            ciods_to_modules=ciods_to_modules,
+            ciod_to_modules=ciod_to_modules,
             ciods=ciods,
             attributes=attributes,
             confidentiality_profile_attributes=confidentiality_profile_attributes,
@@ -210,8 +274,8 @@ class Profile:
                 if action["action"] is None:
                     yield tag, sop
 
-    def to_json(self):
-        return json.dumps(self.__profile)
+    def to_json(self, **kwargs):
+        return json.dumps(self.__profile, **kwargs)
 
 
 def apply_module_actions(
@@ -221,7 +285,7 @@ def apply_module_actions(
 ):
 
     for tag, sop in profile.get_unset_action_tags_in_sops():
-        module = dicom_standard.get_module_via_tag(tag, sop_id=sop)
+        module = dicom_standard.get_modules_via_tag(tag, sop_id=sop)
         usage = module["usage"].casefold()
         if usage == "u":
             profile.set_action(
@@ -305,10 +369,16 @@ def apply_basic_dicom_deid_profile_actions(
 
         basic_profile_action = conf_profile["basicProfile"].casefold()
 
-        action = action_map[basic_profile_action]
+        action = action_map.get(basic_profile_action)
         if action is None:
             attribute = dicom_standard.get_attribute_via_tag(tag)
-            attribute_type = attribute["type"].casefold()
+            attribute_types = attribute["types"]
+
+            if len(attribute_types) != 1:
+                continue
+            else:
+                attribute_type = attribute_types.pop().casefold()
+
             try:
                 action = basic_profile_action_type_lookup[
                     (basic_profile_action, attribute_type)
@@ -329,7 +399,12 @@ def apply_attribute_type_actions(
 ):
     for tag, sop in profile.get_unset_action_tags_in_sops():
         attribute = dicom_standard.get_attribute_via_tag(tag)
-        attribute_type = attribute["type"].casefold()
+        attribute_types = attribute["types"]
+
+        if len(attribute_types) != 1:
+            continue
+        else:
+            attribute_type = attribute_types.pop().casefold()
 
         action = None
 
@@ -349,6 +424,24 @@ def apply_attribute_type_actions(
 
 
 def generate_standard_profile(*, dicom_standard_path, output_path):
-    pass
-    # ds = DICOMStandard.from_path(dicom_standard_path)
-    # sops = []
+    ds = DICOMStandard.from_path(dicom_standard_path)
+    sops = ["1.2.840.10008.5.1.4.1.1.2"]
+
+    profile = Profile()
+    for sop in sops:
+        tags = ds.map_sop_to_tags(sop)
+        for tag in tags:
+            profile.set_action(sop_id=sop, tag=tag, action=None)
+
+    apply_module_actions(profile)
+    apply_retired_attribute_actions(profile)
+    apply_basic_dicom_deid_profile_actions(profile)
+    apply_attribute_type_actions(profile)
+
+    json_profile = profile.to_json(
+        indent=2,
+        sort_keys=True,
+    )
+
+    with open(output_path, "w") as f:
+        f.write(json_profile)

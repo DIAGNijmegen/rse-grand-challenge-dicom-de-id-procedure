@@ -1,5 +1,4 @@
 import os
-from contextlib import nullcontext as does_not_raise
 from pathlib import Path
 
 import pytest
@@ -26,7 +25,7 @@ def test_dicom_standard():
                 "tag": "(2222,2222)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -67,9 +66,9 @@ def test_dicom_standard():
     assert ds.map_sop_to_tags("2.2") == {"(0000,0000)", "(1111,1111)", "(2222,2222)"}
 
     # TAG => MODULE
-    assert ds.get_module_via_tag("(0000,0000)", sop_id="1.1")["moduleId"] == "mod0"
+    assert ds.get_modules_via_tag("(0000,0000)", sop_id="1.1")["moduleId"] == "mod0"
 
-    assert ds.get_module_via_tag("(2222,2222)", sop_id="2.2")["moduleId"] == "mod1"
+    assert ds.get_modules_via_tag("(2222,2222)", sop_id="2.2")["moduleId"] == "mod1"
 
 
 def test_dicom_standard_module_clash():
@@ -85,7 +84,7 @@ def test_dicom_standard_module_clash():
                 "tag": "(0000,0000)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -113,40 +112,7 @@ def test_dicom_standard_module_clash():
         DICOMStandardError, match=r"Tag \(0000,0000\) belongs to 2 modules"
     ):
         # Tag belongs to two different modules, in the same SOP
-        ds.get_module_via_tag("(0000,0000)", sop_id="1.1")
-
-
-@pytest.mark.parametrize(
-    "ciods_to_modules,expectation",
-    [
-        (
-            [
-                {"ciodId": "a-name", "moduleId": "mod0", "usage": "C"},
-                {"ciodId": "another-name", "moduleId": "mod0", "usage": "C"},
-            ],
-            does_not_raise(),
-        ),
-        (
-            [
-                {"ciodId": "a-name", "moduleId": "mod0", "usage": "C"},
-                {"ciodId": "another-name", "moduleId": "mod0", "usage": "U"},
-            ],
-            pytest.raises(
-                DICOMStandardError,
-                match="Inconsistent definitions found for module",
-            ),
-        ),
-    ],
-)
-def test_dicom_standard_inconsistent_modules(ciods_to_modules, expectation):
-    with expectation:
-        DICOMStandard(
-            version="foo",
-            module_to_attributes=[],
-            ciods_to_modules=ciods_to_modules,
-            sops=[],
-            ciods=[],
-        )
+        ds.get_modules_via_tag("(0000,0000)", sop_id="1.1")
 
 
 def test_from_path():
@@ -157,6 +123,6 @@ def test_from_path():
     assert ds.map_sop_to_tags("1.1") == {"(0000,0000)", "(1111,1111)"}
     assert ds.map_sop_to_tags("2.2") == {"(0000,0000)", "(1111,1111)", "(2222,2222)"}
 
-    assert ds.get_module_via_tag("(0000,0000)", sop_id="1.1")["moduleId"] == "mod0"
+    assert ds.get_modules_via_tag("(0000,0000)", sop_id="1.1")["moduleId"] == "mod0"
 
-    assert ds.get_module_via_tag("(2222,2222)", sop_id="2.2")["moduleId"] == "mod1"
+    assert ds.get_modules_via_tag("(2222,2222)", sop_id="2.2")["moduleId"] == "mod1"

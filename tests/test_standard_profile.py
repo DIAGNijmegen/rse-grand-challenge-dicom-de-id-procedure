@@ -35,7 +35,7 @@ def test_module_actions(module_usage, expected_action):
                 "tag": "(1111,1111)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -85,7 +85,7 @@ def test_unsupported_usage_module_actions():
                 "tag": "(0000,0000)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -141,7 +141,7 @@ def test_retired_attributes(retired_state, expected_action):
                 "tag": "(1111,1111)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -199,7 +199,7 @@ def test_unknown_restired_state():
                 "tag": "(1111,1111)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -258,7 +258,7 @@ def test_basic_dicom_deid_profile_actions(basic_profile_value, expected_action):
                 "tag": "(1111,1111)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -307,50 +307,65 @@ def test_basic_dicom_deid_profile_actions(basic_profile_value, expected_action):
 
 
 @pytest.mark.parametrize(
-    "basic_profile_value,type_value,expected_action",
+    "basic_profile_value,type_values,expected_action",
     [
         # Z/D
-        ("Z/D", "1", Profile.Action.REPLACE),
-        ("Z/D", "1C", Profile.Action.REPLACE),
-        ("Z/D", "2", Profile.Action.REPLACE_0),
-        ("Z/D", "2C", Profile.Action.REPLACE_0),
-        ("Z/D", "3", Profile.Action.REMOVE),
+        ("Z/D", ["1"], Profile.Action.REPLACE),
+        ("Z/D", ["1C"], Profile.Action.REPLACE),
+        ("Z/D", ["2"], Profile.Action.REPLACE_0),
+        ("Z/D", ["2C"], Profile.Action.REPLACE_0),
+        ("Z/D", ["3"], Profile.Action.REMOVE),
         # X/Z
-        ("X/Z", "1", Profile.Action.REPLACE),
-        ("X/Z", "1C", Profile.Action.REPLACE),
-        ("X/Z", "2", Profile.Action.REPLACE_0),
-        ("X/Z", "2C", Profile.Action.REPLACE_0),
-        ("X/Z", "3", Profile.Action.REMOVE),
+        ("X/Z", ["1"], Profile.Action.REPLACE),
+        ("X/Z", ["1C"], Profile.Action.REPLACE),
+        ("X/Z", ["2"], Profile.Action.REPLACE_0),
+        ("X/Z", ["2C"], Profile.Action.REPLACE_0),
+        ("X/Z", ["3"], Profile.Action.REMOVE),
         # X/D
-        ("X/D", "1", Profile.Action.REPLACE),
-        ("X/D", "1C", Profile.Action.REPLACE),
-        ("X/D", "2", Profile.Action.REPLACE_0),
-        ("X/D", "2C", Profile.Action.REPLACE_0),
-        ("X/D", "3", Profile.Action.REMOVE),
+        ("X/D", ["1"], Profile.Action.REPLACE),
+        ("X/D", ["1C"], Profile.Action.REPLACE),
+        ("X/D", ["2"], Profile.Action.REPLACE_0),
+        ("X/D", ["2C"], Profile.Action.REPLACE_0),
+        ("X/D", ["3"], Profile.Action.REMOVE),
         # "X/Z/D"
-        ("X/Z/D", "1", Profile.Action.REPLACE),
-        ("X/Z/D", "1C", Profile.Action.REPLACE),
-        ("X/Z/D", "2", Profile.Action.REPLACE_0),
-        ("X/Z/D", "2C", Profile.Action.REPLACE_0),
-        ("X/Z/D", "3", Profile.Action.REMOVE),
+        ("X/Z/D", ["1"], Profile.Action.REPLACE),
+        ("X/Z/D", ["1C"], Profile.Action.REPLACE),
+        ("X/Z/D", ["2"], Profile.Action.REPLACE_0),
+        ("X/Z/D", ["2C"], Profile.Action.REPLACE_0),
+        ("X/Z/D", ["3"], Profile.Action.REMOVE),
         # X/Z/U
-        ("X/Z/U*", "1", Profile.Action.UID),
-        ("X/Z/U*", "1C", Profile.Action.UID),
-        ("X/Z/U*", "2", Profile.Action.REPLACE_0),
-        ("X/Z/U*", "2C", Profile.Action.REPLACE_0),
-        ("X/Z/U*", "3", Profile.Action.REMOVE),
+        ("X/Z/U*", ["1"], Profile.Action.UID),
+        ("X/Z/U*", ["1C"], Profile.Action.UID),
+        ("X/Z/U*", ["2"], Profile.Action.REPLACE_0),
+        ("X/Z/U*", ["2C"], Profile.Action.REPLACE_0),
+        ("X/Z/U*", ["3"], Profile.Action.REMOVE),
+        # Multiple types, same
+        ("Z/D", ["1"] * 2, Profile.Action.REPLACE),
+        ("Z/D", ["1C"] * 2, Profile.Action.REPLACE),
+        ("Z/D", ["2"] * 2, Profile.Action.REPLACE_0),
+        ("Z/D", ["2C"] * 2, Profile.Action.REPLACE_0),
+        ("Z/D", ["3"] * 2, Profile.Action.REMOVE),
+        # Multiple types, but different
+        ("Z/D", ["1", "1C"], None),
+        ("Z/D", ["1C", "3"], None),
+        ("Z/D", ["2", "1"], None),
+        ("Z/D", ["2C", "3"], None),
+        ("Z/D", ["3", "1"], None),
     ],
 )
 def test_basic_dicom_deid_profile_actions_types(
-    basic_profile_value, type_value, expected_action
+    basic_profile_value, type_values, expected_action
 ):
     ds = DICOMStandard(
         version="foo",
         macro_to_attributes=[
-            {
-                "tag": "(0000,0000)",
-                "type": type_value,
-            },
+            *(
+                {
+                    "tag": "(0000,0000)",
+                    "type": type_value,
+                }
+                for type_value in type_values
+            )
         ],
         attributes=[
             {
@@ -367,7 +382,7 @@ def test_basic_dicom_deid_profile_actions_types(
                 "tag": "(1111,1111)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -458,7 +473,7 @@ def test_basic_dicom_deid_unsupported_type_and_basic_profile(
                 "tag": "(1111,1111)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -494,23 +509,41 @@ def test_basic_dicom_deid_unsupported_type_and_basic_profile(
 
 
 @pytest.mark.parametrize(
-    "attribute_type,expected_action",
+    "attribute_types,expected_action",
     (
-        ("1", Profile.Action.KEEP),
-        ("1C", None),
-        ("2", Profile.Action.REPLACE_0),
-        ("2C", None),
-        ("3", Profile.Action.REMOVE),
+        #
+        # Singular
+        (["1"], Profile.Action.KEEP),
+        (["1C"], None),
+        (["2"], Profile.Action.REPLACE_0),
+        (["2C"], None),
+        (["3"], Profile.Action.REMOVE),
+        #
+        # Multiple, but same
+        (["1"] * 2, Profile.Action.KEEP),
+        (["1C"] * 2, None),
+        (["2"] * 2, Profile.Action.REPLACE_0),
+        (["2C"] * 2, None),
+        (["3"] * 2, Profile.Action.REMOVE),
+        #
+        # Multiple, but different
+        (["1", "1C"], None),
+        (["2", "2C"], None),
+        (["2C", "3"], None),
+        (["3", "2"], None),
     ),
 )
-def test_attribute_type_actions(attribute_type, expected_action):
+def test_attribute_type_actions(attribute_types, expected_action):
     ds = DICOMStandard(
         version="foo",
         macro_to_attributes=[
-            {
-                "tag": "(0000,0000)",
-                "type": attribute_type,
-            },
+            *(
+                {
+                    "tag": "(0000,0000)",
+                    "type": attr_type,
+                }
+                for attr_type in attribute_types
+            )
         ],
         attributes=[
             {
@@ -527,7 +560,7 @@ def test_attribute_type_actions(attribute_type, expected_action):
                 "tag": "(1111,1111)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
@@ -603,7 +636,7 @@ def test_attribute_type_actions_unsupported_type(attribute_type, expectation):
                 "tag": "(1111,1111)",
             },
         ],
-        ciods_to_modules=[
+        ciod_to_modules=[
             {
                 "ciodId": "a-name",
                 "moduleId": "mod0",
