@@ -393,8 +393,8 @@ def apply_basic_dicom_deid_profile_actions(
             else:
                 attribute_type = next(iter(attribute_types)).casefold()
 
-            if attribute_type in ("1c", "2c"):
-                continue  # conditionals can't be set automatically
+            if attribute_type in ("1c", "2c", "none"):
+                continue  # conditionals or unknowns can't be set automatically
 
             try:
                 action = basic_profile_action_type_lookup[
@@ -431,7 +431,7 @@ def apply_attribute_type_actions(
             action = Profile.Action.REPLACE_0
         elif attribute_type == "3":
             action = Profile.Action.REMOVE
-        elif attribute_type in ("1c", "2c"):
+        elif attribute_type in ("1c", "2c", "none"):
             pass  # We don't touch it
         else:
             raise ValueError(f"Unsupported attribute type: {attribute_type}")
