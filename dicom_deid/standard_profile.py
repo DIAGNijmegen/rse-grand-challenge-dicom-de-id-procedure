@@ -191,6 +191,8 @@ class DICOMStandard:
         return usages
 
     def get_macro_types_via_tag(self, /, tag):
+        if tag == "(0018,0010)":
+            print(tag, self.__marco_types_lookup[tag])
         return self.__marco_types_lookup[tag]
 
     def get_attribute_retired_via_tag(self, /, tag):
@@ -347,29 +349,19 @@ def apply_basic_dicom_deid_profile_actions(
 
     basic_profile_action_type_lookup = {
         ("z/d", "1"): Profile.Action.REPLACE,
-        ("z/d", "1c"): Profile.Action.REPLACE,
         ("z/d", "2"): Profile.Action.REPLACE_0,
-        ("z/d", "2c"): Profile.Action.REPLACE_0,
         ("z/d", "3"): Profile.Action.REMOVE,
         ("x/z", "1"): Profile.Action.REPLACE,
-        ("x/z", "1c"): Profile.Action.REPLACE,
         ("x/z", "2"): Profile.Action.REPLACE_0,
-        ("x/z", "2c"): Profile.Action.REPLACE_0,
         ("x/z", "3"): Profile.Action.REMOVE,
         ("x/d", "1"): Profile.Action.REPLACE,
-        ("x/d", "1c"): Profile.Action.REPLACE,
         ("x/d", "2"): Profile.Action.REPLACE_0,
-        ("x/d", "2c"): Profile.Action.REPLACE_0,
         ("x/d", "3"): Profile.Action.REMOVE,
         ("x/z/d", "1"): Profile.Action.REPLACE,
-        ("x/z/d", "1c"): Profile.Action.REPLACE,
         ("x/z/d", "2"): Profile.Action.REPLACE_0,
-        ("x/z/d", "2c"): Profile.Action.REPLACE_0,
         ("x/z/d", "3"): Profile.Action.REMOVE,
         ("x/z/u*", "1"): Profile.Action.UID,
-        ("x/z/u*", "1c"): Profile.Action.UID,
         ("x/z/u*", "2"): Profile.Action.REPLACE_0,
-        ("x/z/u*", "2c"): Profile.Action.REPLACE_0,
         ("x/z/u*", "3"): Profile.Action.REMOVE,
     }
 
@@ -391,6 +383,9 @@ def apply_basic_dicom_deid_profile_actions(
                 continue
             else:
                 attribute_type = attribute_types.pop().casefold()
+
+            if attribute_type in ("1c", "2c"):
+                continue  # conditionals can't be set automatically
 
             try:
                 action = basic_profile_action_type_lookup[
