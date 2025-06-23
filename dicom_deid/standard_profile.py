@@ -382,7 +382,7 @@ def apply_basic_dicom_deid_profile_actions(
             if len(attribute_types) != 1:
                 continue
             else:
-                attribute_type = attribute_types.pop().casefold()
+                attribute_type = next(iter(attribute_types)).casefold()
 
             if attribute_type in ("1c", "2c"):
                 continue  # conditionals can't be set automatically
@@ -412,7 +412,7 @@ def apply_attribute_type_actions(
         if len(attribute_types) != 1:
             continue
         else:
-            attribute_type = attribute_types.pop().casefold()
+            attribute_type = next(iter(attribute_types)).casefold()
 
         action = None
 
