@@ -26,7 +26,6 @@ class DICOMStandard:
         ciods=None,
         attributes=None,
         confidentiality_profile_attributes=None,
-        macro_to_attributes=None,
     ):
 
         self.version = version
@@ -42,7 +41,10 @@ class DICOMStandard:
         # Object lookups
         self.__module_lookup = self._build_module_lookup(ciod_to_modules)
         self.__attribute_lookup = self._build_attribute_lookup(attributes)
-        self.__marco_types_lookup = self._build_macro_types_lookup(macro_to_attributes)
+        self.__tag_to_module_lookup = self._build_tag_to_module_lookup(
+            module_to_attributes
+        )
+
         self.__confidentiality_profile_lookup = (
             self._build_confidentiality_profile_lookup(
                 confidentiality_profile_attributes
@@ -135,6 +137,17 @@ class DICOMStandard:
 
         return result
 
+    def _build_tag_to_module_lookup(self, module_to_attributes):
+        module_to_attributes = module_to_attributes or []
+
+        result = defaultdict(dict)
+        for entry in module_to_attributes:
+            tag = entry["tag"]
+            module_id = entry["moduleId"]
+            result[tag][module_id] = entry
+
+        return result
+
     def _build_confidentiality_profile_lookup(self, confidentiality_profile_attributes):
         confidentiality_profile_attributes = confidentiality_profile_attributes or []
 
@@ -147,17 +160,6 @@ class DICOMStandard:
                 )
             else:
                 result[tag] = entry
-
-        return result
-
-    def _build_macro_types_lookup(self, macro_to_attributes):
-        macro_to_attributes = macro_to_attributes or []
-
-        result = defaultdict(set)
-        for entry in macro_to_attributes:
-            tag = entry["tag"]
-            attribute_type = entry["type"]
-            result[tag].add(attribute_type)
 
         return result
 
@@ -174,26 +176,34 @@ class DICOMStandard:
             sop_tags.update(module_tags)
         return sop_tags
 
-    def get_module_usages_via_tag(self, /, tag, *, sop_id):
+    def _get_possible_module_ids_via_tag(self, /, tag, *, sop_id):
         sop_module_ids = self.map_sop_to_module_ids(sop_id)
         tag_module_ids = self.__tag_to_module_ids[tag]
 
         # Limit to the modules that are options given the COID (via SOP)
-        matching_module_ids = sop_module_ids & tag_module_ids
+        return sop_module_ids & tag_module_ids
+
+    def get_module_usages_via_tag(self, /, tag, *, sop_id):
+        module_ids = self._get_possible_module_ids_via_tag(tag, sop_id=sop_id)
 
         ciod_id = self.__sop_id_to_ciod_id[sop_id]
 
-        usages = set()
-        for module_id in matching_module_ids:
-            module_details = self.__module_lookup[ciod_id][module_id]
-            usages.add(module_details["usage"])
+        modules = []
+        for module_id in module_ids:
+            modules.append(self.__module_lookup[ciod_id][module_id])
 
-        return usages
+        return {m["usage"] for m in modules}
 
-    def get_macro_types_via_tag(self, /, tag):
-        if tag == "(0018,0010)":
-            print(tag, self.__marco_types_lookup[tag])
-        return self.__marco_types_lookup[tag]
+    def get_attribute_types_via_tag(self, /, tag, *, sop_id):
+        module_ids = self._get_possible_module_ids_via_tag(tag, sop_id=sop_id)
+        module_lookup = self.__tag_to_module_lookup[tag]
+
+        result = set()
+        for module_id in module_ids:
+            attr_mod_type = module_lookup[module_id]["type"]
+            result.add(attr_mod_type)
+
+        return result
 
     def get_attribute_retired_via_tag(self, /, tag):
         attribute = self.__attribute_lookup[tag]
@@ -219,8 +229,6 @@ class DICOMStandard:
             attributes = json.load(f)
         with (path / "confidentiality_profile_attributes.json").open() as f:
             confidentiality_profile_attributes = json.load(f)
-        with (path / "macro_to_attributes.json").open() as f:
-            macro_to_attributes = json.load(f)
 
         return cls(
             version=version,
@@ -230,7 +238,6 @@ class DICOMStandard:
             ciods=ciods,
             attributes=attributes,
             confidentiality_profile_attributes=confidentiality_profile_attributes,
-            macro_to_attributes=macro_to_attributes,
         )
 
 
@@ -377,7 +384,9 @@ def apply_basic_dicom_deid_profile_actions(
 
         action = action_map.get(basic_profile_action)
         if action is None:
-            attribute_types = dicom_standard.get_macro_types_via_tag(tag)
+            attribute_types = dicom_standard.get_attribute_types_via_tag(
+                tag, sop_id=sop
+            )
 
             if len(attribute_types) != 1:
                 continue
@@ -407,7 +416,7 @@ def apply_attribute_type_actions(
 ):
     for tag, sop in profile.get_unset_action_tags_in_sops():
 
-        attribute_types = dicom_standard.get_macro_types_via_tag(tag)
+        attribute_types = dicom_standard.get_attribute_types_via_tag(tag, sop_id=sop)
 
         if len(attribute_types) != 1:
             continue

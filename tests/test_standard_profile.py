@@ -321,7 +321,7 @@ def test_basic_dicom_deid_profile_actions(basic_profile_value, expected_action):
 
 
 @pytest.mark.parametrize(
-    "basic_profile_value,type_values,expected_action",
+    "basic_profile_value,attribute_types,expected_action",
     [
         # Z/D
         ("Z/D", ["1"], Profile.Action.REPLACE),
@@ -368,29 +368,24 @@ def test_basic_dicom_deid_profile_actions(basic_profile_value, expected_action):
     ],
 )
 def test_basic_dicom_deid_profile_actions_types(
-    basic_profile_value, type_values, expected_action
+    basic_profile_value, attribute_types, expected_action
 ):
     ds = DICOMStandard(
         version="foo",
-        macro_to_attributes=[
-            *(
-                {
-                    "tag": "(0000,0000)",
-                    "type": type_value,
-                }
-                for type_value in type_values
-            )
-        ],
         attributes=[
             {
                 "tag": "(0000,0000)",
             },
         ],
         module_to_attributes=[
-            {
-                "moduleId": "mod0",
-                "tag": "(0000,0000)",
-            },
+            *(
+                {
+                    "moduleId": f"mod{i}",
+                    "tag": "(0000,0000)",
+                    "type": t,
+                }
+                for i, t in enumerate(attribute_types)
+            ),
             {
                 "moduleId": "mod0",
                 "tag": "(1111,1111)",
@@ -398,9 +393,10 @@ def test_basic_dicom_deid_profile_actions_types(
         ],
         ciod_to_modules=[
             {
+                "moduleId": f"mod{i}",
                 "ciodId": "a-name",
-                "moduleId": "mod0",
-            },
+            }
+            for i in range(len(attribute_types))
         ],
         sops=[
             {
@@ -442,7 +438,7 @@ def test_basic_dicom_deid_profile_actions_types(
 
 
 @pytest.mark.parametrize(
-    "basic_profile_value,type_value,expectation",
+    "basic_profile_value,attribute_type,expectation",
     [
         (
             "Z/D",
@@ -462,16 +458,10 @@ def test_basic_dicom_deid_profile_actions_types(
     ],
 )
 def test_basic_dicom_deid_unsupported_type_and_basic_profile(
-    basic_profile_value, type_value, expectation
+    basic_profile_value, attribute_type, expectation
 ):
     ds = DICOMStandard(
         version="foo",
-        macro_to_attributes=[
-            {
-                "tag": "(0000,0000)",
-                "type": type_value,
-            },
-        ],
         attributes=[
             {
                 "tag": "(0000,0000)",
@@ -481,6 +471,7 @@ def test_basic_dicom_deid_unsupported_type_and_basic_profile(
             {
                 "moduleId": "mod0",
                 "tag": "(0000,0000)",
+                "type": attribute_type,
             },
             {
                 "moduleId": "mod0",
@@ -550,35 +541,33 @@ def test_basic_dicom_deid_unsupported_type_and_basic_profile(
 def test_attribute_type_actions(attribute_types, expected_action):
     ds = DICOMStandard(
         version="foo",
-        macro_to_attributes=[
-            *(
-                {
-                    "tag": "(0000,0000)",
-                    "type": attr_type,
-                }
-                for attr_type in attribute_types
-            )
-        ],
         attributes=[
             {
                 "tag": "(0000,0000)",
             },
         ],
         module_to_attributes=[
-            {
-                "moduleId": "mod0",
-                "tag": "(0000,0000)",
-            },
+            *(
+                {
+                    "moduleId": f"mod{i}",
+                    "tag": "(0000,0000)",
+                    "type": attr_type,
+                }
+                for i, attr_type in enumerate(attribute_types)
+            ),
             {
                 "moduleId": "mod0",
                 "tag": "(1111,1111)",
             },
         ],
         ciod_to_modules=[
-            {
-                "ciodId": "a-name",
-                "moduleId": "mod0",
-            },
+            *(
+                {
+                    "ciodId": "a-name",
+                    "moduleId": f"mod{i}",
+                }
+                for i in range(len(attribute_types))
+            ),
         ],
         sops=[
             {
@@ -629,12 +618,6 @@ def test_attribute_type_actions(attribute_types, expected_action):
 def test_attribute_type_actions_unsupported_type(attribute_type, expectation):
     ds = DICOMStandard(
         version="foo",
-        macro_to_attributes=[
-            {
-                "tag": "(0000,0000)",
-                "type": attribute_type,
-            },
-        ],
         attributes=[
             {
                 "tag": "(0000,0000)",
@@ -644,6 +627,7 @@ def test_attribute_type_actions_unsupported_type(attribute_type, expectation):
             {
                 "moduleId": "mod0",
                 "tag": "(0000,0000)",
+                "type": attribute_type,
             },
             {
                 "moduleId": "mod0",
