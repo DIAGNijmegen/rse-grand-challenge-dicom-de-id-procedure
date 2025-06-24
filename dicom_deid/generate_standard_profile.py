@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from standard_profile import generate_standard_profile
+from dicom_deid.standard_profile import generate_standard_profile
 
 
 def main():
@@ -22,10 +22,13 @@ def main():
     )
     args = parser.parse_args()
 
-    generate_standard_profile(
+    profile = generate_standard_profile(
         dicom_standard_path=args.dicom_standard,
-        output_path=args.output,
     )
+    json_profile = profile.to_json(indent=4)
+
+    with open(args.output, "w") as f:
+        f.write(json_profile)
 
 
 if __name__ == "__main__":
