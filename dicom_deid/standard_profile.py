@@ -242,6 +242,11 @@ class DICOMStandard:
             confidentiality_profile_attributes=confidentiality_profile_attributes,
         )
 
+    def render_attribute_info(self, *, tag, sop_id):
+        attr = self.__attribute_lookup[tag]
+
+        return f"{attr["name"]} {tag}"
+
 
 class ActionChoices(str, Enum):
     REMOVE = "X"
@@ -348,7 +353,7 @@ class Profile:
                     sop_id=sop_id,
                     tag=tag,
                     action=action["action"],
-                    justification=action["justification"],
+                    justification=action.get("justification"),
                 )
 
         return p

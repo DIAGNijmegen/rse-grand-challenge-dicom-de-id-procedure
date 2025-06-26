@@ -11,7 +11,7 @@ BASE_PROCEDURE := $(PROCEDURE_DIR)/base.json
 MANUAL_PROCEDURE := $(PROCEDURE_DIR)/manual.json
 CANDIDATE_PROCEDURE := $(PROCEDURE_DIR)/candidate.json
 
-WORKLIST_OUTPUT := $(PROCEDURES_DIR)/MANUAL_WORKLIST.rts
+WORKLIST_OUTPUT := $(PROCEDURE_DIR)/MANUAL_WORKLIST.rts
 
 DIST_DIR := dist
 
@@ -34,6 +34,7 @@ candidateprocedure: baseprocedure
 # Target: Generate worklist that can be used to populate MANUAL
 worklist: baseprocedure candidateprocedure
 	uv run python -m $(APP_MODULE).update_worklist \
+		--dicom-standard $(DICOM_STANDARD_DIR) \
 		--candidate $(CANDIDATE_PROCEDURE) \
 		--output $(WORKLIST_OUTPUT)
 

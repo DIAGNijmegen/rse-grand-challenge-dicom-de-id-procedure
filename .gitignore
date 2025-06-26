@@ -136,3 +136,6 @@ uv.lock
 
 # Visual Code
 .vscode/
+
+# MAC OS FS
+.DS_Store

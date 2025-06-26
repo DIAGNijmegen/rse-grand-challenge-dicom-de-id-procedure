@@ -6,7 +6,7 @@ from dicom_deid.standard_profile import Profile
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate a standard DICOM de-identification profile"
+        description="Generate a candidate DICOM de-identification procedure"
     )
     parser.add_argument(
         "--base",
