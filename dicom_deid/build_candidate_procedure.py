@@ -36,7 +36,7 @@ def main():
 
     candidate = base + manual
 
-    candidate_json = candidate.to_json(indent=4)
+    candidate_json = candidate.to_json(indent=4, sort_keys=True)
 
     with open(args.output, "w") as f:
         f.write(candidate_json)
