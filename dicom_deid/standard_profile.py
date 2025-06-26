@@ -260,13 +260,13 @@ class ActionChoices(str, Enum):
     REJECT = "REJECT"
 
 
-class Profile:
+class Procedure:
 
     Action = ActionChoices
 
     def __init__(self):
 
-        self._profile = {
+        self._procedure = {
             "dicomStandardVersion": None,
             "default": self.Action.REJECT,
             "SOPClassUID": defaultdict(
@@ -279,23 +279,23 @@ class Profile:
 
     @property
     def dicom_standard_version(self):
-        return self._profile.get("dicomStandardVersion")
+        return self._procedure.get("dicomStandardVersion")
 
     @dicom_standard_version.setter
     def dicom_standard_version(self, version):
-        self._profile["dicomStandardVersion"] = version
+        self._procedure["dicomStandardVersion"] = version
 
     @property
     def default(self):
-        return self._profile.get("default")
+        return self._procedure.get("default")
 
     @default.setter
     def default(self, version):
-        self._profile["default"] = version
+        self._procedure["default"] = version
 
     @property
     def sop_ids(self):
-        for sop in self._profile["SOPClassUID"]:
+        for sop in self._procedure["SOPClassUID"]:
             yield sop
 
     def set_action(self, sop_id, tag, action, justification=""):
@@ -306,21 +306,21 @@ class Profile:
         if justification:
             action["justification"] = justification
 
-        self._profile["SOPClassUID"][sop_id]["tag"][tag] = action
+        self._procedure["SOPClassUID"][sop_id]["tag"][tag] = action
 
     def get_sop_actions(self, sop_id):
-        return self._profile["SOPClassUID"][sop_id]["tag"]
+        return self._procedure["SOPClassUID"][sop_id]["tag"]
 
     def set_sop_default(self, sop_id, default):
-        self._profile["SOPClassUID"][sop_id]["default"] = default
+        self._procedure["SOPClassUID"][sop_id]["default"] = default
 
     def get_sop_default(self, sop_id):
-        return self._profile["SOPClassUID"][sop_id]["default"]
+        return self._procedure["SOPClassUID"][sop_id]["default"]
 
     def get_unset_action_tags_in_sops(
         self,
     ):
-        for sop, entry in self._profile["SOPClassUID"].items():
+        for sop, entry in self._procedure["SOPClassUID"].items():
             for tag, action in entry["tag"].items():
                 if action["action"] is None:
                     yield tag, sop
@@ -330,17 +330,17 @@ class Profile:
 
         p = json.loads(json_str)
 
-        profile = cls()
-        profile._profile = p
+        procedure = cls()
+        procedure._procedure = p
 
-        return profile
+        return procedure
 
     def to_json(self, **kwargs):
-        return json.dumps(self._profile, **kwargs)
+        return json.dumps(self._procedure, **kwargs)
 
-    def __add__(self: Profile, other: Profile):
-        p = Profile()
-        p._profile = self._profile.copy()
+    def __add__(self: Procedure, other: Procedure):
+        p = Procedure()
+        p._procedure = self._procedure.copy()
 
         p.dicom_standard_version = (
             other.dicom_standard_version or p.dicom_standard_version
@@ -361,11 +361,11 @@ class Profile:
 
 def apply_module_actions(
     *,
-    profile: Profile,
+    procedure: Procedure,
     dicom_standard: DICOMStandard,
 ):
 
-    for tag, sop in profile.get_unset_action_tags_in_sops():
+    for tag, sop in procedure.get_unset_action_tags_in_sops():
         usages = dicom_standard.get_module_usages_via_tag(tag, sop_id=sop)
 
         if len(usages) != 1:
@@ -374,10 +374,10 @@ def apply_module_actions(
             usage = usages.pop().casefold()
 
         if usage == "u":
-            profile.set_action(
+            procedure.set_action(
                 sop_id=sop,
                 tag=tag,
-                action=profile.Action.REMOVE,
+                action=procedure.Action.REMOVE,
                 justification="[AUTO] Module usage",
             )
         elif usage in ("m", "c"):
@@ -388,16 +388,16 @@ def apply_module_actions(
 
 def apply_retired_attribute_actions(
     *,
-    profile: Profile,
+    procedure: Procedure,
     dicom_standard: DICOMStandard,
 ):
-    for tag, sop in profile.get_unset_action_tags_in_sops():
+    for tag, sop in procedure.get_unset_action_tags_in_sops():
         retired = dicom_standard.get_attribute_retired_via_tag(tag).casefold()
         if retired == "y":
-            profile.set_action(
+            procedure.set_action(
                 sop_id=sop,
                 tag=tag,
-                action=profile.Action.REMOVE,
+                action=procedure.Action.REMOVE,
                 justification="[AUTO] Retired",
             )
         elif retired == "n":
@@ -408,37 +408,37 @@ def apply_retired_attribute_actions(
 
 def apply_basic_dicom_deid_profile_actions(
     *,
-    profile: Profile,
+    procedure: Procedure,
     dicom_standard: DICOMStandard,
 ):
     action_map = {
-        "d": Profile.Action.REPLACE,
-        "z": Profile.Action.REPLACE_0,
-        "x": Profile.Action.REMOVE,
-        "k": Profile.Action.KEEP,
-        "c": Profile.Action.CLEAN,
-        "u": Profile.Action.UID,
+        "d": Procedure.Action.REPLACE,
+        "z": Procedure.Action.REPLACE_0,
+        "x": Procedure.Action.REMOVE,
+        "k": Procedure.Action.KEEP,
+        "c": Procedure.Action.CLEAN,
+        "u": Procedure.Action.UID,
     }
 
     basic_profile_action_type_lookup = {
-        ("z/d", "1"): Profile.Action.REPLACE,
-        ("z/d", "2"): Profile.Action.REPLACE_0,
-        ("z/d", "3"): Profile.Action.REMOVE,
-        ("x/z", "1"): Profile.Action.REPLACE,
-        ("x/z", "2"): Profile.Action.REPLACE_0,
-        ("x/z", "3"): Profile.Action.REMOVE,
-        ("x/d", "1"): Profile.Action.REPLACE,
-        ("x/d", "2"): Profile.Action.REPLACE_0,
-        ("x/d", "3"): Profile.Action.REMOVE,
-        ("x/z/d", "1"): Profile.Action.REPLACE,
-        ("x/z/d", "2"): Profile.Action.REPLACE_0,
-        ("x/z/d", "3"): Profile.Action.REMOVE,
-        ("x/z/u*", "1"): Profile.Action.UID,
-        ("x/z/u*", "2"): Profile.Action.REPLACE_0,
-        ("x/z/u*", "3"): Profile.Action.REMOVE,
+        ("z/d", "1"): Procedure.Action.REPLACE,
+        ("z/d", "2"): Procedure.Action.REPLACE_0,
+        ("z/d", "3"): Procedure.Action.REMOVE,
+        ("x/z", "1"): Procedure.Action.REPLACE,
+        ("x/z", "2"): Procedure.Action.REPLACE_0,
+        ("x/z", "3"): Procedure.Action.REMOVE,
+        ("x/d", "1"): Procedure.Action.REPLACE,
+        ("x/d", "2"): Procedure.Action.REPLACE_0,
+        ("x/d", "3"): Procedure.Action.REMOVE,
+        ("x/z/d", "1"): Procedure.Action.REPLACE,
+        ("x/z/d", "2"): Procedure.Action.REPLACE_0,
+        ("x/z/d", "3"): Procedure.Action.REMOVE,
+        ("x/z/u*", "1"): Procedure.Action.UID,
+        ("x/z/u*", "2"): Procedure.Action.REPLACE_0,
+        ("x/z/u*", "3"): Procedure.Action.REMOVE,
     }
 
-    for tag, sop in profile.get_unset_action_tags_in_sops():
+    for tag, sop in procedure.get_unset_action_tags_in_sops():
         try:
             basic_profile_action = (
                 dicom_standard.get_basic_confidentiality_profile_via_tag(tag)
@@ -473,7 +473,7 @@ def apply_basic_dicom_deid_profile_actions(
                 ) from e
 
         if action is not None:
-            profile.set_action(
+            procedure.set_action(
                 sop_id=sop,
                 tag=tag,
                 action=action,
@@ -483,10 +483,10 @@ def apply_basic_dicom_deid_profile_actions(
 
 def apply_attribute_type_actions(
     *,
-    profile: Profile,
+    procedure: Procedure,
     dicom_standard: DICOMStandard,
 ):
-    for tag, sop in profile.get_unset_action_tags_in_sops():
+    for tag, sop in procedure.get_unset_action_tags_in_sops():
 
         attribute_types = dicom_standard.get_attribute_types_via_tag(tag, sop_id=sop)
 
@@ -498,18 +498,18 @@ def apply_attribute_type_actions(
         action = None
 
         if attribute_type == "1":
-            action = Profile.Action.KEEP
+            action = Procedure.Action.KEEP
         elif attribute_type == "2":
-            action = Profile.Action.REPLACE_0
+            action = Procedure.Action.REPLACE_0
         elif attribute_type == "3":
-            action = Profile.Action.REMOVE
+            action = Procedure.Action.REMOVE
         elif attribute_type in ("1c", "2c", "none"):
             pass  # We don't touch it
         else:
             raise ValueError(f"Unsupported attribute type: {attribute_type}")
 
         if action is not None:
-            profile.set_action(
+            procedure.set_action(
                 sop_id=sop,
                 tag=tag,
                 action=action,
@@ -517,11 +517,11 @@ def apply_attribute_type_actions(
             )
 
 
-def generate_standard_profile(*, dicom_standard_path):
+def generate_base_procedure(*, dicom_standard_path):
     ds = DICOMStandard.from_path(dicom_standard_path)
     sops = ["1.2.840.10008.5.1.4.1.1.2"]
 
-    p = Profile()
+    p = Procedure()
     for sop in sops:
         tags = ds.map_sop_to_tags(sop)
         for tag in tags:
@@ -529,9 +529,9 @@ def generate_standard_profile(*, dicom_standard_path):
 
     p.dicom_standard_version = ds.version
 
-    apply_module_actions(profile=p, dicom_standard=ds)
-    apply_retired_attribute_actions(profile=p, dicom_standard=ds)
-    apply_basic_dicom_deid_profile_actions(profile=p, dicom_standard=ds)
-    apply_attribute_type_actions(profile=p, dicom_standard=ds)
+    apply_module_actions(procedure=p, dicom_standard=ds)
+    apply_retired_attribute_actions(procedure=p, dicom_standard=ds)
+    apply_basic_dicom_deid_profile_actions(procedure=p, dicom_standard=ds)
+    apply_attribute_type_actions(procedure=p, dicom_standard=ds)
 
     return p

@@ -20,7 +20,7 @@ all: finalprocedure worklist
 
 # Target: Generate BASE
 baseprocedure:
-	uv run python -m $(APP_MODULE).generate_standard_profile \
+	uv run python -m $(APP_MODULE).build_base_procedure \
 		--dicom-standard $(DICOM_STANDARD_DIR) \
 		--output $(BASE_PROCEDURE)
 

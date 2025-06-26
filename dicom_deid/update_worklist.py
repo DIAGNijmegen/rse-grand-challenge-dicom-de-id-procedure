@@ -2,7 +2,7 @@ import argparse
 from collections import defaultdict
 from pathlib import Path
 
-from dicom_deid.standard_profile import DICOMStandard, Profile
+from dicom_deid.standard_profile import DICOMStandard, Procedure
 
 
 def render_worklist_item(dicom_standard: DICOMStandard, tag, sop_id):
@@ -34,7 +34,7 @@ def main():
     args = parser.parse_args()
 
     with open(args.candidate, "r") as f:
-        candidate_profile = Profile.from_json(f.read())
+        candidate_profile = Procedure.from_json(f.read())
 
     ds = DICOMStandard.from_path(args.dicom_standard)
 

@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from dicom_deid.standard_profile import Profile
+from dicom_deid.standard_profile import Procedure
 
 
 def main():
@@ -29,17 +29,17 @@ def main():
     args = parser.parse_args()
 
     with open(args.base, "r") as f:
-        base_profile = Profile.from_json(f.read())
+        base = Procedure.from_json(f.read())
 
     with open(args.manual, "r") as f:
-        manual_profile = Profile.from_json(f.read())
+        manual = Procedure.from_json(f.read())
 
-    candidate_profile = base_profile + manual_profile
+    candidate = base + manual
 
-    candidate_profile_json = candidate_profile.to_json(indent=4)
+    candidate_json = candidate.to_json(indent=4)
 
     with open(args.output, "w") as f:
-        f.write(candidate_profile_json)
+        f.write(candidate_json)
 
 
 if __name__ == "__main__":
