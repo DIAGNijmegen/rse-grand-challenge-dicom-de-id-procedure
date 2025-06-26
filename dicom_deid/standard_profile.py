@@ -299,7 +299,7 @@ class Procedure:
 
     def set_action(self, sop_id, tag, action, justification=""):
         action = {
-            "action": action,
+            "default": action,
         }
 
         if justification:
@@ -321,7 +321,7 @@ class Procedure:
     ):
         for sop, entry in self._procedure["sopClass"].items():
             for tag, action in entry["tag"].items():
-                if action["action"] is None:
+                if action["default"] is None:
                     yield tag, sop
 
     @classmethod
@@ -351,7 +351,7 @@ class Procedure:
                 p.set_action(
                     sop_id=sop_id,
                     tag=tag,
-                    action=action["action"],
+                    action=action["default"],
                     justification=action.get("justification"),
                 )
 
