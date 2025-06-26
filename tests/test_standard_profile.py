@@ -80,11 +80,11 @@ def test_module_actions(module_usages, expected_action):
 
     procedure_json = json.loads(p.to_json())
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(0000,0000)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["action"]
         == expected_action
     )
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["action"]
         == p.Action.KEEP
     ), "Already set action is left alone"
 
@@ -185,11 +185,11 @@ def test_retired_attributes(retired_state, expected_action):
 
     procedure_json = json.loads(p.to_json())
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(0000,0000)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["action"]
         == expected_action
     )
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["action"]
         == p.Action.KEEP
     ), "Already set action is left alone"
 
@@ -249,7 +249,6 @@ def test_unknown_restired_state():
         ("Z", Procedure.Action.REPLACE_0),
         ("X", Procedure.Action.REMOVE),
         ("K", Procedure.Action.KEEP),
-        ("C", Procedure.Action.CLEAN),
         ("U", Procedure.Action.UID),
     ),
 )
@@ -311,11 +310,11 @@ def test_basic_dicom_deid_profile_actions(basic_profile_value, expected_action):
 
     procedure_json = json.loads(p.to_json())
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(0000,0000)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["action"]
         == expected_action
     )
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["action"]
         == p.Action.KEEP
     ), "Already set action is left alone"
 
@@ -435,11 +434,11 @@ def test_basic_dicom_deid_profile_actions_types(
 
     procedure_json = json.loads(p.to_json())
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(0000,0000)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["action"]
         == expected_action
     )
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["action"]
         == p.Action.KEEP
     ), "Already set action is left alone"
 
@@ -600,11 +599,11 @@ def test_attribute_type_actions(attribute_types, expected_action):
 
     procedure_json = json.loads(p.to_json())
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(0000,0000)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["action"]
         == expected_action
     )
     assert (
-        procedure_json["SOPClassUID"]["1.1"]["tag"]["(1111,1111)"]["action"]
+        procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["action"]
         == p.Action.KEEP
     ), "Already set action is left alone"
 

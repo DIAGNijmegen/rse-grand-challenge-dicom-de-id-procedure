@@ -268,7 +268,7 @@ class Procedure:
         self._procedure = {
             "dicomStandardVersion": None,
             "default": self.Action.REJECT,
-            "SOPClassUID": defaultdict(
+            "sopClass": defaultdict(
                 lambda: {
                     "default": self.Action.REMOVE,
                     "tag": {},
@@ -294,7 +294,7 @@ class Procedure:
 
     @property
     def sop_ids(self):
-        for sop in self._procedure["SOPClassUID"]:
+        for sop in self._procedure["sopClass"]:
             yield sop
 
     def set_action(self, sop_id, tag, action, justification=""):
@@ -305,21 +305,21 @@ class Procedure:
         if justification:
             action["justification"] = justification
 
-        self._procedure["SOPClassUID"][sop_id]["tag"][tag] = action
+        self._procedure["sopClass"][sop_id]["tag"][tag] = action
 
     def get_sop_actions(self, sop_id):
-        return self._procedure["SOPClassUID"][sop_id]["tag"]
+        return self._procedure["sopClass"][sop_id]["tag"]
 
     def set_sop_default(self, sop_id, default):
-        self._procedure["SOPClassUID"][sop_id]["default"] = default
+        self._procedure["sopClass"][sop_id]["default"] = default
 
     def get_sop_default(self, sop_id):
-        return self._procedure["SOPClassUID"][sop_id]["default"]
+        return self._procedure["sopClass"][sop_id]["default"]
 
     def get_unset_action_tags_in_sops(
         self,
     ):
-        for sop, entry in self._procedure["SOPClassUID"].items():
+        for sop, entry in self._procedure["sopClass"].items():
             for tag, action in entry["tag"].items():
                 if action["action"] is None:
                     yield tag, sop
@@ -415,7 +415,6 @@ def apply_basic_dicom_deid_profile_actions(
         "z": Procedure.Action.REPLACE_0,
         "x": Procedure.Action.REMOVE,
         "k": Procedure.Action.KEEP,
-        "c": Procedure.Action.CLEAN,
         "u": Procedure.Action.UID,
     }
 
