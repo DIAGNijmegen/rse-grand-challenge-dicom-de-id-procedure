@@ -254,10 +254,9 @@ class ActionChoices(str, Enum):
 
     REPLACE = "D"
     REPLACE_0 = "Z"
-    CLEAN = "C"
     UID = "U"
 
-    REJECT = "REJECT"
+    REJECT = "R"
 
 
 class Procedure:
