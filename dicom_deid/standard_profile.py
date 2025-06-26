@@ -268,9 +268,11 @@ class Procedure:
         self._procedure = {
             "dicomStandardVersion": None,
             "default": self.Action.REJECT,
+            "justification": "Unsupported SOP Class",
             "sopClass": defaultdict(
                 lambda: {
                     "default": self.Action.REMOVE,
+                    "justification": "Unsupported data element",
                     "tag": {},
                 },
             ),
