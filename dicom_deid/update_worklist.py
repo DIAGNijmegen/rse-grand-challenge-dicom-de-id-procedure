@@ -2,7 +2,7 @@ import argparse
 from collections import defaultdict
 from pathlib import Path
 
-from dicom_deid.standard_profile import DICOMStandard, Procedure
+from dicom_deid.procedure_generation import DICOMStandard, Procedure
 
 
 def render_worklist_item(dicom_standard: DICOMStandard, tag, sop_id):

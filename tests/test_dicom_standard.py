@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 
-from dicom_deid.standard_profile import DICOMStandard
+from dicom_deid.procedure_generation import DICOMStandard
 
 TEST_RESOURCES = Path(os.path.dirname(os.path.realpath(__file__))) / "resources"
 

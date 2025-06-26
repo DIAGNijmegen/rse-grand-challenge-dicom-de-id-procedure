@@ -3,7 +3,7 @@ from contextlib import nullcontext as does_not_raise
 
 import pytest
 
-from dicom_deid.standard_profile import (
+from dicom_deid.procedure_generation import (
     DICOMStandard,
     Procedure,
     apply_attribute_type_actions,

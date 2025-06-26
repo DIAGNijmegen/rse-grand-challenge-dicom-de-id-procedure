@@ -1,7 +1,7 @@
 import argparse
 from pathlib import Path
 
-from dicom_deid.standard_profile import generate_base_procedure
+from dicom_deid.procedure_generation import generate_base_procedure
 
 
 def main():
