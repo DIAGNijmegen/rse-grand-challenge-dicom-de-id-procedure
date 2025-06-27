@@ -244,8 +244,23 @@ class DICOMStandard:
 
     def render_attribute_info(self, *, tag, sop_id):
         attr = self.__attribute_lookup[tag]
-
-        return f"{attr["name"]} {tag}"
+        info = [f"{attr["name"]} {tag}"]
+        try:
+            bp = self.get_basic_confidentiality_profile_via_tag(tag)
+        except KeyError:
+            bp = "-"
+        info.append(f"  * Basic profile:\t{bp}")
+        info.append(
+            f"  * Module usages:\t{self.get_module_usages_via_tag(tag, sop_id=sop_id)}"
+        )
+        info.append(
+            f"  * Modules:\t{self._get_possible_module_ids_via_tag(tag, sop_id=sop_id)}"
+        )
+        info.append(
+            "  * Attr-Mod Types:\t"
+            f"{self.get_attribute_types_via_tag(tag, sop_id=sop_id)}"
+        )
+        return "\n".join(info)
 
 
 class ActionChoices(str, Enum):

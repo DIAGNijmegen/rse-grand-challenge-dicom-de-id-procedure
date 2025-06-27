@@ -1,7 +1,532 @@
 {
     "sopClass": {
         "1.2.840.10008.5.1.4.1.1.2": {
-            "tag": {}
+            "tag": {
+                "(7FE0,0010)": {
+                    "default": "K",
+                    "justification": "Critical data"
+                },
+                "(0008,0005)": {
+                    "default": "K",
+                    "justification": "Required if an expanded or replacement character set is used"
+                },
+                "(0008,0008)": {
+                    "default": "K",
+                    "justification": "Generally required"
+                },
+                "(0008,0070)": {
+                    "default": "K",
+                    "justification": "Required, manufacturer might be relevant"
+                },
+                "(0008,0100)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be already be typically removed"
+                },
+                "(0008,0102)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be already be typically removed"
+                },
+                "(0008,0103)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be already be typically removed"
+                },
+                "(0008,0105)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be already be typically removed"
+                },
+                "(0008,0112)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be already be typically removed"
+                },
+                "(0008,0114)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be already be typically removed"
+                },
+                "(0008,0119)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be already be typically removed"
+                },
+                "(0008,0120)": {
+                    "default": "K",
+                    "justification": "Required parent sequence should be already be typically removed"
+                },
+                "(0008,010C)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0008,0304)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0008,030B)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0008,1160)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0008,1199)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0010,2201)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2202)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2210)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2292)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2293)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2294)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,106C)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,1272)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,5100)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,7050)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,9335)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,9345)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,9353)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,9364)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,936B)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,9374)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,9375)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,9378)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,937C)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,0034)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,0120)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1101)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,0121)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1102)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1103)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1201)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1202)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1203)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1054)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0040,A0B0)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0040,A160)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0040,A161)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0040,A162)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0040,A163)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0040,A168)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0040,A30A)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0062,000B)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0072,0052)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(300A,0602)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(300A,0613)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(300A,0796)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(300A,001C)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(300A,001D)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(300A,060E)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(300A,0675)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(300A,0675)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(3010,001C)": {
+                    "default": "K",
+                    "justification": "Common: if present, it is likely required"
+                },
+                "(3010,001D)": {
+                    "default": "K",
+                    "justification": "Common: if present, it is likely required"
+                },
+                "(0072,0054)": {
+                    "default": "K",
+                    "justification": "Common: if present, it is likely required"
+                },
+                "(0400,0305)": {
+                    "default": "K",
+                    "justification": "Common: if present, it is likely required"
+                },
+                "(0400,0500)": {
+                    "default": "K",
+                    "justification": "Common: if present, it is likely required"
+                },
+                "(0074,1057)": {
+                    "default": "K",
+                    "justification": "Common: if present, it is likely required"
+                },
+                "(0072,0056)": {
+                    "default": "K",
+                    "justification": "Common: if present, it is likely required"
+                },
+                "(0072,0026)": {
+                    "default": "K",
+                    "justification": "Universally used: if present, it is likely required"
+                },
+                "(0072,0028)": {
+                    "default": "K",
+                    "justification": "Universally used: if present, it is likely required"
+                },
+                "(0012,0063)": {
+                    "default": "K",
+                    "justification": "De-identifaction trace, should be kept and extended"
+                },
+                "(0012,0064)": {
+                    "default": "K",
+                    "justification": "De-identifaction trace, should be kept and extended"
+                },
+                "(0018,0060)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,0090)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,1110)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,1130)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,1120)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,1140)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,1160)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,1190)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,9305)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,9306)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,9307)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,9323)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,9328)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,9330)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,9332)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,990C)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,990D)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0020,0012)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0020,0013)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0020,0020)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0020,0060)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0040,08EA)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0028,0006)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0040,9211)": {
+                    "default": "K",
+                    "justification": "Sometimes required in a specific module"
+                },
+                "(0040,9212)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0040,9213)": {
+                    "default": "K",
+                    "justification": "Describes ciritcal data format"
+                },
+                "(0040,9214)": {
+                    "default": "K",
+                    "justification": "Describes ciritcal data format"
+                },
+                "(0040,9216)": {
+                    "default": "K",
+                    "justification": "Describes ciritcal data format"
+                },
+                "(0040,9224)": {
+                    "default": "K",
+                    "justification": "Describes ciritcal data format"
+                },
+                "(0040,9225)": {
+                    "default": "K",
+                    "justification": "Describes ciritcal data format"
+                },
+                "(0040,A390)": {
+                    "default": "K",
+                    "justification": "Describes ciritcal data format"
+                },
+                "(0040,E001)": {
+                    "default": "K",
+                    "justification": "Describes ciritcal data format"
+                },
+                "(7FE0,0002)": {
+                    "default": "K",
+                    "justification": "Describes ciritcal data format"
+                },
+                "(0040,0032)": {
+                    "default": "X",
+                    "justification": "Universal ID: could be traced to all kinds of insitutes or entities"
+                },
+                "(0040,0033)": {
+                    "default": "X",
+                    "justification": "Universal ID: could be traced to all kinds of insitutes or entities"
+                },
+                "(0040,E010)": {
+                    "default": "X",
+                    "justification": "Retrieval URI, DANGER Will Robinson!"
+                },
+                "(0008,0023)": {
+                    "default": "X",
+                    "justification": "Grand-challenge binds together series as a single value"
+                },
+                "(0008,0033)": {
+                    "default": "X",
+                    "justification": "Grand-challenge binds together series as a single value"
+                },
+                "(0020,9172)": {
+                    "default": "X",
+                    "justification": "Describes source DICOM if conversion: can be safely excluded"
+                },
+                "(0008,1090)": {
+                    "default": "X",
+                    "justification": "Optional in a sometimes manditory module"
+                },
+                "(0010,2298)": {
+                    "default": "X",
+                    "justification": "Counter part was removed in basic profile"
+                },
+                "(0028,3003)": {
+                    "default": "X",
+                    "justification": "Def. optional, where required the parent-sequence is user optional"
+                },
+                "(0040,A170)": {
+                    "default": "X",
+                    "justification": "Def. optional, where required the parent-sequence is user optional"
+                },
+                "(0028,7FE0)": {
+                    "default": "X",
+                    "justification": "URL to gather pixel data from, DANGER Will Robinson!"
+                },
+                "(0008,0053)": {
+                    "default": "D",
+                    "justification": "Required if special operation has ever occured to the data."
+                },
+                "(0008,0080)": {
+                    "default": "D",
+                    "justification": "Required, under some condition"
+                },
+                "(0008,0082)": {
+                    "default": "D",
+                    "justification": "Required, under some condition"
+                },
+                "(0008,010D)": {
+                    "default": "D",
+                    "justification": "Identifies a person or context group, sometimes required"
+                },
+                "(0010,0035)": {
+                    "default": "D",
+                    "justification": "Required under some conditions: dummy if present"
+                },
+                "(0040,0031)": {
+                    "default": "D",
+                    "justification": "Required under some conditions: dummy if present"
+                },
+                "(0018,1000)": {
+                    "default": "Z",
+                    "justification": "IOD conformance: sometimes required"
+                },
+                "(0018,1020)": {
+                    "default": "Z",
+                    "justification": "IOD conformance: sometimes required"
+                },
+                "(0040,E021)": {
+                    "default": "R",
+                    "justification": "No retrieval will be done; parent sequence should have been removed"
+                },
+                "(0040,E022)": {
+                    "default": "R",
+                    "justification": "No retrieval will be done; parent sequence should have been removed"
+                },
+                "(0040,E023)": {
+                    "default": "R",
+                    "justification": "No retrieval will be done; parent sequence should have been removed"
+                },
+                "(0040,E024)": {
+                    "default": "R",
+                    "justification": "No retrieval will be done; parent sequence should have been removed"
+                },
+                "(0040,E025)": {
+                    "default": "R",
+                    "justification": "No retrieval will be done; parent sequence should have been removed"
+                }
+            }
         }
     }
 }
