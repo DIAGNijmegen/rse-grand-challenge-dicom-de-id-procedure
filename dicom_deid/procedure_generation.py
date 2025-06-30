@@ -1,8 +1,11 @@
 from __future__ import annotations
 
 import json
+import textwrap
 from collections import defaultdict
 from enum import Enum
+
+from bs4 import BeautifulSoup
 
 
 class DICOMStandardError(ValueError):
@@ -90,7 +93,7 @@ class DICOMStandard:
 
         for entry in module_to_attributes:
             module_id = entry["moduleId"]
-            tag = entry["tag"]
+            tag = entry["tag"].upper()
 
             result[module_id].add(tag)
 
@@ -144,7 +147,7 @@ class DICOMStandard:
 
         result = defaultdict(dict)
         for entry in module_to_attributes:
-            tag = entry["tag"]
+            tag = entry["tag"].upper()
             module_id = entry["moduleId"]
             result[tag][module_id] = entry
 
@@ -242,25 +245,70 @@ class DICOMStandard:
             confidentiality_profile_attributes=confidentiality_profile_attributes,
         )
 
-    def render_attribute_info(self, *, tag, sop_id):
+    def render_attribute_info(self, *, tag, sop_id, headers=None):
         attr = self.__attribute_lookup[tag]
-        info = [f"{attr["name"]} {tag}"]
+        name = f"{attr["name"]} | {tag}"
+        info = ["-" * len(name)]
+        info += [name]
+        info.append("-" * len(name))
+
+        for h in headers or []:
+            info.append(h)
+
         try:
             bp = self.get_basic_confidentiality_profile_via_tag(tag)
         except KeyError:
-            bp = "-"
-        info.append(f"  * Basic profile:\t{bp}")
-        info.append(
-            f"  * Module usages:\t{self.get_module_usages_via_tag(tag, sop_id=sop_id)}"
-        )
-        info.append(
-            f"  * Modules:\t{self._get_possible_module_ids_via_tag(tag, sop_id=sop_id)}"
-        )
-        info.append(
-            "  * Attr-Mod Types:\t"
-            f"{self.get_attribute_types_via_tag(tag, sop_id=sop_id)}"
-        )
+            bp = "N/A"
+        info.append(f":Basic Profile: {bp}")
+
+        module_info = self.render_module_info(tag, sop_id)
+        info += module_info
+
         return "\n".join(info)
+
+    def render_module_info(self, tag, sop_id):
+        info = []
+        module_ids = self._get_possible_module_ids_via_tag(tag, sop_id=sop_id)
+
+        info.append(":In Modules:")
+        verbose_usage = {
+            "U": "User Optional (U)",
+            "M": "Mandatory (M)",
+            "C": "Conditional (C)",
+        }
+        verbose_type = {
+            "1": "Required with valid value (1)",
+            "1C": "Conditional; required with valid value if condition is met (1C)",
+            "2": "Required; value may be empty (2)",
+            "2C": "Conditional; must be present but "
+            "can be empty if condition is met (2C)",
+            "3": "Optional (3)",
+        }
+        indent = 3
+
+        ciod_id = self.__sop_id_to_ciod_id[sop_id]
+
+        ciod_module_lookup = self.__module_lookup[ciod_id]
+        tag_module_lookup = self.__tag_to_module_lookup[tag]
+
+        for module_id in module_ids:
+            ciod_module = ciod_module_lookup[module_id]
+            tag_module = tag_module_lookup[module_id]
+
+            usage = verbose_usage.get(ciod_module.get("usage"), "N/A")
+            type_ = verbose_type.get(tag_module["type"], "N/A")
+
+            info.append(" " * indent + f"- {module_id} [{usage}] [{type_}]::\n")
+
+            desc = BeautifulSoup(
+                tag_module.get("description", "NA"),
+                "html.parser",
+            ).prettify()
+
+            desc_indented = textwrap.indent(desc, " " * (indent + 4))
+
+            info.append(desc_indented)
+        return info
 
 
 class ActionChoices(str, Enum):

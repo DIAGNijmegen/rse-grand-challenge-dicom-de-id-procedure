@@ -234,19 +234,7 @@
                     "default": "K",
                     "justification": "If present, it is likely required"
                 },
-                "(300A,001C)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(300A,001D)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
                 "(300A,060E)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(300A,0675)": {
                     "default": "K",
                     "justification": "If present, it is likely required"
                 },
