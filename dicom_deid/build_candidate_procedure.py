@@ -1,12 +1,19 @@
 import argparse
 from pathlib import Path
 
-from dicom_deid.procedure_generation import Procedure
+from dicom_deid.procedure_generation import DICOMStandard, Procedure
+from dicom_deid.render import generate_human_readable_format
 
 
 def main():
     parser = argparse.ArgumentParser(
         description="Generate a candidate DICOM de-identification procedure"
+    )
+    parser.add_argument(
+        "--dicom-standard",
+        type=Path,
+        required=True,
+        help="Directory containing DICOM standard files",
     )
     parser.add_argument(
         "--base",
@@ -40,6 +47,12 @@ def main():
 
     with open(args.output, "w") as f:
         f.write(candidate_json)
+
+    generate_human_readable_format(
+        output=args.output.parent / "manual-human",
+        dicom_standard=DICOMStandard.from_path(args.dicom_standard),
+        procedure=manual,
+    )
 
 
 if __name__ == "__main__":

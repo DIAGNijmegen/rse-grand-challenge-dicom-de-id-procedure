@@ -1,8 +1,9 @@
 import textwrap
+from pathlib import Path
 
 from bs4 import BeautifulSoup
 
-from dicom_deid.procedure_generation import DICOMStandard
+from dicom_deid.procedure_generation import DICOMStandard, Procedure
 
 verbose_action = {
     "D": "Replace with a non-zero length value that may be a "
@@ -31,7 +32,12 @@ verbose_type = {
 }
 
 
-def generate_human_readable_format(*, output, procedure, dicom_standard):
+def generate_human_readable_format(
+    *,
+    dicom_standard: DICOMStandard,
+    procedure: Procedure,
+    output: Path,
+):
 
     for sop_id in procedure.sop_ids:
         coid_id = dicom_standard.map_sop_to_coid_id(sop_id)
@@ -47,8 +53,13 @@ def generate_human_readable_format(*, output, procedure, dicom_standard):
         meta.append("=" * len(title))
         meta.append("\n")
 
-        meta.append(f":Default: {verbose_action[procedure.get_sop_default(sop_id)]}")
-        meta.append(f":Justification: {procedure.get_sop_justification(sop_id)}")
+        try:
+            meta.append(
+                f":Default: {verbose_action[procedure.get_sop_default(sop_id)]}"
+            )
+            meta.append(f":Justification: {procedure.get_sop_justification(sop_id)}")
+        except KeyError:
+            pass  # Manual does not have a default
 
         with open(coid_output / "meta.rts", "w") as f:
             f.writelines("\n".join(meta))

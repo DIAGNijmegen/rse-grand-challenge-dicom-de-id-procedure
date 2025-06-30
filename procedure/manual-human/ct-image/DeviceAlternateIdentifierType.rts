@@ -1,0 +1,42 @@
+----------------------------------------------
+Device Alternate Identifier Type | (3010,001C)
+----------------------------------------------
+:Action: Keep (K)
+:Justication: Common: if present, it is likely required
+:Basic Profile: N/A
+:In Modules:
+   - ct-image [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Defines the type of Device Alternate Identifier.
+       </p>
+       <p>
+        Required if Device Alternate Identifier (3010,001B) has a Value.
+       </p>
+       <div>
+        <p>
+         <strong>
+          Defined Terms:
+         </strong>
+        </p>
+        <dl>
+         <dt>
+          <span>
+           BARCODE
+          </span>
+         </dt>
+         <dd>
+          <p>
+          </p>
+         </dd>
+         <dt>
+          <span>
+           RFID
+          </span>
+         </dt>
+         <dd>
+          <p>
+          </p>
+         </dd>
+        </dl>
+       </div>

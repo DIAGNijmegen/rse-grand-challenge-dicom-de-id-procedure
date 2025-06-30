@@ -3,10 +3,7 @@ from collections import defaultdict
 from pathlib import Path
 
 from dicom_deid.procedure_generation import DICOMStandard, Procedure
-
-
-def render_worklist_item(dicom_standard: DICOMStandard, tag, sop_id):
-    return dicom_standard.render_attribute_info(tag=tag, sop_id=sop_id)
+from dicom_deid.render import render_attribute_info
 
 
 def main():
@@ -49,12 +46,12 @@ def main():
         worklist.append("\n")
 
         for tag in unset[sop_id]:
-            render = render_worklist_item(dicom_standard=ds, tag=tag, sop_id=sop_id)
-            worklist.append(f"* {render}")
+            render = render_attribute_info(dicom_standard=ds, tag=tag, sop_id=sop_id)
+            worklist.append(render)
 
         worklist.append("\n")
 
-    with open(args.output, "w") as f:
+    with open(args.output / "WORKLIST.rts", "w") as f:
         f.write("\n".join(worklist))
 
 
