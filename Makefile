@@ -14,35 +14,37 @@ CANDIDATE_PROCEDURE := $(PROCEDURE_DIR)/candidate.json
 WORKLIST_OUTPUT := $(PROCEDURE_DIR)/MANUAL_WORKLIST.rts
 
 DIST_DIR := dist
+VERSION ?= $(shell echo $$VERSION)
 
 # Default full pipeline
-all: finalprocedure worklist
+all: final worklist
 
 # Target: Generate BASE
-baseprocedure:
+base:
 	uv run python -m $(APP_MODULE).build_base_procedure \
 		--dicom-standard $(DICOM_STANDARD_DIR) \
 		--output $(BASE_PROCEDURE)
 
 # Target: BASE + MANUAL = CANDIDATE
-candidateprocedure: baseprocedure
+candidate: base
 	uv run python -m $(APP_MODULE).build_candidate_procedure \
 		--base $(BASE_PROCEDURE) \
 		--manual $(MANUAL_PROCEDURE) \
 		--output $(CANDIDATE_PROCEDURE)
 
 # Target: Generate worklist that can be used to populate MANUAL
-worklist: baseprocedure candidateprocedure
+worklist: base candidate
 	uv run python -m $(APP_MODULE).update_worklist \
 		--dicom-standard $(DICOM_STANDARD_DIR) \
 		--candidate $(CANDIDATE_PROCEDURE) \
 		--output $(WORKLIST_OUTPUT)
 
 # Target: Final procedure that is fit for distribution
-finalprocedure: baseprocedure candidateprocedure
+final: base candidate
 	mkdir -p $(DIST_DIR)
 	rm -rf $(DIST_DIR)/*
 	uv run python -m  $(APP_MODULE).build_final_procedure \
+		--version "$(VERSION)" \
 		--candidate $(CANDIDATE_PROCEDURE) \
 		--output $(DIST_DIR)
 
