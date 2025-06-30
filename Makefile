@@ -11,8 +11,6 @@ BASE_PROCEDURE := $(PROCEDURE_DIR)/base.json
 MANUAL_PROCEDURE := $(PROCEDURE_DIR)/manual.json
 CANDIDATE_PROCEDURE := $(PROCEDURE_DIR)/candidate.json
 
-WORKLIST_OUTPUT := $(PROCEDURE_DIR)/MANUAL_WORKLIST.rts
-
 DIST_DIR := dist
 VERSION ?= $(shell echo $$VERSION)
 
@@ -28,6 +26,7 @@ base:
 # Target: BASE + MANUAL = CANDIDATE
 candidate: base
 	uv run python -m $(APP_MODULE).build_candidate_procedure \
+		--dicom-standard $(DICOM_STANDARD_DIR) \
 		--base $(BASE_PROCEDURE) \
 		--manual $(MANUAL_PROCEDURE) \
 		--output $(CANDIDATE_PROCEDURE)
@@ -37,7 +36,7 @@ worklist: base candidate
 	uv run python -m $(APP_MODULE).update_worklist \
 		--dicom-standard $(DICOM_STANDARD_DIR) \
 		--candidate $(CANDIDATE_PROCEDURE) \
-		--output $(WORKLIST_OUTPUT)
+		--output $(PROCEDURE_DIR)
 
 # Target: Final procedure that is fit for distribution
 final: base worklist candidate
