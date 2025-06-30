@@ -13,3 +13,4 @@ def sha256sum(filename):
     sum_filename = filename.with_name(filename.name + ".sha256")
     with open(sum_filename, "w") as f:
         f.write(sum)
+        f.write("\n")
