@@ -1,6 +1,7 @@
 import argparse
 from pathlib import Path
 
+from dicom_deid.checksum import sha256sum
 from dicom_deid.procedure_generation import Procedure
 
 
@@ -40,8 +41,11 @@ def main():
         separators=(",", ":"),
     )
 
-    with open(args.output / "procedure.json", "w") as f:
+    procedure_path = args.output / "procedure.json"
+    with open(procedure_path, "w") as f:
         f.write(final_json)
+
+    sha256sum(procedure_path)
 
 
 if __name__ == "__main__":
