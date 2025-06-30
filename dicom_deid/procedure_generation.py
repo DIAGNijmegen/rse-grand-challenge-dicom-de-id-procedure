@@ -353,7 +353,9 @@ class Procedure:
         return procedure
 
     def to_json(self, **kwargs):
-        return json.dumps(self._procedure, **kwargs)
+        result = json.dumps(self._procedure, **kwargs)
+        result += "\n"
+        return result
 
     def __add__(self: Procedure, other: Procedure):
         p = Procedure()
