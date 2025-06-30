@@ -1,11 +1,8 @@
 from __future__ import annotations
 
 import json
-import textwrap
 from collections import defaultdict
 from enum import Enum
-
-from bs4 import BeautifulSoup
 
 
 class DICOMStandardError(ValueError):
@@ -214,16 +211,26 @@ class DICOMStandard:
         return result
 
     def get_attribute_retired_via_tag(self, /, tag):
-        attribute = self.__attribute_lookup[tag]
-        return attribute["retired"]
+        return self.__attribute_lookup[tag]["retired"]
 
     def get_basic_confidentiality_profile_via_tag(self, /, tag):
-        conf_profile = self.__confidentiality_profile_lookup[tag]
-        return conf_profile["basicProfile"]
+        return self.__confidentiality_profile_lookup[tag]["basicProfile"]
 
     def get_keyword_via_tag(self, /, tag):
-        attribute = self.__attribute_lookup[tag]
-        return attribute["keyword"]
+        return self.__attribute_lookup[tag]["keyword"]
+
+    def get_name_via_tag(self, /, tag):
+        return self.__attribute_lookup[tag]["name"]
+
+    def get_module_usage(self, /, module_id, *, sop_id):
+        ciod_id = self.__sop_id_to_ciod_id[sop_id]
+        return self.__module_lookup[ciod_id][module_id]["usage"]
+
+    def get_tag_type(self, /, tag, *, module_id):
+        return self.__tag_to_module_lookup[tag][module_id]["type"]
+
+    def get_tag_description(self, /, tag, *, module_id):
+        return self.__tag_to_module_lookup[tag][module_id]["description"]
 
     @classmethod
     def from_path(cls, path):
@@ -251,71 +258,6 @@ class DICOMStandard:
             attributes=attributes,
             confidentiality_profile_attributes=confidentiality_profile_attributes,
         )
-
-    def render_attribute_info(self, *, tag, sop_id, headers=None):
-        attr = self.__attribute_lookup[tag]
-        name = f"{attr["name"]} | {tag}"
-        info = ["-" * len(name)]
-        info += [name]
-        info.append("-" * len(name))
-
-        for h in headers or []:
-            info.append(h)
-
-        try:
-            bp = self.get_basic_confidentiality_profile_via_tag(tag)
-        except KeyError:
-            bp = "N/A"
-        info.append(f":Basic Profile: {bp}")
-
-        module_info = self.render_module_info(tag, sop_id)
-        info += module_info
-
-        return "\n".join(info)
-
-    def render_module_info(self, tag, sop_id):
-        info = []
-        module_ids = self._get_possible_module_ids_via_tag(tag, sop_id=sop_id)
-
-        info.append(":In Modules:")
-        verbose_usage = {
-            "U": "User Optional (U)",
-            "M": "Mandatory (M)",
-            "C": "Conditional (C)",
-        }
-        verbose_type = {
-            "1": "Required with valid value (1)",
-            "1C": "Conditional; required with valid value if condition is met (1C)",
-            "2": "Required; value may be empty (2)",
-            "2C": "Conditional; must be present but "
-            "can be empty if condition is met (2C)",
-            "3": "Optional (3)",
-        }
-        indent = 3
-
-        ciod_id = self.__sop_id_to_ciod_id[sop_id]
-
-        ciod_module_lookup = self.__module_lookup[ciod_id]
-        tag_module_lookup = self.__tag_to_module_lookup[tag]
-
-        for module_id in sorted(module_ids):
-            ciod_module = ciod_module_lookup[module_id]
-            tag_module = tag_module_lookup[module_id]
-
-            usage = verbose_usage.get(ciod_module.get("usage"), "N/A")
-            type_ = verbose_type.get(tag_module["type"], "N/A")
-
-            info.append(" " * indent + f"- {module_id} [{usage}] [{type_}]::\n")
-
-            desc = BeautifulSoup(
-                tag_module.get("description", "NA"),
-                "html.parser",
-            ).prettify()
-
-            desc_indented = textwrap.indent(desc, " " * (indent + 4))
-
-            info.append(desc_indented)
-        return info
 
 
 class ActionChoices(str, Enum):

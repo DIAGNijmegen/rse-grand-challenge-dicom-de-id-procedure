@@ -3,31 +3,7 @@ from pathlib import Path
 
 from dicom_deid.checksum import sha256sum
 from dicom_deid.procedure_generation import DICOMStandard, Procedure
-
-action_lookup = {
-    "D": "Replace with a non-zero length value that may be a "
-    "dummy value and consistent with the VR (D)",
-    "Z": "Replace with a zero length value, or a non-zero length "
-    "value that may be a dummy value and consistent with the VR (Z)",
-    "X": "Remove (X)",
-    "K": "Keep (K)",
-    "U": "Replace with a non-zero length UID that is internally "
-    "consistent within a set of Instances (U)",
-    "R": "Reject the entire DICOM file (R)",
-}
-
-
-def render_action(dicom_standard: DICOMStandard, tag, action, sop_id):
-
-    justification = action.get("justification", "N/A")
-    action_info = []
-    desc = action_lookup[action["default"]]
-    action_info.append(f":Action: {desc}")
-    action_info.append(f":Justication: {justification}")
-
-    return dicom_standard.render_attribute_info(
-        tag=tag, sop_id=sop_id, headers=action_info
-    )
+from dicom_deid.render import generate_human_readable_format
 
 
 def main():
@@ -78,35 +54,11 @@ def main():
     # Ensure a checksum gets added
     sha256sum(procedure_path)
 
-    # Generate human-readable format
-    ds = DICOMStandard.from_path(args.dicom_standard)
-
-    for sop_id in p.sop_ids:
-        coid_id = ds.map_sop_to_coid_id(sop_id)
-
-        coid_output = args.output / "human" / coid_id
-        coid_output.mkdir(parents=True, exist_ok=True)
-
-        meta = []
-
-        title = f"{coid_id} | {sop_id}"
-        meta.append("=" * len(title))
-        meta.append(title)
-        meta.append("=" * len(title))
-        meta.append("\n")
-
-        meta.append(f":Default: {action_lookup[p.get_sop_default(sop_id)]}")
-        meta.append(f":Justification: {p.get_sop_justification(sop_id)}")
-
-        with open(coid_output / "meta.rts", "w") as f:
-            f.writelines("\n".join(meta))
-            f.write("\n")
-
-        for tag, action in p.get_sop_actions(sop_id).items():
-            content = render_action(ds, tag, action, sop_id)
-            keyword = ds.get_keyword_via_tag(tag)
-            with open(coid_output / f"{keyword}.rts", "w") as f:
-                f.write(content)
+    generate_human_readable_format(
+        output=args.output / "human",
+        dicom_standard=DICOMStandard.from_path(args.dicom_standard),
+        procedure=p,
+    )
 
 
 if __name__ == "__main__":
