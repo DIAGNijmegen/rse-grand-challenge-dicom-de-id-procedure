@@ -12,7 +12,7 @@ action_lookup = {
     "X": "Remove (X)",
     "K": "Keep (K)",
     "U": "Replace with a non-zero length UID that is internally "
-    "consistent within a set of Instances",
+    "consistent within a set of Instances (U)",
     "R": "Reject the entire DICOM file (R)",
 }
 
@@ -79,23 +79,32 @@ def main():
     sha256sum(procedure_path)
 
     # Generate human-readable format
-
     ds = DICOMStandard.from_path(args.dicom_standard)
-    description = []
+
     for sop_id in p.sop_ids:
-        description.append("=" * len(sop_id))
-        description.append(sop_id)
-        description.append("=" * len(sop_id))
-        description.append("\n")
+        desc = []
+
+        coid_id = ds.map_sop_to_coid_id(sop_id)
+
+        title = f"{coid_id} | {sop_id}"
+        desc.append("=" * len(title))
+        desc.append(title)
+        desc.append("=" * len(title))
+        desc.append("\n")
+
+        desc.append(f":Default: {action_lookup[p.get_sop_default(sop_id)]}")
+        desc.append(f":Justification: {p.get_sop_justification(sop_id)}")
+
+        desc.append("\n")
 
         for tag, action in p.get_sop_actions(sop_id).items():
             render = render_action(ds, tag, action, sop_id)
-            description.append(render + "\n\n\n")
+            desc.append(render + "\n\n\n")
 
-        description.append("\n")
+        content = "\n".join(desc)
 
-        with open(args.output / "human-readable-procedure.rts", "w") as f:
-            f.writelines(description)
+        with open(args.output / "human" / f"{coid_id}.rts", "w") as f:
+            f.writelines(content)
 
 
 if __name__ == "__main__":
