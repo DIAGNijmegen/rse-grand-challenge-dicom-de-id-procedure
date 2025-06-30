@@ -79,10 +79,13 @@ def test_module_actions(module_usages, expected_action):
     )
 
     procedure_json = json.loads(p.to_json())
-    assert (
-        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["default"]
-        == expected_action
-    )
+    if expected_action is not None:
+        assert (
+            procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["default"]
+            == expected_action
+        )
+    else:
+        assert procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"] is None
     assert (
         procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["default"]
         == p.Action.KEEP
@@ -184,10 +187,13 @@ def test_retired_attributes(retired_state, expected_action):
     )
 
     procedure_json = json.loads(p.to_json())
-    assert (
-        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["default"]
-        == expected_action
-    )
+    if expected_action is not None:
+        assert (
+            procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["default"]
+            == expected_action
+        )
+    else:
+        assert procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"] is None
     assert (
         procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["default"]
         == p.Action.KEEP
@@ -433,10 +439,13 @@ def test_basic_dicom_deid_profile_actions_types(
     )
 
     procedure_json = json.loads(p.to_json())
-    assert (
-        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["default"]
-        == expected_action
-    )
+    if expected_action is not None:
+        assert (
+            procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["default"]
+            == expected_action
+        )
+    else:
+        assert procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"] is None
     assert (
         procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["default"]
         == p.Action.KEEP
@@ -598,10 +607,13 @@ def test_attribute_type_actions(attribute_types, expected_action):
     )
 
     procedure_json = json.loads(p.to_json())
-    assert (
-        procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["default"]
-        == expected_action
-    )
+    if expected_action is not None:
+        assert (
+            procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"]["default"]
+            == expected_action
+        )
+    else:
+        assert procedure_json["sopClass"]["1.1"]["tag"]["(0000,0000)"] is None
     assert (
         procedure_json["sopClass"]["1.1"]["tag"]["(1111,1111)"]["default"]
         == p.Action.KEEP
