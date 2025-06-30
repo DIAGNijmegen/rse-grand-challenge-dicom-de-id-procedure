@@ -2572,7 +2572,7 @@
                     "justification": "Describes ciritcal data format"
                 },
                 "(7FE0,0010)": {
-                    "default": "K",
+                    "default": "X",
                     "justification": "Critical data"
                 },
                 "(FFFA,FFFA)": {

@@ -3,7 +3,7 @@
         "1.2.840.10008.5.1.4.1.1.2": {
             "tag": {
                 "(7FE0,0010)": {
-                    "default": "K",
+                    "default": "X",
                     "justification": "Critical data"
                 },
                 "(0008,0005)": {
