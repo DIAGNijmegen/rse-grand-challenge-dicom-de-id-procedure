@@ -82,29 +82,31 @@ def main():
     ds = DICOMStandard.from_path(args.dicom_standard)
 
     for sop_id in p.sop_ids:
-        desc = []
-
         coid_id = ds.map_sop_to_coid_id(sop_id)
 
+        coid_output = args.output / "human" / coid_id
+        coid_output.mkdir(parents=True, exist_ok=True)
+
+        meta = []
+
         title = f"{coid_id} | {sop_id}"
-        desc.append("=" * len(title))
-        desc.append(title)
-        desc.append("=" * len(title))
-        desc.append("\n")
+        meta.append("=" * len(title))
+        meta.append(title)
+        meta.append("=" * len(title))
+        meta.append("\n")
 
-        desc.append(f":Default: {action_lookup[p.get_sop_default(sop_id)]}")
-        desc.append(f":Justification: {p.get_sop_justification(sop_id)}")
+        meta.append(f":Default: {action_lookup[p.get_sop_default(sop_id)]}")
+        meta.append(f":Justification: {p.get_sop_justification(sop_id)}")
 
-        desc.append("\n")
+        with open(coid_output / "meta.rts", "w") as f:
+            f.writelines("\n".join(meta))
+            f.write("\n")
 
         for tag, action in p.get_sop_actions(sop_id).items():
-            render = render_action(ds, tag, action, sop_id)
-            desc.append(render + "\n\n\n")
-
-        content = "\n".join(desc)
-
-        with open(args.output / "human" / f"{coid_id}.rts", "w") as f:
-            f.writelines(content)
+            content = render_action(ds, tag, action, sop_id)
+            keyword = ds.get_keyword_via_tag(tag)
+            with open(coid_output / f"{keyword}.rts", "w") as f:
+                f.write(content)
 
 
 if __name__ == "__main__":
