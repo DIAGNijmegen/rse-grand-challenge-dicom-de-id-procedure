@@ -181,6 +181,9 @@ class DICOMStandard:
             sop_tags.update(module_tags)
         return sop_tags
 
+    def map_sop_to_coid_id(self, /, sop_id):
+        return self.__sop_id_to_ciod_id[sop_id]
+
     def _get_possible_module_ids_via_tag(self, /, tag, *, sop_id):
         sop_module_ids = self.map_sop_to_module_ids(sop_id)
         tag_module_ids = self.__tag_to_module_ids[tag]
@@ -381,6 +384,9 @@ class Procedure:
 
     def get_sop_default(self, sop_id):
         return self._procedure["sopClass"][sop_id]["default"]
+
+    def get_sop_justification(self, sop_id):
+        return self._procedure["sopClass"][sop_id]["justification"]
 
     def get_unset_action_tags_in_sops(
         self,

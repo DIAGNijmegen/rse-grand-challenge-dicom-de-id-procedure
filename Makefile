@@ -43,6 +43,7 @@ worklist: base candidate
 final: base worklist candidate
 	mkdir -p $(DIST_DIR)
 	rm -rf $(DIST_DIR)/*
+	mkdir -p $(DIST_DIR)/human
 	uv run python -m  $(APP_MODULE).build_final_procedure \
 		--version "$(VERSION)" \
 		--dicom-standard $(DICOM_STANDARD_DIR) \
