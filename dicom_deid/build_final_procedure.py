@@ -31,13 +31,6 @@ def main():
     with open(args.candidate, "r") as f:
         p = Procedure.from_json(f.read())
 
-    # Clear all non-reject justifications
-    for sop_id in p.sop_ids:
-        for action in p._procedure["sopClass"][sop_id]["tag"].values():
-            if "justification" in action:
-                if action["default"] != p.Action.REJECT:
-                    del action["justification"]
-
     # Set version
     p._procedure["version"] = args.version
 

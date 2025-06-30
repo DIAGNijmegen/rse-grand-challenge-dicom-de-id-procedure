@@ -27,3 +27,9 @@ repos:
           - flake8-docstrings
           - mccabe
           - yesqa
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.33.1
+    hooks:
+      - id: check-jsonschema
+        files: ^dist/procedure\.json$
+        args: ["--schemafile", "schemas/procedure.json"]
