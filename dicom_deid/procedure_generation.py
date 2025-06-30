@@ -221,6 +221,10 @@ class DICOMStandard:
         conf_profile = self.__confidentiality_profile_lookup[tag]
         return conf_profile["basicProfile"]
 
+    def get_keyword_via_tag(self, /, tag):
+        attribute = self.__attribute_lookup[tag]
+        return attribute["keyword"]
+
     @classmethod
     def from_path(cls, path):
         with (path / "version.json").open() as f:
@@ -294,7 +298,7 @@ class DICOMStandard:
         ciod_module_lookup = self.__module_lookup[ciod_id]
         tag_module_lookup = self.__tag_to_module_lookup[tag]
 
-        for module_id in module_ids:
+        for module_id in sorted(module_ids):
             ciod_module = ciod_module_lookup[module_id]
             tag_module = tag_module_lookup[module_id]
 
