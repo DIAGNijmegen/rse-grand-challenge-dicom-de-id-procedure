@@ -25,7 +25,7 @@ def main():
     base = generate_base_procedure(
         dicom_standard_path=args.dicom_standard,
     )
-    base_json = base.to_json(indent=4)
+    base_json = base.to_json(indent=4, sort_keys=True)
 
     with open(args.output, "w") as f:
         f.write(base_json)

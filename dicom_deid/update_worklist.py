@@ -39,9 +39,9 @@ def main():
     ds = DICOMStandard.from_path(args.dicom_standard)
 
     worklist = []
-    unset = defaultdict(set)
+    unset = defaultdict(list)
     for tag, sop_id in candidate_profile.get_unset_action_tags_in_sops():
-        unset[sop_id].add(tag)
+        unset[sop_id].append(tag)
 
     for sop_id in unset:
         worklist.append(sop_id)
