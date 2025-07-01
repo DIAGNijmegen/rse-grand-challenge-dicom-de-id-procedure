@@ -495,23 +495,23 @@
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0040,E021)": {
-                    "default": "R",
+                    "default": "D",
                     "justification": "No retrieval will be done; parent sequence should have been removed"
                 },
                 "(0040,E022)": {
-                    "default": "R",
+                    "default": "D",
                     "justification": "No retrieval will be done; parent sequence should have been removed"
                 },
                 "(0040,E023)": {
-                    "default": "R",
+                    "default": "D",
                     "justification": "No retrieval will be done; parent sequence should have been removed"
                 },
                 "(0040,E024)": {
-                    "default": "R",
+                    "default": "D",
                     "justification": "No retrieval will be done; parent sequence should have been removed"
                 },
                 "(0040,E025)": {
-                    "default": "R",
+                    "default": "D",
                     "justification": "No retrieval will be done; parent sequence should have been removed"
                 }
             }

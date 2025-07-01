@@ -1,7 +1,7 @@
 -------------------------------------
 WADO Retrieval Sequence | (0040,E023)
 -------------------------------------
-:Action: Reject the entire DICOM file (R)
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
 :Justication: No retrieval will be done; parent sequence should have been removed
 :Basic Profile: N/A
 :In Modules:
