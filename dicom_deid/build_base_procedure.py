@@ -1,12 +1,12 @@
 import argparse
 from pathlib import Path
 
-from standard_profile import generate_standard_profile
+from dicom_deid.procedure_generation import generate_base_procedure
 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Generate a standard DICOM de-identification profile"
+        description="Generate a base DICOM de-identification procedure"
     )
     parser.add_argument(
         "--dicom-standard",
@@ -22,10 +22,13 @@ def main():
     )
     args = parser.parse_args()
 
-    generate_standard_profile(
+    base = generate_base_procedure(
         dicom_standard_path=args.dicom_standard,
-        output_path=args.output,
     )
+    base_json = base.to_json(indent=4)
+
+    with open(args.output, "w") as f:
+        f.write(base_json)
 
 
 if __name__ == "__main__":
