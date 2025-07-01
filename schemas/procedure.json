@@ -44,6 +44,9 @@
                     },
                     "tag": {
                         "type": "object",
+                        "propertyNames": {
+                            "pattern": "\\([0-9A-FX]{4},[0-9A-FX]{4}\\)"
+                        },
                         "additionalProperties": {
                             "type": "object",
                             "required": [
