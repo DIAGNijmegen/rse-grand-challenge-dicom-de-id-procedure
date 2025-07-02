@@ -407,7 +407,7 @@
                     "justification": "Describes critical data format"
                 },
                 "(0040,A390)": {
-                    "default": "E",
+                    "default": "X",
                     "justification": "References outside UIDs"
                 },
                 "(0040,E001)": {
