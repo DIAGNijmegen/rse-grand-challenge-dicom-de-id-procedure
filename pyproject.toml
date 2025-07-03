@@ -21,3 +21,6 @@ profile = "black"
 
 [tool.uv]
 package = true
+
+[tool.setuptools]
+py-modules = ["dicom_deid"]
