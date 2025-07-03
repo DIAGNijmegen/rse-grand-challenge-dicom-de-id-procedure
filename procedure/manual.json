@@ -47,8 +47,8 @@
                     "justification": "Required, parent sequence should be already be typically removed"
                 },
                 "(0008,0120)": {
-                    "default": "D",
-                    "justification": "Universal ID: could be traced to all kinds of insitutes or entities"
+                    "default": "U",
+                    "justification": "Universal ID: could be traced to all kinds of institutes or entities"
                 },
                 "(0008,010C)": {
                     "default": "K",
@@ -239,8 +239,8 @@
                     "justification": "Extended device information is not allowed by default"
                 },
                 "(300A,0675)": {
-                    "default": "D",
-                    "justification": "Extended device information is not allowed by default"
+                    "default": "K",
+                    "justification": "Encodes general equipment frame or reference. No PI."
                 },
                 "(3010,001C)": {
                     "default": "D",
@@ -411,7 +411,7 @@
                     "justification": "References outside UIDs"
                 },
                 "(0040,E001)": {
-                    "default": "D",
+                    "default": "K",
                     "justification": "Is a direct identifier"
                 },
                 "(7FE0,0002)": {
