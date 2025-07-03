@@ -69,14 +69,14 @@ def generate_human_readable_format(
         for tag, action in procedure.get_sop_actions(sop_id).items():
             content = render_action(dicom_standard, tag, action, sop_id)
             keyword = dicom_standard.get_keyword_via_tag(tag)
-            sop_actions.append((keyword,content))
+            sop_actions.append((keyword, content))
 
         for keyword, content in sop_actions:
-            with open(coid_output / f"{keyword}.rst", "w") as f:
+            with open(coid_output / f"{keyword}.rts", "w") as f:
                 f.write(content)
 
         # Combine all actions in one file, sorted like manual.json, for easier review.
-        with open(coid_output / f"All.rst", "w") as f:
+        with open(coid_output / "All.rst", "w") as f:
             f.write("\n".join(x[1] for x in sop_actions))
 
 
