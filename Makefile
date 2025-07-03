@@ -1,4 +1,4 @@
-.PHONY: all baseprocedure worklist candidateprocedure finalprocedure
+.PHONY: all base worklist candidate final clean
 
 CURRENT_DIR := $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 
@@ -38,8 +38,15 @@ worklist: base candidate
 		--candidate $(CANDIDATE_PROCEDURE) \
 		--output $(PROCEDURE_DIR)
 
+check-version:
+	@if [ -z "$(VERSION)" ]; then \
+		echo "Error: VERSION is not set. Please set VERSION before running this target."; \
+		exit 1; \
+	fi
+	@echo "Current version is: $(VERSION)"
+
 # Target: Final procedure that is fit for distribution
-final: base worklist candidate
+final: check-version base worklist candidate
 	mkdir -p $(DIST_DIR)
 	rm -rf $(DIST_DIR)/*
 	sed -i '' "s/\"version\"[[:space:]]*:[[:space:]]*\"[^\"]*\"/\"version\": \"${VERSION}\"/" package.json
@@ -49,6 +56,7 @@ final: base worklist candidate
 		--dicom-standard $(DICOM_STANDARD_DIR) \
 		--candidate $(CANDIDATE_PROCEDURE) \
 		--output $(DIST_DIR)
+
 
 clean:
 	rm -rf $(DIST_DIR)/*
