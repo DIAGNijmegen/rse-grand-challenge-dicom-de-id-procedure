@@ -1,8 +1,8 @@
 --------------------------------
 Acquisition Number | (0020,0012)
 --------------------------------
-:Action: Keep (K)
-:Justication: Describes possibly required acquisition details
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
+:Justication: Allows identification of study. Not allowed
 :Basic Profile: N/A
 :In Modules:
    - ct-image [Mandatory (M)] [Required; value may be empty (2)]::

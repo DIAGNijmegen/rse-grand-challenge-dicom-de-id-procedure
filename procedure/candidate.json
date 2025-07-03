@@ -232,8 +232,8 @@
                     "justification": "Required, parent sequence should be already be typically removed"
                 },
                 "(0008,0120)": {
-                    "default": "K",
-                    "justification": "Required parent sequence should be already be typically removed"
+                    "default": "U",
+                    "justification": "Universal ID: could be traced to all kinds of institutes or entities"
                 },
                 "(0008,0121)": {
                     "default": "X",
@@ -437,7 +437,7 @@
                 },
                 "(0008,1199)": {
                     "default": "K",
-                    "justification": "If present, it is required"
+                    "justification": "Required, child elements of this sequence are handled separately"
                 },
                 "(0008,1200)": {
                     "default": "X",
@@ -928,8 +928,8 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0018,0050)": {
-                    "default": "Z",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Generally required for viewers"
                 },
                 "(0018,0060)": {
                     "default": "K",
@@ -1428,12 +1428,12 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0020,0012)": {
-                    "default": "K",
-                    "justification": "Describes possibly required acquisition details"
+                    "default": "D",
+                    "justification": "Allows identification of study. Not allowed"
                 },
                 "(0020,0013)": {
                     "default": "K",
-                    "justification": "Describes possibly required acquisition details"
+                    "justification": "Identifies and orders image within single study. No PI"
                 },
                 "(0020,0020)": {
                     "default": "K",
@@ -1925,15 +1925,15 @@
                 },
                 "(0040,9213)": {
                     "default": "K",
-                    "justification": "Describes ciritcal data format"
+                    "justification": "Describes critical data format"
                 },
                 "(0040,9214)": {
                     "default": "K",
-                    "justification": "Describes ciritcal data format"
+                    "justification": "Describes critical data format"
                 },
                 "(0040,9216)": {
                     "default": "K",
-                    "justification": "Describes ciritcal data format"
+                    "justification": "Describes critical data format"
                 },
                 "(0040,9220)": {
                     "default": "X",
@@ -1941,11 +1941,11 @@
                 },
                 "(0040,9224)": {
                     "default": "K",
-                    "justification": "Describes ciritcal data format"
+                    "justification": "Describes critical data format"
                 },
                 "(0040,9225)": {
                     "default": "K",
-                    "justification": "Describes ciritcal data format"
+                    "justification": "Describes critical data format"
                 },
                 "(0040,A032)": {
                     "default": "X",
@@ -1996,8 +1996,8 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0040,A160)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
+                    "default": "D",
+                    "justification": "Free unlimited text in structured report. Not allowed"
                 },
                 "(0040,A161)": {
                     "default": "K",
@@ -2024,12 +2024,12 @@
                     "justification": "If present, it is likely required"
                 },
                 "(0040,A390)": {
-                    "default": "K",
-                    "justification": "Describes ciritcal data format"
+                    "default": "X",
+                    "justification": "References outside UIDs"
                 },
                 "(0040,E001)": {
                     "default": "K",
-                    "justification": "Describes ciritcal data format"
+                    "justification": "Is a direct identifier"
                 },
                 "(0040,E010)": {
                     "default": "X",
@@ -2376,12 +2376,12 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(300A,0602)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
+                    "default": "D",
+                    "justification": "Extended device information is not allowed by default"
                 },
                 "(300A,060E)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
+                    "default": "D",
+                    "justification": "Extended device information is not allowed by default"
                 },
                 "(300A,0611)": {
                     "default": "Z",
@@ -2401,7 +2401,7 @@
                 },
                 "(300A,0675)": {
                     "default": "K",
-                    "justification": "If present, it is likely required"
+                    "justification": "Encodes general equipment frame or reference. No PI."
                 },
                 "(300A,0700)": {
                     "default": "U",
@@ -2484,8 +2484,8 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(3010,001C)": {
-                    "default": "K",
-                    "justification": "Common: if present, it is likely required"
+                    "default": "D",
+                    "justification": "Extended device information is not allowed by default"
                 },
                 "(3010,001D)": {
                     "default": "K",
@@ -2569,7 +2569,7 @@
                 },
                 "(7FE0,0002)": {
                     "default": "K",
-                    "justification": "Describes ciritcal data format"
+                    "justification": "Describes critical data format"
                 },
                 "(7FE0,0010)": {
                     "default": "K",

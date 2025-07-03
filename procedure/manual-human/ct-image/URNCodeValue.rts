@@ -1,8 +1,8 @@
 ----------------------------
 URN Code Value | (0008,0120)
 ----------------------------
-:Action: Keep (K)
-:Justication: Required parent sequence should be already be typically removed
+:Action: Replace with a non-zero length UID that is internally consistent within a set of Instances (U)
+:Justication: Universal ID: could be traced to all kinds of institutes or entities
 :Basic Profile: N/A
 :In Modules:
    - clinical-trial-study [User Optional (U)] [Conditional; required with valid value if condition is met (1C)]::

@@ -1,8 +1,8 @@
 ---------------------------------------------------------
 Referenced RT Accessory Holder Device Index | (300A,060E)
 ---------------------------------------------------------
-:Action: Keep (K)
-:Justication: If present, it is likely required
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
+:Justication: Extended device information is not allowed by default
 :Basic Profile: N/A
 :In Modules:
    - ct-image [Mandatory (M)] [Conditional; must be present but can be empty if condition is met (2C)]::

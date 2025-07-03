@@ -2,7 +2,7 @@
 Equipment Frame of Reference UID | (300A,0675)
 ----------------------------------------------
 :Action: Keep (K)
-:Justication: If present, it is likely required
+:Justication: Encodes general equipment frame or reference. No PI.
 :Basic Profile: N/A
 :In Modules:
    - ct-image [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::

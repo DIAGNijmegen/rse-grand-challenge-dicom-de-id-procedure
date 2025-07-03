@@ -2,7 +2,7 @@
 Extended Offset Table Lengths | (7FE0,0002)
 -------------------------------------------
 :Action: Keep (K)
-:Justication: Describes ciritcal data format
+:Justication: Describes critical data format
 :Basic Profile: N/A
 :In Modules:
    - image-pixel [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::

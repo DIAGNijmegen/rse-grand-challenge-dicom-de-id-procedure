@@ -1,8 +1,8 @@
 ----------------------------------------------
 Device Alternate Identifier Type | (3010,001C)
 ----------------------------------------------
-:Action: Keep (K)
-:Justication: Common: if present, it is likely required
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
+:Justication: Extended device information is not allowed by default
 :Basic Profile: N/A
 :In Modules:
    - ct-image [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::

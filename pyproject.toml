@@ -1,6 +1,6 @@
 [project]
 name = "grand-challenge-dicom-deid-profile"
-version = "20250607.0"
+version = "0.20250703.3"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
