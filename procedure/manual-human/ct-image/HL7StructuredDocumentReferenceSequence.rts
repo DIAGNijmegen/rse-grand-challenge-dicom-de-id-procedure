@@ -1,8 +1,8 @@
 --------------------------------------------------------
 HL7 Structured Document Reference Sequence | (0040,A390)
 --------------------------------------------------------
-:Action: Keep (K)
-:Justication: Describes ciritcal data format
+:Action: Remove (X)
+:Justication: References outside UIDs
 :Basic Profile: N/A
 :In Modules:
    - sop-common [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::

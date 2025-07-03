@@ -2,7 +2,7 @@
 Referenced SOP Sequence | (0008,1199)
 -------------------------------------
 :Action: Keep (K)
-:Justication: If present, it is required
+:Justication: Required, child elements of this sequence are handled separately
 :Basic Profile: N/A
 :In Modules:
    - ct-image [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::

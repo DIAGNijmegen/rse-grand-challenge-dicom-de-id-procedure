@@ -2,7 +2,7 @@
 Real World Value First Value Mapped | (0040,9216)
 -------------------------------------------------
 :Action: Keep (K)
-:Justication: Describes ciritcal data format
+:Justication: Describes critical data format
 :Basic Profile: N/A
 :In Modules:
    - general-image [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::

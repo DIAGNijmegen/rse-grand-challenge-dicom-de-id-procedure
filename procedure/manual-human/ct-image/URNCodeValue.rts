@@ -1,8 +1,8 @@
 ----------------------------
 URN Code Value | (0008,0120)
 ----------------------------
-:Action: Keep (K)
-:Justication: Required parent sequence should be already be typically removed
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
+:Justication: Universal ID: could be traced to all kinds of insitutes or entities
 :Basic Profile: N/A
 :In Modules:
    - clinical-trial-study [User Optional (U)] [Conditional; required with valid value if condition is met (1C)]::

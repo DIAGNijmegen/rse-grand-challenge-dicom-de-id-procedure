@@ -2,7 +2,7 @@
 Instance Number | (0020,0013)
 -----------------------------
 :Action: Keep (K)
-:Justication: Describes possibly required acquisition details
+:Justication: Identifies and orders image within single study. No PI
 :Basic Profile: N/A
 :In Modules:
    - general-image [Mandatory (M)] [Required; value may be empty (2)]::

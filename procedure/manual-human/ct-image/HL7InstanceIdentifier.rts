@@ -1,8 +1,8 @@
 -------------------------------------
 HL7 Instance Identifier | (0040,E001)
 -------------------------------------
-:Action: Keep (K)
-:Justication: Describes ciritcal data format
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
+:Justication: Is a direct identifier
 :Basic Profile: N/A
 :In Modules:
    - patient [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
