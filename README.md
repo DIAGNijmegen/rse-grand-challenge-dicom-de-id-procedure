@@ -1,5 +1,7 @@
 # Grand-Challenge DICOM De-Identification Procedure
 
+[![CI](https://github.com/DIAGNijmegen/rse-grand-challenge-dicom-de-id-procedure/actions/workflows/ci.yml/badge.svg)](https://github.com/DIAGNijmegen/rse-grand-challenge-dicom-de-id-procedure/actions/workflows/ci.yml)
+
 This repository contains the code that generate the procedure for the [Grand-Challenge.org](https://www.grand-challenge.org) de-identification methods. The procedure describes which action needs to be taken for a DICOM tag in order to be de-identified.
 
 It is based on the DICOM Basic Profile of the [Standard DICOM de-identification profile](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html#table_E.1-1) but customized for the use on the Grand-Challenge platform.
