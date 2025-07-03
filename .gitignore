@@ -138,3 +138,8 @@ uv.lock
 
 # MAC OS FS
 .DS_Store
+
+
+# Search and find files for local
+dist/human/*/0_All.rst
+procedure/manual-human/*/0_All.rst

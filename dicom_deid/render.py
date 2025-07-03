@@ -76,7 +76,7 @@ def generate_human_readable_format(
                 f.write(content)
 
         # Combine all actions in one file, sorted like manual.json, for easier review.
-        with open(coid_output / "All.rst", "w") as f:
+        with open(coid_output / "0_All.rst", "w") as f:
             f.write("\n".join(x[1] for x in sop_actions))
 
 
