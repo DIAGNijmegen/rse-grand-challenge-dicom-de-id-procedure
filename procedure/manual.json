@@ -513,6 +513,10 @@
                 "(0040,E025)": {
                     "default": "D",
                     "justification": "No retrieval will be done; parent sequence should have been removed"
+                },
+                "(0018,0050)": {
+                    "default": "K",
+                    "justification": "Generally required for viewers"
                 }
             }
         }

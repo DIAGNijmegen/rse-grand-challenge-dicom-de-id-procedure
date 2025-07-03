@@ -928,8 +928,8 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0018,0050)": {
-                    "default": "Z",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Generally required for viewers"
                 },
                 "(0018,0060)": {
                     "default": "K",
