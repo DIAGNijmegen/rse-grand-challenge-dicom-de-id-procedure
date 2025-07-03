@@ -1,7 +1,7 @@
 -------------------------------------
 HL7 Instance Identifier | (0040,E001)
 -------------------------------------
-:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
+:Action: Keep (K)
 :Justication: Is a direct identifier
 :Basic Profile: N/A
 :In Modules:

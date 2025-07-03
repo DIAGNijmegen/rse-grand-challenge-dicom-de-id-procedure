@@ -1,8 +1,8 @@
 ----------------------------------------------
 Equipment Frame of Reference UID | (300A,0675)
 ----------------------------------------------
-:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
-:Justication: Extended device information is not allowed by default
+:Action: Keep (K)
+:Justication: Encodes general equipment frame or reference. No PI.
 :Basic Profile: N/A
 :In Modules:
    - ct-image [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
