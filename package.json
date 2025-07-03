@@ -1,0 +1,29 @@
+{
+  "name": "@diagnijmegen/rse-grand-challenge-dicom-deid-procedure",
+  "version": "0.20250703.2",
+  "description": "De-identification of DICOM is a complex procedure that depends on a number of DICOM standards. The procedures found in this package describe per SOPClassUID and tag what the correct action is. They serve as the basis for the de-identification implementation in Javascript.",
+  "keywords": [
+    "json",
+    "dicom",
+    "de-identification",
+    "grand-challenge"
+  ],
+  "homepage": "https://github.com/DIAGNijmegen/rse-grand-challenge-dicom-de-id-procedure#readme",
+  "bugs": {
+    "url": "https://github.com/DIAGNijmegen/rse-grand-challenge-dicom-de-id-procedure/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DIAGNijmegen/rse-grand-challenge-dicom-de-id-procedure.git"
+  },
+  "license": "Apache-2.0",
+  "author": "Grand-Challenge Research Software Engineers",
+  "type": "commonjs",
+  "files": [
+    "LICENSE.md",
+    "dist/procedure.json",
+    "dist/procedure.json.sha256",
+    "dist/procedure.min.json",
+    "dist/procedure.min.json.sha256"
+  ]
+}

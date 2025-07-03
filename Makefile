@@ -42,6 +42,7 @@ worklist: base candidate
 final: base worklist candidate
 	mkdir -p $(DIST_DIR)
 	rm -rf $(DIST_DIR)/*
+	sed -i '' "s/\"version\"[[:space:]]*:[[:space:]]*\"[^\"]*\"/\"version\": \"${VERSION}\"/" package.json
 	uv run python -m  $(APP_MODULE).build_final_procedure \
 		--version "$(VERSION)" \
 		--dicom-standard $(DICOM_STANDARD_DIR) \
