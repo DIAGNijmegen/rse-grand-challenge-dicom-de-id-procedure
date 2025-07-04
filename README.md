@@ -8,7 +8,11 @@ It is based on the DICOM Basic Profile of the [Standard DICOM de-identification 
 
 More information about de-identification choices can be found in the [standard-operation procedure](SOP.md).
 
+
 ## Procedure Usage
+
+For JavaScript you can use the ESM + UDM bundles via the npmjs package:
+- https://www.npmjs.com/package/@diagnijmegen/rse-grand-challenge-dicom-deid-procedure
 
 The `procedure.json` has two lookups: firstly by SOPClassUID and secondly by the data element tag. This results in a `"default"` action that is to be executed for the data element in question. The action can be any of:
 
