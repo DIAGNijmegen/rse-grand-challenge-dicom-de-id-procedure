@@ -1,6 +1,6 @@
 {
   "name": "@diagnijmegen/rse-grand-challenge-dicom-deid-procedure",
-  "version": "0.20250704.1",
+  "version": "0.20250704.6",
   "description": "De-identification of DICOM is a complex procedure that depends on a number of DICOM standards. The procedures found in this package describe per SOPClassUID and tag what the correct action is. They serve as the basis for the de-identification implementation in Javascript.",
   "keywords": [
     "json",
@@ -20,22 +20,27 @@
   "author": "Grand-Challenge Research Software Engineers",
   "type": "module",
   "files": [
-    "index.js",
     "LICENSE.md",
-    "dist/procedure.min.json"
+    "dist/*.esm.min.js",
+    "dist/*.esm.min.js.map",
+    "dist/*.esm.js",
+    "dist/*.umd.min.js",
+    "dist/*.umd.min.js.map",
+    "dist/*.umd.js"
   ],
   "exports": {
-    "import": "./dist/grand-challenge-dicom-de-id-procedure.esm.js",
-    "require": "./dist/grand-challenge-dicom-de-id-procedure.umd.js"
+    "import": "./dist/grand-challenge-dicom-de-id-procedure.esm.min.js",
+    "require": "./dist/grand-challenge-dicom-de-id-procedure.umd.min.js"
   },
-  "browser": "./dist/grand-challenge-dicom-de-id-procedure.umd.js",
-  "main": "./dist/grand-challenge-dicom-de-id-procedure.umd.js",
-  "module": "./dist/grand-challenge-dicom-de-id-procedure.esm.js",
+  "browser": "./dist/grand-challenge-dicom-de-id-procedure.umd.min.js",
+  "main": "./dist/grand-challenge-dicom-de-id-procedure.umd.min.js",
+  "module": "./dist/grand-challenge-dicom-de-id-procedure.esm.min.js",
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-terser": "^0.4.4",
     "rollup": "^4.44.1"
   },
   "scripts": {
-    "build": "rollup -c"
+    "build": "rollup --config rollup.config.js"
   }
 }

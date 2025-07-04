@@ -1,3 +1,3 @@
-import data from './dist/procedure.min.json' assert { type: 'json' };
+import data from './dist/procedure.json' assert { type: 'json' };
 
 export default data;

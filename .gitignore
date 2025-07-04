@@ -142,5 +142,5 @@ uv.lock
 # JS
 
 node_modules/
-dist/*esm.js
-dist/*umd.js
+dist/*.js
+dist/*.js.map

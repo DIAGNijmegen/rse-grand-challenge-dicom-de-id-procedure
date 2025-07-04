@@ -42,15 +42,15 @@ def main():
     p._procedure["version"] = args.version
 
     # Minify version
-    final_mini_json = p.to_json(
+    final_json = p.to_json(
         sort_keys=True,
-        separators=(",", ":"),
+        indent=2,
     )
 
     # Min version
-    procedure_min_path = args.output / "procedure.min.json"
-    with open(procedure_min_path, "w") as f:
-        f.write(final_mini_json)
+    procedure_path = args.output / "procedure.json"
+    with open(procedure_path, "w") as f:
+        f.write(final_json)
 
     generate_human_readable_format(
         output=args.output / "human",
