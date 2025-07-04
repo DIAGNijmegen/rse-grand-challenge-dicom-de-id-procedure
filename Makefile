@@ -46,9 +46,7 @@ check-version-set:
 	@echo "Current version is: $(VERSION)"
 
 # Target: Final procedure that is fit for distribution
-final: check-version-set base worklist candidate
-	mkdir -p $(DIST_DIR)
-	rm -rf $(DIST_DIR)/*
+final: check-version-set clean base worklist candidate
 	sed -i '' "s/\"version\"[[:space:]]*:[[:space:]]*\"[^\"]*\"/\"version\": \"${VERSION}\"/" package.json
 	sed -i '' "s/version[[:space:]]*=[[:space:]]*\"[^\"]*\"/version = \"${VERSION}\"/" pyproject.toml
 	uv run python -m  $(APP_MODULE).build_final_procedure \
@@ -60,4 +58,6 @@ final: check-version-set base worklist candidate
 
 clean:
 	rm -rf $(DIST_DIR)/*
-	rm -f $(BASE_PROCEDURE) $(CANDIDATE_PROCEDURE) $(WORKLIST_OUTPUT)
+	rm -rf $(PROCEDURE_DIR)/manual-human
+	mkdir -p $(DIST_DIR)
+	rm -f $(BASE_PROCEDURE) $(CANDIDATE_PROCEDURE)

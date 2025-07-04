@@ -1,8 +1,8 @@
 ----------------------------
 URN Code Value | (0008,0120)
 ----------------------------
-:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
-:Justication: Universal ID: could be traced to all kinds of insitutes or entities
+:Action: Replace with a non-zero length UID that is internally consistent within a set of Instances (U)
+:Justication: Universal ID: could be traced to all kinds of institutes or entities
 :Basic Profile: N/A
 :In Modules:
    - clinical-trial-study [User Optional (U)] [Conditional; required with valid value if condition is met (1C)]::
