@@ -38,7 +38,7 @@ worklist: base candidate
 		--candidate $(CANDIDATE_PROCEDURE) \
 		--output $(PROCEDURE_DIR)
 
-check-version:
+check-version-set:
 	@if [ -z "$(VERSION)" ]; then \
 		echo "Error: VERSION is not set. Please set VERSION before running this target."; \
 		exit 1; \
@@ -46,7 +46,7 @@ check-version:
 	@echo "Current version is: $(VERSION)"
 
 # Target: Final procedure that is fit for distribution
-final: check-version base worklist candidate
+final: check-version-set base worklist candidate
 	mkdir -p $(DIST_DIR)
 	rm -rf $(DIST_DIR)/*
 	sed -i '' "s/\"version\"[[:space:]]*:[[:space:]]*\"[^\"]*\"/\"version\": \"${VERSION}\"/" package.json
