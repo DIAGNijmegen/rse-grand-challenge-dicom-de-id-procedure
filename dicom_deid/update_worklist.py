@@ -51,7 +51,7 @@ def main():
 
         worklist.append("\n")
 
-    with open(args.output / "WORKLIST.rts", "w") as f:
+    with open(args.output / "WORKLIST.rst", "w") as f:
         f.write("\n".join(worklist))
 
 

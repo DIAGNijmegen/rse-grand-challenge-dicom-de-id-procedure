@@ -61,7 +61,7 @@ def generate_human_readable_format(
         except KeyError:
             pass  # Manual does not have a default
 
-        with open(coid_output / "meta.rts", "w") as f:
+        with open(coid_output / "meta.rst", "w") as f:
             f.writelines("\n".join(meta))
             f.write("\n")
 
@@ -72,7 +72,7 @@ def generate_human_readable_format(
             sop_actions.append((keyword, content))
 
         for keyword, content in sop_actions:
-            with open(coid_output / f"{keyword}.rts", "w") as f:
+            with open(coid_output / f"{keyword}.rst", "w") as f:
                 f.write(content)
 
         # Combine all actions in one file, sorted like manual.json, for easier review.
