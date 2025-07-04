@@ -1,7 +1,6 @@
 import argparse
 from pathlib import Path
 
-from dicom_deid.checksum import sha256sum
 from dicom_deid.procedure_generation import DICOMStandard, Procedure
 from dicom_deid.render import generate_human_readable_format
 
@@ -45,14 +44,13 @@ def main():
     # Minify version
     final_json = p.to_json(
         sort_keys=True,
-        separators=(",", ":"),
+        indent=2,
     )
+
+    # Min version
     procedure_path = args.output / "procedure.json"
     with open(procedure_path, "w") as f:
         f.write(final_json)
-
-    # Ensure a checksum gets added
-    sha256sum(procedure_path)
 
     generate_human_readable_format(
         output=args.output / "human",
