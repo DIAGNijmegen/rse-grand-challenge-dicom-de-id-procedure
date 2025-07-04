@@ -143,3 +143,9 @@ uv.lock
 # Search and find files for local
 dist/human/*/0_All.rst
 procedure/manual-human/*/0_All.rst
+
+
+# JS
+node_modules/
+dist/*.js
+dist/*.js.map
