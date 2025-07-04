@@ -138,3 +138,9 @@ uv.lock
 
 # MAC OS FS
 .DS_Store
+
+# JS
+
+node_modules/
+dist/*esm.js
+dist/*umd.js
