@@ -2,7 +2,7 @@
 X-Ray Tube Current | (0018,1151)
 --------------------------------
 :Action: Keep (K)
-:Justication: Possibly relevant aquisition data
+:Justication: Possibly relevant acquisition data
 :Basic Profile: N/A
 :In Modules:
    - ct-image [Mandatory (M)] [Optional (3)]::

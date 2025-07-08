@@ -428,23 +428,23 @@
                 },
                 "(0018,1150)": {
                     "default": "K",
-                    "justification": "Possibly relevant aquisition data"
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1151)": {
                     "default": "K",
-                    "justification": "Possibly relevant aquisition data"
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1152)": {
                     "default": "K",
-                    "justification": "Possibly relevant aquisition data"
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1100)": {
                     "default": "K",
-                    "justification": "Possibly relevant aquisition data"
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1111)": {
                     "default": "K",
-                    "justification": "Possibly relevant aquisition data"
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0040,0032)": {
                     "default": "X",
