@@ -1064,8 +1064,8 @@
           "justification": "Possibly relevant aquisition data"
         },
         "(0018,1152)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Possibly relevant aquisition data"
         },
         "(0018,1153)": {
           "default": "X",
