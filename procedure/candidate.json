@@ -1032,16 +1032,16 @@
                     "justification": "If present, it is likely required"
                 },
                 "(0018,1100)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1110)": {
                     "default": "K",
                     "justification": "Describes possibly required acquisition details"
                 },
                 "(0018,1111)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1120)": {
                     "default": "K",
@@ -1056,16 +1056,16 @@
                     "justification": "Describes possibly required acquisition details"
                 },
                 "(0018,1150)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1151)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1152)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Possibly relevant acquisition data"
                 },
                 "(0018,1153)": {
                     "default": "X",
@@ -1576,12 +1576,12 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0028,1050)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "default": "K",
+                    "justification": "Important viewing specification"
                 },
                 "(0028,1051)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "default": "K",
+                    "justification": "Important viewing specification"
                 },
                 "(0028,1052)": {
                     "default": "K",
