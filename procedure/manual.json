@@ -438,6 +438,10 @@
                     "default": "K",
                     "justification": "Possibly relevant aquisition data"
                 },
+                "(0018,1100)": {
+                    "default": "K",
+                    "justification": "Possibly relevant aquisition data"
+                },
                 "(0040,0032)": {
                     "default": "X",
                     "justification": "Universal ID: could be traced to all kinds of insitutes or entities"

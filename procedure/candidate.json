@@ -1032,8 +1032,8 @@
                     "justification": "If present, it is likely required"
                 },
                 "(0018,1100)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Possibly relevant aquisition data"
                 },
                 "(0018,1110)": {
                     "default": "K",
