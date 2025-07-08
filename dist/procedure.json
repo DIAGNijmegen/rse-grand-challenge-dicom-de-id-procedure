@@ -1576,12 +1576,12 @@
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0028,1050)": {
-          "default": "X",
-          "justification": "[AUTO] Module usage"
+          "default": "K",
+          "justification": "Important viewing specification"
         },
         "(0028,1051)": {
-          "default": "X",
-          "justification": "[AUTO] Module usage"
+          "default": "K",
+          "justification": "Important viewing specification"
         },
         "(0028,1052)": {
           "default": "K",
@@ -2582,5 +2582,5 @@
       }
     }
   },
-  "version": "0.20250704.7"
+  "version": "0.20250708.0"
 }

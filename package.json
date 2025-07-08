@@ -1,6 +1,6 @@
 {
   "name": "@diagnijmegen/rse-grand-challenge-dicom-deid-procedure",
-  "version": "0.20250704.7",
+  "version": "0.20250708.0",
   "description": "De-identification of DICOM is a complex procedure that depends on a number of DICOM standards. The procedures found in this package describe per SOPClassUID and tag what the correct action is. They serve as the basis for the de-identification implementation in Javascript.",
   "keywords": [
     "json",

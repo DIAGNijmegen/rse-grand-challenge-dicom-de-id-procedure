@@ -418,6 +418,14 @@
                     "default": "K",
                     "justification": "Describes critical data format"
                 },
+                "(0028,1050)": {
+                    "default": "K",
+                    "justification": "Important viewing specification"
+                },
+                "(0028,1051)": {
+                    "default": "K",
+                    "justification": "Important viewing specification"
+                },
                 "(0040,0032)": {
                     "default": "X",
                     "justification": "Universal ID: could be traced to all kinds of insitutes or entities"
