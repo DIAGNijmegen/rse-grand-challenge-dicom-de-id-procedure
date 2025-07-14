@@ -2028,7 +2028,7 @@
                     "justification": "References outside UIDs"
                 },
                 "(0040,E001)": {
-                    "default": "K",
+                    "default": "X",
                     "justification": "Is a direct identifier"
                 },
                 "(0040,E010)": {
