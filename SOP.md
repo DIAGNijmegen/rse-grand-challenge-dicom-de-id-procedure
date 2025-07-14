@@ -1,17 +1,18 @@
 # Standard-Operating Procedure
 
-This document describes how the final de-identification procedure is created. While the [core procedure](dist/procedure.json) is in the JSON format there is a [human-readable counter part](dist/human/) that allows for easy reviewing of any changes.
+This document describes how the de-identification procedure is defined. 
 
+The [core procedure](dist/procedure.json) is specified in JSON format. For ease of review, a [human-readable version](dist/human/) is also provided, enabling easy inspection of any changes.
 
 ## Guiding Principles
 
-The procedure is based on the DICOM Basic Profile of the [Standard DICOM Basic de-identification profile](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html#table_E.1-1) but customized for the use on the Grand-Challenge platform.
+This procedure is based on the DICOM [Standard Basic De-identification Profile](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html#table_E.1-1), with customizations specific to the Grand Challenge platform.
 
-The standard basic profile has an allow-by-default. This entails that when an attribute it not mentioned in the profile it is kept in the DICOM file. We've opted for a more strict approach and explicity set a deny-by-default.
+The standard DICOM Basic Profile follows an **allow-by-default** principle: any attribute not explicitly mentioned in the profile is retained in the DICOM file. On the Grand Challenge platform, we take a stricter privacy stance by adopting a **deny-by-default** approach: attributes are removed unless explicitly allowed.  
 
-In order to still adhere to the DICOM format there is a need to add an additional allowlist for DICOM tags. Some tags are simply required for DICOMs and we would otherwise remove them. Some cases this entails we keep the values as in, or sometimes we replace it with a dummy.
+However, simply denying all unspecified attributes would result in invalid DICOM files. To prevent this, we define an **allowlist of exceptions**, specifying the minimal set of DICOM tags that must remain to maintain file validity and usefulness. The procedure assigns a specific `Action` to each tag on this allowlist.
 
-The final procedure should be a super set of the basic profile with additional actions for tags not found in the profile but are expected in the type of DICOM file.
+The final procedure is therefore a **customized superset** of the standard DICOM Basic Profile: it starts from a deny-by-default policy, then adds carefully selected exceptions to ensure the resulting files remain valid and fit for purpose.
 
 
 ## Action logic:
