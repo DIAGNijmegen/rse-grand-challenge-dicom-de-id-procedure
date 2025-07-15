@@ -1,6 +1,6 @@
 # Standard-Operating Procedure
 
-This document describes how the de-identification procedure is defined. 
+This document describes how the de-identification procedure is defined.
 
 The [core procedure](dist/procedure.json) is specified in JSON format. For ease of review, a [human-readable version](dist/human/) is also provided, enabling easy inspection of any changes.
 
@@ -8,7 +8,7 @@ The [core procedure](dist/procedure.json) is specified in JSON format. For ease 
 
 This procedure is based on the DICOM [Standard Basic De-identification Profile](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html#table_E.1-1), with customizations specific to the Grand Challenge platform.
 
-The standard DICOM Basic Profile follows an **allow-by-default** principle: any attribute not explicitly mentioned in the profile is retained in the DICOM file. On the Grand Challenge platform, we take a stricter privacy stance by adopting a **deny-by-default** approach: attributes are removed unless explicitly allowed.  
+The standard DICOM Basic Profile follows an **allow-by-default** principle: any attribute not explicitly mentioned in the profile is retained in the DICOM file. On the Grand Challenge platform, we take a stricter privacy stance by adopting a **deny-by-default** approach: attributes are removed unless explicitly allowed.
 
 However, simply denying all unspecified attributes would result in invalid DICOM files. To prevent this, we define an **allowlist of exceptions**, specifying the minimal set of DICOM tags that must remain to maintain file validity and usefulness. The procedure assigns a specific `Action` to each tag on this allowlist.
 

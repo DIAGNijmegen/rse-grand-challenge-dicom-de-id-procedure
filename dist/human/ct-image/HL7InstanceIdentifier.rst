@@ -1,7 +1,7 @@
 -------------------------------------
 HL7 Instance Identifier | (0040,E001)
 -------------------------------------
-:Action: Keep (K)
+:Action: Remove (X)
 :Justication: Is a direct identifier
 :Basic Profile: N/A
 :In Modules:
