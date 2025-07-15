@@ -14,6 +14,13 @@ However, simply denying all unspecified attributes would result in invalid DICOM
 
 The final procedure is therefore a **customized superset** of the standard DICOM Basic Profile: it starts from a deny-by-default policy, then adds carefully selected exceptions to ensure the resulting files remain valid and fit for purpose.
 
+Finally, any changes in this SOP will be subject to review by a [privacy officer](https://www.radboudumc.nl/en/patient-care/rights-and-obligations/privacy) of the Radboud University Medical Center in Nijmegen.
+
+## Updated DICOM Standard
+
+The procedure is based off the DICOM standard, when it updates this SOP should be re-applied with the latest version of the DICOM-standard specification: this accounts for changes in the
+[Standard Basic De-identification Profile](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html#table_E.1-1) but also any
+new `Tag`s that might be made required. See the specification [README.md](dicom_deid/dicom_standard/README.md) for more information.
 
 ## Action logic:
 
