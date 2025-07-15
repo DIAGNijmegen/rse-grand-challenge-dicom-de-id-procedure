@@ -18,9 +18,9 @@ Finally, any changes in this SOP will be subject to review by a [privacy officer
 
 ## Updated DICOM Standard
 
-The procedure is based off the DICOM standard, when it updates this SOP should be re-applied with the latest version of the DICOM-standard specification: this accounts for changes in the
-[Standard Basic De-identification Profile](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html#table_E.1-1) but also any
-new `Tag`s that might be made required. See the specification [README.md](dicom_deid/dicom_standard/README.md) for more information.
+The procedure is based off the DICOM standard, when it updates this SOP will be re-applied with the latest version of the DICOM-standard specification:
+this accounts for changes in the [Standard Basic De-identification Profile](https://dicom.nema.org/medical/dicom/current/output/chtml/part15/chapter_E.html#table_E.1-1)
+and any new `Tag`s that might be made required. See the specification [README.md](dicom_deid/dicom_standard/README.md) for more information on updating the reference standard.
 
 ## Action logic:
 
