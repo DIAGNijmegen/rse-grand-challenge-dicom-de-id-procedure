@@ -1,10 +1,19 @@
 name: Publish Package
+
 on:
   release:
     types: [published]
+
+env:
+  PYTHON_VERSION: '3.13'
+
 jobs:
-  build:
+  precommit:
+    uses: ./.github/workflows/precommit.yml
+
+  deploy-to-npm:
     runs-on: ubuntu-latest
+    needs: precommit
     permissions:
       contents: read
       id-token: write
@@ -14,8 +23,31 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish --provenance --access public
+      - name: Install dependencies
+        run: npm ci
+      - name: Create the package
+        run: npm run build
+      - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
+
+  deploy-to-pypi:
+    runs-on: ubuntu-latest
+    needs: precommit
+    steps:
+      - name: Install Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install uv
+      - name: Upload to pypi
+        env:
+          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
+        run: |
+          uv build
+          uv publish
