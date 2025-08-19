@@ -16,3 +16,6 @@ testpaths = ["tests"]
 
 [tool.isort]
 profile = "black"
+
+[tool.setuptools]
+py-modules = ["dicom_deid"]
