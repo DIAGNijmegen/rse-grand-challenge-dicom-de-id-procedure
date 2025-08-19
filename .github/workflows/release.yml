@@ -64,7 +64,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: python-dist
-          path: dist
+          path: deploy/pypi/dist/
           if-no-files-found: error
           retention-days: 1
 
