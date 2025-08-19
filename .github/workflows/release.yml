@@ -82,6 +82,7 @@ jobs:
         with:
           name: python-dist
           path: dist
+      - run: ls -alh dist
       - name: Publish package distributions
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
