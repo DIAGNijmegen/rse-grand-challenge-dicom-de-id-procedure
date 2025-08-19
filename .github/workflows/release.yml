@@ -85,5 +85,6 @@ jobs:
       - name: Publish package distributions
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
+          verbose: true
           # TODO, remove this part!
           repository-url: https://test.pypi.org/legacy/
