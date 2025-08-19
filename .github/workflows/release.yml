@@ -82,9 +82,8 @@ jobs:
         with:
           name: python-dist
           path: dist
-      - run: ls -alh dist
       - name: Publish package distributions
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           # TODO, remove this part!
-          repository-url: https://test.pypi.org/simple/
+          repository-url: https://test.pypi.org/legacy/
