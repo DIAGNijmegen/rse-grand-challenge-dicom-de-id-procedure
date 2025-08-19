@@ -47,6 +47,7 @@ jobs:
     permissions:
       contents: read
     steps:
+      - uses: actions/checkout@v4
       - name: Install Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
         with:
@@ -61,22 +62,30 @@ jobs:
       - run: cp ../../README.md ../../LICENSE.md .
       - name: Build the package
         run: uv build
+      - name: 'Upload Artifact'
+        uses: actions/upload-artifact@v4
+        with:
+          name: python-dist
+          path: dist
+          if-no-files-found: error
+          retention-days: 1
 
   deploy-to-pypi:
+    # IMPORTANT: use a seperate job for this as each step has access to the tokens
     needs: build-for-pypi
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./deploy/pypi
     environment: testpypi
     permissions:
       contents: read
       # IMPORTANT: this permission is mandatory for Trusted Publishing
       id-token: write
     steps:
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: python-dist
+          path: dist
       - name: Publish package distributions
         uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          packages-dir: deploy/pypi/dist
           # TODO, remove this part!
           repository-url: https://test.pypi.org/simple/
