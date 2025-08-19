@@ -1,7 +1,7 @@
 [project]
-name = "grand-challenge-dicom-deid-profile"
-version = "0.20250714.0"
-description = "Add your description here"
+name = "grand-challenge-dicom-deid-procedure-generator"
+description = "Generates the de-identification procedure that descibes how to de-identify DICOM files"
+version = "0.0.0"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
@@ -9,9 +9,7 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = [
-    "pytest",
-]
+dev = ["pytest"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

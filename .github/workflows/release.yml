@@ -1,10 +1,23 @@
 name: Publish Package
+
 on:
   release:
     types: [published]
+
+env:
+  PYTHON_VERSION: '3.13'
+  PROCEDURE_FILE: 'dist/procedure.json'
+
 jobs:
-  build:
+  precommit:
+    uses: ./.github/workflows/precommit.yml
+
+  deploy-to-npm:
+    needs: precommit
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./deploy/npm
     permissions:
       contents: read
       id-token: write
@@ -14,8 +27,45 @@ jobs:
         with:
           node-version: '20.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: npm ci
-      - run: npm run build
-      - run: npm publish --provenance --access public
+      - name: Install dependencies
+        run: npm ci
+      - name: Copy the procedure
+        run: cp ../../${{ env.PROCEDURE_FILE }} ../../README.md ../../LICENSE.md .
+      - name: Create the package
+        run: npm run build
+      - name: Publish to npm
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: npm publish --provenance --access public
+
+  deploy-to-pypi:
+    needs: precommit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./deploy/pypi
+    environment: pypi
+    permissions:
+      contents: read
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
+    steps:
+      - name: Install Python ${{ env.PYTHON_VERSION }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+      - uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install uv
+      - name: Copy the procedure
+        run: cp ../../${{ env.PROCEDURE_FILE }} ./grand_challenge_dicom_deid_procedure/.
+      - run: cp ../../README.md ../../LICENSE.md .
+      - name: Build the package
+        run: uv build
+      - name: Publish package distributions
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # TODO, remove this part!
+          repository-url: https://test.pypi.org/legacy/
