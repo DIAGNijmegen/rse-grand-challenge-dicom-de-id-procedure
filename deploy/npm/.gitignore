@@ -1,4 +1,6 @@
 dist/*
 node_modules/
+
 README.md
 LICENSE.md
+procedure.json

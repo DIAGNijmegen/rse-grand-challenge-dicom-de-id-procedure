@@ -1,6 +1,7 @@
 [project]
 name = "grand-challenge-dicom-deid-procedure-generator"
-description = "De-identification procedure generator that descibes how to de-identify DICOM files"
+description = "Generates the de-identification procedure that descibes how to de-identify DICOM files"
+version = "0.0.0"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

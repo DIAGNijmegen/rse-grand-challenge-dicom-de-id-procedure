@@ -41,7 +41,7 @@
     "rollup": "^4.44.1"
   },
   "scripts": {
-    "prepack": "cp ../../LICENSE.md ../../README.md .",
+    "prepack": "cp ../../LICENSE.md ../../README.md ../../dist/procedure.json .",
     "build": "rollup --config rollup.config.js"
   }
 }

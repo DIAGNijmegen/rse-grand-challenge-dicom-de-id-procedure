@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./dist/npm-deployment
+        working-directory: ./deploy/npm
     permissions:
       contents: read
       id-token: write
@@ -40,7 +40,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./dist/pypi-deployment
+        working-directory: ./deploy/pypi
     environment: pypi
     permissions:
       contents: read
@@ -56,6 +56,9 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install uv
+      - name: Copy the procedure
+        run: cp ../../dist/procedure.json ./grand_challenge_dicom_deid_procedure/.
+      - run: cp ../../README.md ../../LICENSE.md .
       - name: Build the package
         run: uv build
       - name: Publish package distributions
