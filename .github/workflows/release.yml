@@ -12,8 +12,11 @@ jobs:
     uses: ./.github/workflows/precommit.yml
 
   deploy-to-npm:
-    runs-on: ubuntu-latest
     needs: precommit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dist/npm-deployment
     permissions:
       contents: read
       id-token: write
@@ -33,8 +36,16 @@ jobs:
         run: npm publish --provenance --access public
 
   deploy-to-pypi:
-    runs-on: ubuntu-latest
     needs: precommit
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./dist/pypi
+    environment: pypi
+    permissions:
+      contents: read
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
     steps:
       - name: Install Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
@@ -45,9 +56,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           python -m pip install uv
-      - name: Upload to pypi
-        env:
-          UV_PUBLISH_TOKEN: ${{ secrets.PYPI_TOKEN }}
-        run: |
-          uv build
-          uv publish
+      - name: Build the package
+        run: uv build
+      - name: Publish package distributions
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          # TODO, remove this part!
+          repository-url: https://test.pypi.org/legacy/
