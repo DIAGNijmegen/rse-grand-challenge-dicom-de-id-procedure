@@ -79,4 +79,4 @@ jobs:
         with:
           packages-dir: deploy/pypi/dist
           # TODO, remove this part!
-          repository-url: https://test.pypi.org/legacy/
+          repository-url: https://test.pypi.org/simple/
