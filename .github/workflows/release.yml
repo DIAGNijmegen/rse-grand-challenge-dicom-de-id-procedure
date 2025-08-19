@@ -38,17 +38,14 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: npm publish --provenance --access public
 
-  deploy-to-pypi:
+  build-for-pypi:
     needs: precommit
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./deploy/pypi
-    environment: testpypi
     permissions:
       contents: read
-      # IMPORTANT: this permission is mandatory for Trusted Publishing
-      id-token: write
     steps:
       - name: Install Python ${{ env.PYTHON_VERSION }}
         uses: actions/setup-python@v5
@@ -64,6 +61,19 @@ jobs:
       - run: cp ../../README.md ../../LICENSE.md .
       - name: Build the package
         run: uv build
+
+  deploy-to-pypi:
+    needs: build-for-pypi
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./deploy/pypi
+    environment: testpypi
+    permissions:
+      contents: read
+      # IMPORTANT: this permission is mandatory for Trusted Publishing
+      id-token: write
+    steps:
       - name: Publish package distributions
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
