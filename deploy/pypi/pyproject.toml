@@ -1,0 +1,27 @@
+[project]
+name = "grand-challenge-dicom-deid-procedure"
+version = "0.20250714.0"
+description = "De-identification procedure that descibes how to de-identify DICOM files"
+readme = "README.md"
+dependencies = [
+    "beautifulsoup4",
+]
+
+[dependency-groups]
+dev = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.isort]
+profile = "black"
+
+[build-system]
+build-backend  = 'hatchling.build'
+requires       = ['hatchling']
+
+[tool.hatch.build.targets.wheel]
+packages = ["."]
+
+[tool.hatch.build.targets.sdist]
+only-include = ["dist/procedure.json"]

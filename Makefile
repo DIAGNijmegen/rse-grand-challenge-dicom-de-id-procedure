@@ -47,8 +47,8 @@ check-version-set:
 
 # Target: Final procedure that is fit for distribution
 final: check-version-set clean base worklist candidate
-	sed -i '' "s/\"version\"[[:space:]]*:[[:space:]]*\"[^\"]*\"/\"version\": \"${VERSION}\"/" package.json
-	sed -i '' "s/version[[:space:]]*=[[:space:]]*\"[^\"]*\"/version = \"${VERSION}\"/" pyproject.toml
+	sed -i '' "s/\"version\"[[:space:]]*:[[:space:]]*\"[^\"]*\"/\"version\": \"${VERSION}\"/" deploy/npm/package.json
+	sed -i '' "s/version[[:space:]]*=[[:space:]]*\"[^\"]*\"/version = \"${VERSION}\"/" deploy/pypi/pyproject.toml
 	uv run python -m  $(APP_MODULE).build_final_procedure \
 		--version "$(VERSION)" \
 		--dicom-standard $(DICOM_STANDARD_DIR) \
