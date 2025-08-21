@@ -33,7 +33,7 @@ For Python you can use the PyPi package: https://pypi.org/project/grand-challeng
 To load the procedure import it as follows:
 
 ```Python
-from grand_challenge_dicom_deid_procedure import procedure
+from grand_challenge_dicom_de_id_procedure import procedure
 
 # Check the version
 print(procedure["version"])

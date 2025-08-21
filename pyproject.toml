@@ -1,5 +1,5 @@
 [project]
-name = "grand-challenge-dicom-deid-procedure-generator"
+name = "grand-challenge-dicom-de-id-procedure-generator"
 description = "Generates the de-identification procedure that descibes how to de-identify DICOM files"
 version = "0.0.0"
 readme = "README.md"
