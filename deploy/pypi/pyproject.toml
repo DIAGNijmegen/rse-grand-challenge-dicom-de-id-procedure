@@ -1,6 +1,6 @@
 [project]
 name = "grand-challenge-dicom-de-id-procedure"
-version = "2025.08.1"
+version = "2025.08.2"
 description = "De-identification procedure that descibes how to de-identify DICOM files"
 readme = "README.md"
 license = { file = "LICENSE.md" }

@@ -42,12 +42,17 @@ jobs:
 
   deploy-to-npm:
     # IMPORTANT: use a seperate job for this as each step has access to the tokens
-    needs: precommit
+    needs: build-for-npm
     runs-on: ubuntu-latest
     permissions:
+      contents: read
        # IMPORTANT: this permission is mandatory for Trusted Publishing
       id-token: write
+    defaults:
+      run:
+        working-directory: ./deploy/npm
     steps:
+      - uses: actions/checkout@v4
       - name: Download build artifacts
         uses: actions/download-artifact@v4
         with:
