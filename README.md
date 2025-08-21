@@ -26,6 +26,23 @@ Code | Action
 "U" |	replace with a non-zero length UID that is internally consistent within a set of Instances
 "R" |	reject the entire DICOM file
 
+For Python you can use the PyPi package: https://pypi.org/project/grand-challenge-dicom-de-id-procedure/
+
+    $ pip install grand-challenge-dicom-de-id-procedure
+
+To load the procedure import it as follows:
+
+```Python
+from grand_challenge_dicom_deid_procedure import procedure
+
+# Check the version
+print(procedure["version"])
+
+# Get an action for tag (0008,0005) of SOPClassUID "1.2.840.10008.5.1.4.1.1.2" (CT image)
+action = procedure["sopClass"]["1.2.840.10008.5.1.4.1.1.2"]["tag"]["(0008,0005)"]["default"]
+
+print(action) # "K"
+```
 
 ## Procedure Building
 
@@ -45,7 +62,7 @@ Which will generate a reStructuredText that describes the tags for which no acti
 
 These will need to be addressed before we can generate the final procedure.
 
-    $ VERSION="0.20250630.0" make final
+    $ VERSION="2025.06.0" make final
 
 Finally, above  will run all the earlier `make` targets (i.e. `base`, `candidate`, `worklist`) and then use the **CANDIDATE procedure** to build the distributable **FINAL procedure** Including a `VERSION`, as specified.
 
@@ -56,6 +73,6 @@ Calling `make final` with a `VERSION` also inserts the version in the relevant P
 
 1. Ensure that `main` contains the latest version you would like to release
 2. Create and publish a release on GitHub, creating a new tag
-    - Versioning dated-semver and follows format `0.YYYYMMDD.P` where P is the patch nr. on that day starting with '0' (e.g. `0.20250505.0`)
+    - Versioning dated-semver and follows format `YYYY.0M.MINOR`, where `YYYY` is the year `0M` is the month with zero padding and MINOR is the version bump within that month (starting at '0'). For instance `2025.02.0`.
 3. GitHub actions to publish the new package(s) automatically starts when a release is published
 4. Once everything is published, the dependency needs to be updated downstream (e.g. in Grand-Challenge)

@@ -12,7 +12,7 @@
     "properties": {
         "version": {
             "type": "string",
-            "pattern": "^0.\\d{8}.\\d+$"
+            "pattern": "^\\d{4}\\.(0[1-9]|1[0-2])\\.\\d+$"
         },
         "default": {
             "$ref": "#/$defs/defaultEnum"
