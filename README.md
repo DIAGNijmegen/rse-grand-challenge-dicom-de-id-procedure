@@ -73,6 +73,6 @@ Calling `make final` with a `VERSION` also inserts the version in the relevant P
 
 1. Ensure that `main` contains the latest version you would like to release
 2. Create and publish a release on GitHub, creating a new tag
-    - Versioning dated-semver and follows format `YYYY.0M.MINOR`, where `YYYY` is the year `0M` is the month with zero padding and MINOR is the version bump within that month (starting at '0'). For instance `2025.02.0`.
+    - Versioning dated-semver and follows format `YYYY.MM.MINOR`, where `YYYY` is the year `MM` is the month with no-zero padding and MINOR is the version bump within that month (starting at '0'). For instance `2025.2.0`.
 3. GitHub actions to publish the new package(s) automatically starts when a release is published
 4. Once everything is published, the dependency needs to be updated downstream (e.g. in Grand-Challenge)
