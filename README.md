@@ -62,7 +62,7 @@ Which will generate a reStructuredText that describes the tags for which no acti
 
 These will need to be addressed before we can generate the final procedure.
 
-    $ VERSION="2025.06.0" make final
+    $ VERSION="2025.6.0" make final
 
 Finally, above  will run all the earlier `make` targets (i.e. `base`, `candidate`, `worklist`) and then use the **CANDIDATE procedure** to build the distributable **FINAL procedure** Including a `VERSION`, as specified.
 
