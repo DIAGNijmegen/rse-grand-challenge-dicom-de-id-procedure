@@ -145,15 +145,15 @@
         },
         "(0008,0100)": {
           "default": "K",
-          "justification": "Required, parent sequence should be already be typically removed"
+          "justification": "Required, parent sequence should be targeted for actions"
         },
         "(0008,0102)": {
           "default": "K",
-          "justification": "Required, parent sequence should be already be typically removed"
+          "justification": "Required, parent sequence should be targeted for actions"
         },
         "(0008,0103)": {
           "default": "K",
-          "justification": "Required, parent sequence should be already be typically removed"
+          "justification": "Required, parent sequence should be targeted for actions"
         },
         "(0008,0104)": {
           "default": "K",
@@ -161,7 +161,7 @@
         },
         "(0008,0105)": {
           "default": "K",
-          "justification": "Required, parent sequence should be already be typically removed"
+          "justification": "Required, parent sequence should be targeted for actions"
         },
         "(0008,0106)": {
           "default": "D",
@@ -205,11 +205,11 @@
         },
         "(0008,0112)": {
           "default": "K",
-          "justification": "Required, parent sequence should be already be typically removed"
+          "justification": "Required, parent sequence should be targeted for actions"
         },
         "(0008,0114)": {
           "default": "K",
-          "justification": "Required, parent sequence should be already be typically removed"
+          "justification": "Required, parent sequence should be targeted for actions"
         },
         "(0008,0115)": {
           "default": "X",
@@ -229,7 +229,7 @@
         },
         "(0008,0119)": {
           "default": "K",
-          "justification": "Required, parent sequence should be already be typically removed"
+          "justification": "Required, parent sequence should be targeted for actions"
         },
         "(0008,0120)": {
           "default": "U",
@@ -916,8 +916,8 @@
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0018,0015)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Plays a part in several conditionals: good to keep"
         },
         "(0018,0022)": {
           "default": "X",
@@ -2582,5 +2582,5 @@
       }
     }
   },
-  "version": "2025.8.5"
+  "version": "2025.9.0"
 }

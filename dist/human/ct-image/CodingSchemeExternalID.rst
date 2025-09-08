@@ -2,7 +2,7 @@
 Coding Scheme External ID | (0008,0114)
 ---------------------------------------
 :Action: Keep (K)
-:Justication: Required, parent sequence should be already be typically removed
+:Justication: Required, parent sequence should be targeted for actions
 :Basic Profile: N/A
 :In Modules:
    - sop-common [Mandatory (M)] [Conditional; must be present but can be empty if condition is met (2C)]::

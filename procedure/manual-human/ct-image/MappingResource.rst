@@ -2,7 +2,7 @@
 Mapping Resource | (0008,0105)
 ------------------------------
 :Action: Keep (K)
-:Justication: Required, parent sequence should be already be typically removed
+:Justication: Required, parent sequence should be targeted for actions
 :Basic Profile: N/A
 :In Modules:
    - clinical-trial-study [User Optional (U)] [Conditional; required with valid value if condition is met (1C)]::
