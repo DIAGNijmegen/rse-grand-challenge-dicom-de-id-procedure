@@ -2,7 +2,7 @@
 Coding Scheme Registry | (0008,0112)
 ------------------------------------
 :Action: Keep (K)
-:Justication: Required, parent sequence should be already be typically removed
+:Justication: Required, parent sequence should be targeted for actions
 :Basic Profile: N/A
 :In Modules:
    - sop-common [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::

@@ -20,31 +20,35 @@
                 },
                 "(0008,0100)": {
                     "default": "K",
-                    "justification": "Required, parent sequence should be already be typically removed"
+                    "justification": "Required, parent sequence should be targeted for actions"
                 },
                 "(0008,0102)": {
                     "default": "K",
-                    "justification": "Required, parent sequence should be already be typically removed"
+                    "justification": "Required, parent sequence should be targeted for actions"
                 },
                 "(0008,0103)": {
                     "default": "K",
-                    "justification": "Required, parent sequence should be already be typically removed"
+                    "justification": "Required, parent sequence should be targeted for actions"
                 },
                 "(0008,0105)": {
                     "default": "K",
-                    "justification": "Required, parent sequence should be already be typically removed"
+                    "justification": "Required, parent sequence should be targeted for actions"
                 },
                 "(0008,0112)": {
                     "default": "K",
-                    "justification": "Required, parent sequence should be already be typically removed"
+                    "justification": "Required, parent sequence should be targeted for actions"
                 },
                 "(0008,0114)": {
                     "default": "K",
-                    "justification": "Required, parent sequence should be already be typically removed"
+                    "justification": "Required, parent sequence should be targeted for actions"
                 },
                 "(0008,0119)": {
                     "default": "K",
-                    "justification": "Required, parent sequence should be already be typically removed"
+                    "justification": "Required, parent sequence should be targeted for actions"
+                },
+                "(0018,0015)": {
+                    "default": "K",
+                    "justification": "Plays a part in several conditionals: good to keep"
                 },
                 "(0008,0120)": {
                     "default": "U",
