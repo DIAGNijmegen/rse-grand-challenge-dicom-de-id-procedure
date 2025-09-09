@@ -679,3 +679,55 @@ def test_attribute_type_actions_unsupported_type(attribute_type, expectation):
             procedure=p,
             dicom_standard=ds,
         )
+
+
+@pytest.mark.parametrize(
+    "action, vr, expected_exception",
+    [
+        # Test: action is None
+        (
+            None,
+            "PN",
+            pytest.raises(
+                ValueError, match="Action for tag \\(0000,0000\\) in SOP 1.1 is unset"
+            ),
+        ),
+        # Test: invalid action value
+        (
+            "INVALID",
+            "PN",
+            pytest.raises(
+                ValueError,
+                match="Action for tag \\(0000,0000\\) in SOP 1.1 is invalid: 'INVALID'",
+            ),
+        ),
+        # Test: UID action not allowed for SQ VR
+        (
+            Procedure.Action.UID,
+            "SQ",
+            pytest.raises(
+                ValueError,
+                match="Action for tag \\(0000,0000\\) in SOP 1.1 is invalid: UID "
+                "action not allowed for SQ VR",
+            ),
+        ),
+        # Test: valid action, should not raise
+        (
+            Procedure.Action.KEEP,
+            "PN",
+            does_not_raise(),
+        ),
+    ],
+)
+def test_procedure_validate(action, vr, expected_exception):
+    # Minimal DICOMStandard mock
+    class MinimalDICOMStandard:
+        def get_vr_via_tag(self, tag):
+            return vr
+
+    ds = MinimalDICOMStandard()
+    p = Procedure()
+    p.set_action(sop_id="1.1", tag="(0000,0000)", action=action)
+
+    with expected_exception:
+        p.validate(ref_dicom_standard=ds)

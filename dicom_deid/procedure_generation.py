@@ -222,6 +222,9 @@ class DICOMStandard:
     def get_name_via_tag(self, /, tag):
         return self.__attribute_lookup[tag]["name"]
 
+    def get_vr_via_tag(self, /, tag):
+        return self.__attribute_lookup[tag]["valueRepresentation"]
+
     def get_module_usage(self, /, module_id, *, sop_id):
         ciod_id = self.__sop_id_to_ciod_id[sop_id]
         return self.__module_lookup[ciod_id][module_id]["usage"]
@@ -269,6 +272,9 @@ class ActionChoices(str, Enum):
     UID = "U"
 
     REJECT = "R"
+
+
+All_ACTION_CHOICES = {a.value for a in ActionChoices}
 
 
 class Procedure:
@@ -376,6 +382,23 @@ class Procedure:
                 )
 
         return p
+
+    def validate(self, *, ref_dicom_standard: DICOMStandard):
+        for sop in self.sop_ids:
+            for tag, action in self.get_sop_actions(sop).items():
+                if action is None:
+                    raise ValueError(f"Action for tag {tag} in SOP {sop} is unset")
+                if action["default"] not in All_ACTION_CHOICES:
+                    raise ValueError(
+                        f"Action for tag {tag} in SOP {sop} is invalid: "
+                        f"{action['default']!r}"
+                    )
+                vr = ref_dicom_standard.get_vr_via_tag(tag)
+                if vr == "SQ" and action["default"] == ActionChoices.UID:
+                    raise ValueError(
+                        f"Action for tag {tag} in SOP {sop} is invalid: "
+                        f"UID action not allowed for SQ VR"
+                    )
 
 
 def apply_module_actions(
