@@ -1580,6 +1580,14 @@
         "id":"0072000a"
     },
     {
+        "name":"Hardcopy Creation Device ID",
+        "tag":"(0018,1011)",
+        "stdCompIOD":"N",
+        "basicProfile":"X",
+        "rtnDevIdOpt":"K",
+        "id":"00181011"
+    },
+    {
         "name":"Histological Diagnoses Code Sequence",
         "tag":"(0008,1304)",
         "stdCompIOD":"Y",
@@ -4105,6 +4113,14 @@
         "rtnLongFullDatesOpt":"K",
         "rtnLongModifDatesOpt":"C",
         "id":"00321011"
+    },
+    {
+        "name":"Secondary Capture Device ID",
+        "tag":"(0018,1010)",
+        "stdCompIOD":"Y",
+        "basicProfile":"X",
+        "rtnDevIdOpt":"K",
+        "id":"00181010"
     },
     {
         "name":"Secondary Diagnoses Code Sequence",

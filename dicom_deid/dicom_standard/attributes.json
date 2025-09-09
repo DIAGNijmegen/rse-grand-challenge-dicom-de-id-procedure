@@ -25875,6 +25875,15 @@
         "id":"0044010a"
     },
     {
+        "tag":"(0044,0110)",
+        "name":"RT Assertions Sequence",
+        "keyword":"RTAssertionsSequence",
+        "valueRepresentation":"SQ",
+        "valueMultiplicity":"1",
+        "retired":"N",
+        "id":"00440110"
+    },
+    {
         "tag":"(0046,0012)",
         "name":"Lens Description",
         "keyword":"LensDescription",
