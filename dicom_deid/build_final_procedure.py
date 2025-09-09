@@ -41,6 +41,9 @@ def main():
     # Set version
     p._procedure["version"] = args.version
 
+    dicom_standard = DICOMStandard.from_path(args.dicom_standard)
+    p.validate(dicom_standard=dicom_standard)
+
     # Minify version
     final_json = p.to_json(
         sort_keys=True,
@@ -54,7 +57,7 @@ def main():
 
     generate_human_readable_format(
         output=args.output / "human",
-        dicom_standard=DICOMStandard.from_path(args.dicom_standard),
+        dicom_standard=dicom_standard,
         procedure=p,
     )
 
