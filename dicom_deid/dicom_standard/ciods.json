@@ -92,7 +92,7 @@
     {
         "name":"RT Structure Set",
         "id":"rt-structure-set",
-        "description":"<p>\nThe focus for this <a href=\"http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_A.19.html#sect_A.19\" target=\"_blank\">RT Structure Set IOD</a> is to address the requirements for transfer of Patient structures and related data defined on CT scanners, virtual simulation workstations, treatment planning systems and similar devices.</p>",
+        "description":"<p>\nThe focus for this <a href=\"http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_A.19.html#sect_A.19\" target=\"_blank\">RT Structure Set IOD</a> is primarily to address the requirements for transfer of structures and related data defined on image scanners, virtual simulation workstations, treatment planning systems and similar devices.</p>",
         "linkToStandard":"http://dicom.nema.org/medical/dicom/current/output/chtml/part03/sect_A.19.3.html#table_A.19.3-1"
     },
     {

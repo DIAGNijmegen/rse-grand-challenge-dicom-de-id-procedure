@@ -1,6 +1,6 @@
 {
     "default": "R",
-    "dicomStandardVersion": "2025b",
+    "dicomStandardVersion": "2025c",
     "justification": "Unsupported SOP Class",
     "sopClass": {
         "1.2.840.10008.5.1.4.1.1.2": {

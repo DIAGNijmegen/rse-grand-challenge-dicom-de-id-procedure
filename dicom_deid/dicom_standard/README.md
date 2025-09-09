@@ -13,6 +13,7 @@ Install the dependencies from requirements.txt
 
 Run the suggested commands from dicom-standard:
 
+    $ cd dicom_standard
     $ make clean
     $ make updatestandard
     $ make
