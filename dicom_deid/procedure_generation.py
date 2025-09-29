@@ -560,7 +560,12 @@ def apply_attribute_type_actions(
 
 def generate_base_procedure(*, dicom_standard_path):
     ds = DICOMStandard.from_path(dicom_standard_path)
-    sops = ["1.2.840.10008.5.1.4.1.1.2"]
+    sops = [
+        # CT Image
+        "1.2.840.10008.5.1.4.1.1.2",
+        # VL Slide-Coordinates Microscopic Image (i.e. "DICOM WSI" )
+        "1.2.840.10008.5.1.4.1.1.77.1.3",
+    ]
 
     p = Procedure()
     for sop in sops:
