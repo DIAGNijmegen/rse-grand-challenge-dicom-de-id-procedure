@@ -2197,7 +2197,7 @@
                 }
             }
         },
-        "1.2.840.10008.5.1.4.1.1.77.1.3": {
+        "1.2.840.10008.5.1.4.1.1.77.1.6": {
             "default": "X",
             "justification": "Unsupported data element",
             "tag": {
@@ -2231,6 +2231,10 @@
                     "default": "U",
                     "justification": "[AUTO] Basic Profile"
                 },
+                "(0008,0019)": {
+                    "default": "X",
+                    "justification": "[AUTO] Module usage"
+                },
                 "(0008,001A)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
@@ -2256,10 +2260,7 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0008,0023)": null,
-                "(0008,002A)": {
-                    "default": "X",
-                    "justification": "[AUTO] Basic Profile"
-                },
+                "(0008,002A)": null,
                 "(0008,0030)": {
                     "default": "Z",
                     "justification": "[AUTO] Basic Profile"
@@ -2525,31 +2526,26 @@
                     "default": "X",
                     "justification": "[AUTO] Module usage"
                 },
-                "(0008,1090)": {
+                "(0008,1088)": {
                     "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "justification": "[AUTO] Module usage"
                 },
+                "(0008,1090)": null,
                 "(0008,1110)": {
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
                 },
-                "(0008,1111)": {
-                    "default": "X",
-                    "justification": "[AUTO] Basic Profile"
-                },
+                "(0008,1111)": null,
                 "(0008,1115)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0008,1120)": {
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0008,1140)": null,
-                "(0008,114A)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
+                "(0008,114A)": null,
                 "(0008,1150)": {
                     "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
@@ -2559,15 +2555,23 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0008,1160)": null,
+                "(0008,1161)": null,
+                "(0008,1162)": null,
+                "(0008,1163)": null,
+                "(0008,1164)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0008,1167)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
                 "(0008,1190)": {
                     "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0008,1199)": null,
-                "(0008,1200)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
+                "(0008,1200)": null,
                 "(0008,1250)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
@@ -2590,13 +2594,13 @@
                 },
                 "(0008,2111)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Basic Profile"
                 },
-                "(0008,2112)": {
+                "(0008,2112)": null,
+                "(0008,2218)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0008,2218)": null,
                 "(0008,2220)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
@@ -2613,10 +2617,19 @@
                     "default": "U",
                     "justification": "[AUTO] Basic Profile"
                 },
-                "(0008,9215)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                "(0008,9007)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
                 },
+                "(0008,9124)": {
+                    "default": "Z",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0008,9206)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0008,9215)": null,
                 "(0010,0010)": {
                     "default": "Z",
                     "justification": "[AUTO] Basic Profile"
@@ -2999,17 +3012,12 @@
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0018,1000)": {
-                    "default": "X",
-                    "justification": "[AUTO] Basic Profile"
-                },
+                "(0018,0050)": null,
+                "(0018,0088)": null,
+                "(0018,1000)": null,
                 "(0018,1002)": {
                     "default": "U",
                     "justification": "[AUTO] Basic Profile"
-                },
-                "(0018,1003)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
                 },
                 "(0018,1008)": {
                     "default": "X",
@@ -3027,19 +3035,12 @@
                     "default": "U",
                     "justification": "[AUTO] Basic Profile"
                 },
-                "(0018,1020)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
+                "(0018,1020)": null,
                 "(0018,1030)": {
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0018,1050)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
-                "(0018,1164)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
@@ -3059,12 +3060,37 @@
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
                 },
+                "(0018,1210)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0018,1400)": {
+                    "default": "X",
+                    "justification": "[AUTO] Basic Profile"
+                },
                 "(0018,5100)": null,
                 "(0018,9004)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0018,9073)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0018,9074)": {
+                    "default": "D",
+                    "justification": "[AUTO] Basic Profile"
+                },
+                "(0018,9151)": {
+                    "default": "D",
+                    "justification": "[AUTO] Basic Profile"
+                },
+                "(0018,9214)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0018,9220)": null,
+                "(0018,9236)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
@@ -3112,6 +3138,10 @@
                 },
                 "(0020,0013)": null,
                 "(0020,0020)": null,
+                "(0020,0027)": {
+                    "default": "X",
+                    "justification": "[AUTO] Module usage"
+                },
                 "(0020,0052)": {
                     "default": "U",
                     "justification": "[AUTO] Basic Profile"
@@ -3121,6 +3151,7 @@
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
+                "(0020,0242)": null,
                 "(0020,1002)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
@@ -3133,44 +3164,99 @@
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
                 },
+                "(0020,9056)": null,
+                "(0020,9057)": null,
+                "(0020,9111)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0020,9128)": null,
+                "(0020,9156)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0020,9157)": null,
+                "(0020,9158)": {
+                    "default": "X",
+                    "justification": "[AUTO] Basic Profile"
+                },
+                "(0020,9161)": {
+                    "default": "U",
+                    "justification": "[AUTO] Basic Profile"
+                },
+                "(0020,9162)": null,
+                "(0020,9163)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0020,9164)": {
+                    "default": "U",
+                    "justification": "[AUTO] Basic Profile"
+                },
+                "(0020,9165)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0020,9167)": null,
                 "(0020,9172)": null,
+                "(0020,9213)": null,
+                "(0020,9221)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0020,9222)": null,
+                "(0020,9228)": null,
+                "(0020,9238)": null,
+                "(0020,9311)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0020,9421)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0020,9453)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
                 "(0022,0001)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0022,0002)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0022,0003)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0022,0004)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0022,0016)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0022,0017)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0022,0018)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0022,0019)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0022,001A)": null,
-                "(0022,0055)": {
+                "(0022,0028)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
+                "(0022,0055)": null,
                 "(0028,0002)": {
                     "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
@@ -3180,6 +3266,10 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0028,0006)": null,
+                "(0028,0008)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
                 "(0028,0010)": {
                     "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
@@ -3188,10 +3278,7 @@
                     "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0028,0030)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
+                "(0028,0030)": null,
                 "(0028,0034)": null,
                 "(0028,0100)": {
                     "default": "K",
@@ -3231,10 +3318,7 @@
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0028,0301)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
+                "(0028,0301)": null,
                 "(0028,0302)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
@@ -3243,36 +3327,24 @@
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0028,1050)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
-                "(0028,1051)": null,
+                "(0028,1052)": null,
+                "(0028,1053)": null,
                 "(0028,1101)": null,
                 "(0028,1102)": null,
                 "(0028,1103)": null,
                 "(0028,1199)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "default": "U",
+                    "justification": "[AUTO] Basic Profile"
                 },
                 "(0028,1201)": null,
                 "(0028,1202)": null,
                 "(0028,1203)": null,
-                "(0028,1221)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(0028,1222)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(0028,1223)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
+                "(0028,1221)": null,
+                "(0028,1222)": null,
+                "(0028,1223)": null,
                 "(0028,135A)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0028,2000)": null,
                 "(0028,2002)": {
@@ -3280,19 +3352,21 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0028,2110)": null,
-                "(0028,2112)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
-                "(0028,2114)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
+                "(0028,2112)": null,
+                "(0028,2114)": null,
                 "(0028,3003)": {
                     "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
                 },
+                "(0028,6010)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
                 "(0028,7FE0)": null,
+                "(0028,9110)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
                 "(0032,1033)": {
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
@@ -3485,8 +3559,8 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0040,0620)": null,
-                "(0040,071A)": {
-                    "default": "Z",
+                "(0040,0710)": {
+                    "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0040,072A)": {
@@ -3497,10 +3571,7 @@
                     "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0040,074A)": {
-                    "default": "Z",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
+                "(0040,074A)": null,
                 "(0040,08EA)": null,
                 "(0040,1001)": {
                     "default": "X",
@@ -3534,10 +3605,7 @@
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
                 },
-                "(0040,9096)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
+                "(0040,9096)": null,
                 "(0040,9210)": {
                     "default": "K",
                     "justification": "[AUTO] Attribute-Module type"
@@ -3629,49 +3697,98 @@
                     "default": "X",
                     "justification": "[AUTO] Module usage"
                 },
+                "(0048,0001)": null,
+                "(0048,0002)": null,
+                "(0048,0003)": null,
+                "(0048,0006)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,0007)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,0008)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,0010)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,0011)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,0012)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,0013)": null,
+                "(0048,0014)": null,
+                "(0048,0015)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
                 "(0048,0100)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
+                "(0048,0102)": null,
                 "(0048,0105)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0048,0106)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0048,0107)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0048,0108)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                "(0048,0108)": null,
+                "(0048,0110)": {
+                    "default": "Z",
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0048,0111)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0048,0112)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0048,0113)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0048,0120)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0048,0302)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                "(0048,0207)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0050,0010)": {
+                "(0048,021A)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,021E)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,021F)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
+                "(0048,0302)": null,
+                "(0048,0303)": null,
+                "(0048,0304)": {
                     "default": "X",
-                    "justification": "[AUTO] Module usage"
+                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0050,0012)": {
                     "default": "K",
@@ -3681,29 +3798,9 @@
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
-                "(0050,0014)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
                 "(0050,0015)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
-                },
-                "(0050,0016)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(0050,0017)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(0050,0018)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(0050,0019)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
                 },
                 "(0050,001A)": {
                     "default": "X",
@@ -3728,14 +3825,6 @@
                 "(0050,0020)": {
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
-                },
-                "(0054,0220)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
-                "(0054,0222)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0062,000B)": null,
                 "(0072,0026)": null,
@@ -3862,14 +3951,12 @@
                     "default": "X",
                     "justification": "[AUTO] Basic Profile"
                 },
-                "(2050,0020)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
-                },
-                "(2200,0005)": {
-                    "default": "X",
+                "(2050,0020)": null,
+                "(2200,0002)": {
+                    "default": "Z",
                     "justification": "[AUTO] Basic Profile"
                 },
+                "(2200,0005)": null,
                 "(300A,0700)": {
                     "default": "U",
                     "justification": "[AUTO] Basic Profile"
@@ -3878,63 +3965,20 @@
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
-                "(60XX,0010)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
+                "(5200,9229)": {
+                    "default": "K",
+                    "justification": "[AUTO] Attribute-Module type"
                 },
-                "(60XX,0011)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,0022)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,0040)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,0045)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,0050)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,0100)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,0102)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,1301)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,1302)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,1303)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,1500)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
-                "(60XX,3000)": {
-                    "default": "X",
-                    "justification": "[AUTO] Module usage"
-                },
+                "(5200,9230)": null,
                 "(7FE0,0001)": {
                     "default": "X",
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(7FE0,0002)": null,
+                "(7FE0,0003)": {
+                    "default": "X",
+                    "justification": "[AUTO] Attribute-Module type"
+                },
                 "(7FE0,0010)": null,
                 "(FFFA,FFFA)": {
                     "default": "X",
