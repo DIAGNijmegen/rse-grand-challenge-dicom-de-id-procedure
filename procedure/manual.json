@@ -11,11 +11,11 @@
                     "justification": "Generally required"
                 },
                 "(0008,0023)": {
-                    "default": "X",
+                    "default": "Z",
                     "justification": "Grand-challenge binds together series as a single value"
                 },
                 "(0008,0033)": {
-                    "default": "X",
+                    "default": "D",
                     "justification": "Grand-challenge binds together series as a single value"
                 },
                 "(0008,0053)": {
@@ -87,8 +87,8 @@
                     "justification": "If present, it is required"
                 },
                 "(0008,1090)": {
-                    "default": "X",
-                    "justification": "Optional in a sometimes manditory module"
+                    "default": "D",
+                    "justification": "Manditory for this particular module"
                 },
                 "(0008,1111)": {
                     "default": "K",
@@ -183,11 +183,11 @@
                     "justification": "Generally required for viewers"
                 },
                 "(0018,1000)": {
-                    "default": "Z",
+                    "default": "D",
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0018,1020)": {
-                    "default": "Z",
+                    "default": "D",
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0018,5100)": {
@@ -291,8 +291,8 @@
                     "justification": "Describes crucial data format"
                 },
                 "(0028,0301)": {
-                    "default": "R",
-                    "justification": "Ensure there is NO burned in annotation and then remove the element altogether"
+                    "default": "K",
+                    "justification": "No image content analysis is done, so it is good to remember this"
                 },
                 "(0028,1052)": {
                     "default": "K",
@@ -363,7 +363,7 @@
                     "justification": "Required under some conditions: dummy if present"
                 },
                 "(0040,0032)": {
-                    "default": "X",
+                    "default": "D",
                     "justification": "Universal ID: could be traced to all kinds of insitutes or entities"
                 },
                 "(0040,0033)": {
@@ -551,7 +551,7 @@
                     "justification": "If present, it is likely required"
                 },
                 "(2200,0005)": {
-                    "default": "X",
+                    "default": "Z",
                     "justification": "Slide ID"
                 },
                 "(5200,9230)": {
@@ -573,6 +573,14 @@
                 "(0048,0302)": {
                     "default": "K",
                     "justification": "Critical data"
+                },
+                "(0020,9311)": {
+                    "default": "K",
+                    "justification": "Descriptive for dimension organization"
+                },
+                "(0020,1040)": {
+                    "default": "K",
+                    "justification": "Descriptive for reference frames"
                 }
             }
         },
@@ -1039,7 +1047,7 @@
                     "justification": "Retrieval URI"
                 },
                 "(0008,0023)": {
-                    "default": "X",
+                    "default": "Z",
                     "justification": "Grand-challenge binds together series as a single value"
                 },
                 "(0008,0033)": {
@@ -1051,8 +1059,8 @@
                     "justification": "Describes source DICOM if conversion: can be safely excluded"
                 },
                 "(0008,1090)": {
-                    "default": "X",
-                    "justification": "Optional in a sometimes manditory module"
+                    "default": "D",
+                    "justification": "Manditory in some modules"
                 },
                 "(0010,2298)": {
                     "default": "X",
@@ -1095,11 +1103,11 @@
                     "justification": "Required under some conditions: dummy if present"
                 },
                 "(0018,1000)": {
-                    "default": "Z",
+                    "default": "D",
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0018,1020)": {
-                    "default": "Z",
+                    "default": "D",
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0040,E021)": {
@@ -1125,6 +1133,10 @@
                 "(0018,0050)": {
                     "default": "K",
                     "justification": "Generally required for viewers"
+                },
+                "(0028,0301)": {
+                    "default": "K",
+                    "justification": "No image content analysis is done, so it is good to remember this"
                 }
             }
         }

@@ -68,7 +68,7 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0008,0023)": {
-                    "default": "X",
+                    "default": "Z",
                     "justification": "Grand-challenge binds together series as a single value"
                 },
                 "(0008,002A)": {
@@ -392,8 +392,8 @@
                     "justification": "[AUTO] Module usage"
                 },
                 "(0008,1090)": {
-                    "default": "X",
-                    "justification": "Optional in a sometimes manditory module"
+                    "default": "D",
+                    "justification": "Manditory in some modules"
                 },
                 "(0008,1110)": {
                     "default": "X",
@@ -944,7 +944,7 @@
                     "justification": "Describes possibly required acquisition details"
                 },
                 "(0018,1000)": {
-                    "default": "Z",
+                    "default": "D",
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0018,1002)": {
@@ -972,7 +972,7 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0018,1020)": {
-                    "default": "Z",
+                    "default": "D",
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0018,1030)": {
@@ -1564,8 +1564,8 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0028,0301)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "No image content analysis is done, so it is good to remember this"
                 },
                 "(0028,0302)": {
                     "default": "X",
@@ -2650,7 +2650,7 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0008,0023)": {
-                    "default": "X",
+                    "default": "Z",
                     "justification": "Grand-challenge binds together series as a single value"
                 },
                 "(0008,002A)": {
@@ -2670,7 +2670,7 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0008,0033)": {
-                    "default": "X",
+                    "default": "D",
                     "justification": "Grand-challenge binds together series as a single value"
                 },
                 "(0008,0050)": {
@@ -2978,8 +2978,8 @@
                     "justification": "[AUTO] Module usage"
                 },
                 "(0008,1090)": {
-                    "default": "X",
-                    "justification": "Optional in a sometimes manditory module"
+                    "default": "D",
+                    "justification": "Manditory for this particular module"
                 },
                 "(0008,1110)": {
                     "default": "X",
@@ -3534,7 +3534,7 @@
                     "justification": "Generally required for viewers"
                 },
                 "(0018,1000)": {
-                    "default": "Z",
+                    "default": "D",
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0018,1002)": {
@@ -3558,7 +3558,7 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(0018,1020)": {
-                    "default": "Z",
+                    "default": "D",
                     "justification": "IOD conformance: sometimes required"
                 },
                 "(0018,1030)": {
@@ -3706,8 +3706,8 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0020,1040)": {
-                    "default": "Z",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Descriptive for reference frames"
                 },
                 "(0020,4000)": {
                     "default": "X",
@@ -3790,8 +3790,8 @@
                     "justification": "Good to replace consistently, might be relevant"
                 },
                 "(0020,9311)": {
-                    "default": "X",
-                    "justification": "[AUTO] Attribute-Module type"
+                    "default": "K",
+                    "justification": "Descriptive for dimension organization"
                 },
                 "(0020,9421)": {
                     "default": "X",
@@ -3922,8 +3922,8 @@
                     "justification": "[AUTO] Attribute-Module type"
                 },
                 "(0028,0301)": {
-                    "default": "R",
-                    "justification": "Ensure there is NO burned in annotation and then remove the tag"
+                    "default": "K",
+                    "justification": "No image content analysis is done, so it is good to remember this"
                 },
                 "(0028,0302)": {
                     "default": "X",
@@ -4086,7 +4086,7 @@
                     "justification": "Required under some conditions: dummy if present"
                 },
                 "(0040,0032)": {
-                    "default": "X",
+                    "default": "D",
                     "justification": "Universal ID: could be traced to all kinds of insitutes or entities"
                 },
                 "(0040,0033)": {
@@ -4758,7 +4758,7 @@
                     "justification": "[AUTO] Basic Profile"
                 },
                 "(2200,0005)": {
-                    "default": "X",
+                    "default": "Z",
                     "justification": "Slide ID"
                 },
                 "(300A,0700)": {

@@ -1,7 +1,7 @@
 ---------------------------
 Barcode Value | (2200,0005)
 ---------------------------
-:Action: Remove (X)
+:Action: Replace with a zero length value, or a non-zero length value that may be a dummy value and consistent with the VR (Z)
 :Justication: Slide ID
 :Basic Profile: X/Z
 :In Modules:

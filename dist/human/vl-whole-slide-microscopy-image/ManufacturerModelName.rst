@@ -1,8 +1,8 @@
 ---------------------------------------
 Manufacturer's Model Name | (0008,1090)
 ---------------------------------------
-:Action: Remove (X)
-:Justication: Optional in a sometimes manditory module
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
+:Justication: Manditory for this particular module
 :Basic Profile: N/A
 :In Modules:
    - enhanced-general-equipment [Mandatory (M)] [Required with valid value (1)]::

@@ -1,8 +1,8 @@
 ----------------------------------
 Burned In Annotation | (0028,0301)
 ----------------------------------
-:Action: Reject the entire DICOM file (R)
-:Justication: Ensure there is NO burned in annotation and then remove the tag
+:Action: Keep (K)
+:Justication: No image content analysis is done, so it is good to remember this
 :Basic Profile: N/A
 :In Modules:
    - general-image [Mandatory (M)] [Optional (3)]::

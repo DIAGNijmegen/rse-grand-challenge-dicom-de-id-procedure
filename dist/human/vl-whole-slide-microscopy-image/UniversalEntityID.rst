@@ -1,7 +1,7 @@
 ---------------------------------
 Universal Entity ID | (0040,0032)
 ---------------------------------
-:Action: Remove (X)
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
 :Justication: Universal ID: could be traced to all kinds of insitutes or entities
 :Basic Profile: N/A
 :In Modules:
