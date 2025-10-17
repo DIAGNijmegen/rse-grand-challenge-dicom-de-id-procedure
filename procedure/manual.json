@@ -585,6 +585,10 @@
                 "(0028,2002)": {
                     "default": "K",
                     "justification": "Descriptive for the ICC Profile"
+                },
+                "(7FE0,0001)": {
+                    "default": "K",
+                    "justification": "Crucial Pixel Data encoding details"
                 }
             }
         },
@@ -1145,6 +1149,10 @@
                 "(0028,2002)": {
                     "default": "K",
                     "justification": "Descriptive for the ICC Profile"
+                },
+                "(7FE0,0001)": {
+                    "default": "K",
+                    "justification": "Crucial Pixel Data encoding details"
                 }
             }
         }
