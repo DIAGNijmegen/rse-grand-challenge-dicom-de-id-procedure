@@ -2,7 +2,7 @@
 Manufacturer's Model Name | (0008,1090)
 ---------------------------------------
 :Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
-:Justication: Manditory in some modules
+:Justication: Mandatory in some modules
 :Basic Profile: N/A
 :In Modules:
    - ct-image [Mandatory (M)] [Required; value may be empty (2)]::
