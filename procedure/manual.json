@@ -589,6 +589,14 @@
                 "(7FE0,0001)": {
                     "default": "K",
                     "justification": "Crucial Pixel Data encoding details"
+                },
+                "(0028,0106)": {
+                    "default": "K",
+                    "justification": "Useful Pixel Data encoding details"
+                },
+                "(0028,0107)": {
+                    "default": "K",
+                    "justification": "Useful Pixel Data encoding details"
                 }
             }
         },
@@ -1153,6 +1161,14 @@
                 "(7FE0,0001)": {
                     "default": "K",
                     "justification": "Crucial Pixel Data encoding details"
+                },
+                "(0028,0106)": {
+                    "default": "K",
+                    "justification": "Useful Pixel Data encoding details"
+                },
+                "(0028,0107)": {
+                    "default": "K",
+                    "justification": "Useful Pixel Data encoding details"
                 }
             }
         }
