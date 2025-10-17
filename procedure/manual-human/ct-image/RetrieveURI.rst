@@ -2,7 +2,7 @@
 Retrieve URI | (0040,E010)
 --------------------------
 :Action: Remove (X)
-:Justication: Retrieval URI, DANGER Will Robinson!
+:Justication: Retrieval URI
 :Basic Profile: N/A
 :In Modules:
    - patient [Mandatory (M)] [Required with valid value (1)]::

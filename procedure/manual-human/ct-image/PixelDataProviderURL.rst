@@ -2,7 +2,7 @@
 Pixel Data Provider URL | (0028,7FE0)
 -------------------------------------
 :Action: Remove (X)
-:Justication: URL to gather pixel data from, DANGER Will Robinson!
+:Justication: URL to gather pixel data from
 :Basic Profile: N/A
 :In Modules:
    - image-pixel [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::

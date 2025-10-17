@@ -42,7 +42,7 @@ def main():
     p._procedure["version"] = args.version
 
     dicom_standard = DICOMStandard.from_path(args.dicom_standard)
-    p.validate(dicom_standard=dicom_standard)
+    p.validate(ref_dicom_standard=dicom_standard)
 
     # Minify version
     final_json = p.to_json(

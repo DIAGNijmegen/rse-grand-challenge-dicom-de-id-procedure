@@ -1,7 +1,7 @@
 --------------------------
 Content Date | (0008,0023)
 --------------------------
-:Action: Remove (X)
+:Action: Replace with a zero length value, or a non-zero length value that may be a dummy value and consistent with the VR (Z)
 :Justication: Grand-challenge binds together series as a single value
 :Basic Profile: Z/D
 :In Modules:
