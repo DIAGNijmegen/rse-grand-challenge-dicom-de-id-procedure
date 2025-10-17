@@ -581,6 +581,10 @@
                 "(0020,1040)": {
                     "default": "K",
                     "justification": "Descriptive for reference frames"
+                },
+                "(0028,2002)": {
+                    "default": "K",
+                    "justification": "Descriptive for the ICC Profile"
                 }
             }
         },
@@ -1137,6 +1141,10 @@
                 "(0028,0301)": {
                     "default": "K",
                     "justification": "No image content analysis is done, so it is good to remember this"
+                },
+                "(0028,2002)": {
+                    "default": "K",
+                    "justification": "Descriptive for the ICC Profile"
                 }
             }
         }
