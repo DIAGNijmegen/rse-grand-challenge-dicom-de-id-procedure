@@ -1,11 +1,20 @@
 from collections import defaultdict
 
+from dicom_deid.models import ActionChoices
 
-def find_redundant_nodes(edges, breaking_nodes):
+BREAKING_ACTIONS = (
+    ActionChoices.REMOVE,
+    ActionChoices.REPLACE,
+    ActionChoices.REPLACE_0,
+    ActionChoices.REJECT,
+)
+
+
+def find_unreachable_nodes(edges, breaking_nodes):
     """
     Finds dead weight by filtering for nodes which are redundant.
 
-    A node is useless if all the paths to it from the root have
+    A node is unreachable if all the paths to it from the root have
     breaking nodes.
 
     Args:
@@ -13,25 +22,54 @@ def find_redundant_nodes(edges, breaking_nodes):
         breaking_nodes: Set of node IDs that break
 
     Returns:
-        Set of nodes that are redudendant
+        Set of nodes that are unreachable
     """
 
-    # Collect all the possible paths for a node
+    # Collect all the possible paths per node
     node_to_paths = defaultdict(lambda: [])
     for edge in edges:
-        path = edge["path"].split(":")
+        node = edge[-1]
 
-        node = path[-1]
-
-        # Skip the module and actual node definition
-        path = path[1:-1]
+        # Skip the actual node definition
+        path = edge[:-1]
 
         node_to_paths[node].append(path)
 
-    redudendants = set()
+    unreachable_nodes = set()
     for node, paths in node_to_paths.items():
         # Check if there is a break in the path
         if all(set(path) & breaking_nodes for path in paths):
-            redudendants.add(node)
+            unreachable_nodes.add(node)
 
-    return redudendants
+    return unreachable_nodes
+
+
+def remove_unreachable_actions(procedure, dicom_standard):
+    """
+    Redundant actions are actions that, because of the actions set for their parent
+    sequences have no effect.
+
+    For instance, under sequence A a tag 0000,0000 might have action 'U'. However,
+    if sequence A has action 'X. the action for tag 0000,0000 is redundant.
+
+    However, if another sequence B also uses tag 0000,0000 the tag action is NOT
+    redundant. Unless sequence B is also removed (or replaced)!
+    """
+    for sop_id in procedure.sop_ids:
+
+        actions = procedure.get_sop_actions(sop_id)
+        breaking_nodes = set()
+        for tag, action in actions.items():
+            if action and action["default"] in BREAKING_ACTIONS:
+                breaking_nodes.add(tag)
+
+        edges = dicom_standard.get_all_attribute_paths_via_sop(sop_id=sop_id)
+
+        redundant_tags = find_unreachable_nodes(
+            edges=edges, breaking_nodes=breaking_nodes
+        )
+
+        for tag in redundant_tags:
+            procedure.remove_action(sop_id, tag=tag)
+
+    return procedure
