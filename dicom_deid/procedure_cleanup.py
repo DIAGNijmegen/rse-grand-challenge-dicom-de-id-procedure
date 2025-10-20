@@ -50,7 +50,7 @@ def remove_unreachable_actions(procedure, dicom_standard):
     sequences have no effect.
 
     For instance, under sequence A a tag 0000,0000 might have action 'U'. However,
-    if sequence A has action 'X. the action for tag 0000,0000 is redundant.
+    if sequence A has action 'X', the action for tag 0000,0000 is redundant.
 
     However, if another sequence B also uses tag 0000,0000 the tag action is NOT
     redundant. Unless sequence B is also removed (or replaced)!
