@@ -1,5 +1,509 @@
 {
     "sopClass": {
+        "1.2.840.10008.5.1.4.1.1.77.1.6": {
+            "tag": {
+                "(0008,0005)": {
+                    "default": "K",
+                    "justification": "Required if an expanded or replacement character set is used"
+                },
+                "(0008,0008)": {
+                    "default": "K",
+                    "justification": "Generally required"
+                },
+                "(0008,0023)": {
+                    "default": "Z",
+                    "justification": "Grand-challenge binds together series as a single value"
+                },
+                "(0008,002A)": {
+                    "default": "D",
+                    "justification": "Required, with an value"
+                },
+                "(0008,0033)": {
+                    "default": "D",
+                    "justification": "Grand-challenge binds together series as a single value"
+                },
+                "(0008,0053)": {
+                    "default": "D",
+                    "justification": "Required if special operation has ever occured to the data."
+                },
+                "(0008,0070)": {
+                    "default": "K",
+                    "justification": "Required, manufacturer might be relevant"
+                },
+                "(0008,0080)": {
+                    "default": "D",
+                    "justification": "Required, under some condition"
+                },
+                "(0008,0100)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be targeted for actions"
+                },
+                "(0008,0102)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be targeted for actions"
+                },
+                "(0008,0103)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be targeted for actions"
+                },
+                "(0008,0105)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be targeted for actions"
+                },
+                "(0008,010D)": {
+                    "default": "D",
+                    "justification": "Identifies a person or context group, sometimes required"
+                },
+                "(0008,0119)": {
+                    "default": "K",
+                    "justification": "Required, parent sequence should be targeted for actions"
+                },
+                "(0008,0120)": {
+                    "default": "U",
+                    "justification": "Universal ID: could be traced to all kinds of institutes or entities"
+                },
+                "(0008,1090)": {
+                    "default": "D",
+                    "justification": "Manditory for this particular module"
+                },
+                "(0008,1111)": {
+                    "default": "K",
+                    "justification": "Required for WSI"
+                },
+                "(0008,1140)": {
+                    "default": "X",
+                    "justification": "References other Images, this is not supported"
+                },
+                "(0008,114A)": {
+                    "default": "X",
+                    "justification": "References other Images, this is not supported"
+                },
+                "(0008,1160)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0008,1161)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0008,1162)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0008,1163)": {
+                    "default": "K",
+                    "justification": "If present, it is required"
+                },
+                "(0008,1199)": {
+                    "default": "K",
+                    "justification": "Required, child elements of this sequence are handled separately"
+                },
+                "(0008,1200)": {
+                    "default": "X",
+                    "justification": "References other Images, this is not supported"
+                },
+                "(0008,2112)": {
+                    "default": "X",
+                    "justification": "References other Images, this is not supported"
+                },
+                "(0008,9215)": {
+                    "default": "X",
+                    "justification": "References other Images, this is not supported"
+                },
+                "(0010,0035)": {
+                    "default": "Z",
+                    "justification": "Required under some conditions: zero if present"
+                },
+                "(0010,2201)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2202)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2210)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2292)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2293)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2294)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0010,2298)": {
+                    "default": "X",
+                    "justification": "Counter part was removed in basic profile"
+                },
+                "(0012,0063)": {
+                    "default": "K",
+                    "justification": "De-identifaction trace, should be kept and extended"
+                },
+                "(0012,0064)": {
+                    "default": "K",
+                    "justification": "De-identifaction trace, should be kept and extended"
+                },
+                "(0018,0050)": {
+                    "default": "K",
+                    "justification": "Generally required for viewers"
+                },
+                "(0018,0088)": {
+                    "default": "K",
+                    "justification": "Generally required for viewers"
+                },
+                "(0018,1000)": {
+                    "default": "D",
+                    "justification": "IOD conformance: sometimes required"
+                },
+                "(0018,1020)": {
+                    "default": "D",
+                    "justification": "IOD conformance: sometimes required"
+                },
+                "(0018,5100)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,9220)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0018,990C)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0018,990D)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0020,0013)": {
+                    "default": "K",
+                    "justification": "Identifies and orders image within single study. No PI"
+                },
+                "(0020,0020)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0020,0060)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0020,0242)": {
+                    "default": "U",
+                    "justification": "Keeps the concatenation internally consistent"
+                },
+                "(0020,1040)": {
+                    "default": "K",
+                    "justification": "Descriptive for reference frames"
+                },
+                "(0020,9056)": {
+                    "default": "K",
+                    "justification": "Keeps the concatenation internally consistent"
+                },
+                "(0020,9057)": {
+                    "default": "K",
+                    "justification": "Keeps the concatenation internally consistent"
+                },
+                "(0020,9128)": {
+                    "default": "K",
+                    "justification": "Internal temporal index for frames"
+                },
+                "(0020,9157)": {
+                    "default": "K",
+                    "justification": "Multi-frame meta data"
+                },
+                "(0020,9162)": {
+                    "default": "K",
+                    "justification": "Keeps the concatenation internally consistent"
+                },
+                "(0020,9167)": {
+                    "default": "K",
+                    "justification": "If present, pointer is likely required"
+                },
+                "(0020,9172)": {
+                    "default": "K",
+                    "justification": "If not removed via parent sequence: required"
+                },
+                "(0020,9213)": {
+                    "default": "K",
+                    "justification": "If present, pointer is likely required"
+                },
+                "(0020,9222)": {
+                    "default": "K",
+                    "justification": "Multi-frame meta data"
+                },
+                "(0020,9228)": {
+                    "default": "K",
+                    "justification": "Multi-frame meta data"
+                },
+                "(0020,9238)": {
+                    "default": "U",
+                    "justification": "Good to replace consistently, might be relevant"
+                },
+                "(0020,9311)": {
+                    "default": "K",
+                    "justification": "Descriptive for dimension organization"
+                },
+                "(0022,001A)": {
+                    "default": "K",
+                    "justification": "Crucial acquisition data"
+                },
+                "(0022,0055)": {
+                    "default": "K",
+                    "justification": "Crucial acquisition data"
+                },
+                "(0028,0006)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0028,0030)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0028,0034)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0028,0106)": {
+                    "default": "K",
+                    "justification": "Useful Pixel Data encoding details"
+                },
+                "(0028,0107)": {
+                    "default": "K",
+                    "justification": "Useful Pixel Data encoding details"
+                },
+                "(0028,0120)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0028,0121)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0028,0301)": {
+                    "default": "K",
+                    "justification": "No image content analysis is done, so it is good to remember this"
+                },
+                "(0028,1052)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0028,1053)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0028,1101)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1102)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1103)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1201)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1202)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,1203)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0028,2000)": {
+                    "default": "K",
+                    "justification": "Important viewing specification"
+                },
+                "(0028,2002)": {
+                    "default": "K",
+                    "justification": "Descriptive for the ICC Profile"
+                },
+                "(0028,2110)": {
+                    "default": "K",
+                    "justification": "Important viewing specification"
+                },
+                "(0028,2112)": {
+                    "default": "K",
+                    "justification": "Important data conversion details"
+                },
+                "(0028,2114)": {
+                    "default": "K",
+                    "justification": "Important data conversion details"
+                },
+                "(0028,7FE0)": {
+                    "default": "X",
+                    "justification": "URL to gather pixel data from"
+                },
+                "(0040,0620)": {
+                    "default": "X",
+                    "justification": "Sequence containing dates and possible PI"
+                },
+                "(0040,074A)": {
+                    "default": "K",
+                    "justification": "Crucial acq detail"
+                },
+                "(0040,08EA)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
+                },
+                "(0040,9096)": {
+                    "default": "K",
+                    "justification": "Sequence describing image-to-world details"
+                },
+                "(0040,9211)": {
+                    "default": "K",
+                    "justification": "Sequence describing image-to-world details"
+                },
+                "(0040,9212)": {
+                    "default": "K",
+                    "justification": "Describes crucial data format"
+                },
+                "(0040,9213)": {
+                    "default": "K",
+                    "justification": "Describes critical data format"
+                },
+                "(0040,9214)": {
+                    "default": "K",
+                    "justification": "Describes critical data format"
+                },
+                "(0040,9216)": {
+                    "default": "K",
+                    "justification": "Describes critical data format"
+                },
+                "(0040,9224)": {
+                    "default": "K",
+                    "justification": "Describes critical data format"
+                },
+                "(0040,9225)": {
+                    "default": "K",
+                    "justification": "Describes critical data format"
+                },
+                "(0040,A0B0)": {
+                    "default": "K",
+                    "justification": "Describes critical data format"
+                },
+                "(0040,A160)": {
+                    "default": "K",
+                    "justification": "Generic Sequence Value"
+                },
+                "(0040,A161)": {
+                    "default": "K",
+                    "justification": "Generic Sequence Value"
+                },
+                "(0040,A162)": {
+                    "default": "K",
+                    "justification": "Generic Sequence Value"
+                },
+                "(0040,A163)": {
+                    "default": "K",
+                    "justification": "Generic Sequence Value"
+                },
+                "(0040,A168)": {
+                    "default": "K",
+                    "justification": "Generic Sequence Value"
+                },
+                "(0040,A170)": {
+                    "default": "X",
+                    "justification": "Def. optional, where required the parent-sequence is user optional"
+                },
+                "(0040,A30A)": {
+                    "default": "K",
+                    "justification": "Generic Sequence Value"
+                },
+                "(0040,A390)": {
+                    "default": "X",
+                    "justification": "References outside UIDs"
+                },
+                "(0040,E001)": {
+                    "default": "X",
+                    "justification": "Is a direct identifier"
+                },
+                "(0040,E010)": {
+                    "default": "X",
+                    "justification": "Retrieval URI"
+                },
+                "(0048,0001)": {
+                    "default": "K",
+                    "justification": "Criticial image meta data"
+                },
+                "(0048,0002)": {
+                    "default": "K",
+                    "justification": "Criticial image meta data"
+                },
+                "(0048,0003)": {
+                    "default": "K",
+                    "justification": "Criticial image meta data"
+                },
+                "(0048,0013)": {
+                    "default": "K",
+                    "justification": "Criticial image meta data"
+                },
+                "(0048,0014)": {
+                    "default": "K",
+                    "justification": "Criticial image meta data"
+                },
+                "(0048,0102)": {
+                    "default": "K",
+                    "justification": "Criticial image meta data"
+                },
+                "(0048,0108)": {
+                    "default": "K",
+                    "justification": "Criticial image meta data"
+                },
+                "(0048,0302)": {
+                    "default": "K",
+                    "justification": "Critical data"
+                },
+                "(0048,0303)": {
+                    "default": "K",
+                    "justification": "Criticial image meta data"
+                },
+                "(0062,000B)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(0400,0500)": {
+                    "default": "X",
+                    "justification": "Contains encrypted DICOM data, possibly PI"
+                },
+                "(2050,0020)": {
+                    "default": "K",
+                    "justification": "If present, it is likely required"
+                },
+                "(2200,0005)": {
+                    "default": "Z",
+                    "justification": "Slide ID"
+                },
+                "(5200,9230)": {
+                    "default": "K",
+                    "justification": "Common multiframe meta-data: if present, it is likely required"
+                },
+                "(7FE0,0001)": {
+                    "default": "K",
+                    "justification": "Crucial Pixel Data encoding details"
+                },
+                "(7FE0,0002)": {
+                    "default": "K",
+                    "justification": "Describes critical data format"
+                },
+                "(7FE0,0010)": {
+                    "default": "K",
+                    "justification": "Critical data"
+                }
+            }
+        },
         "1.2.840.10008.5.1.4.1.1.2": {
             "tag": {
                 "(0008,0005)": {
@@ -290,6 +794,14 @@
                     "default": "K",
                     "justification": "If present, it is likely required"
                 },
+                "(0028,0106)": {
+                    "default": "K",
+                    "justification": "Useful Pixel Data encoding details"
+                },
+                "(0028,0107)": {
+                    "default": "K",
+                    "justification": "Useful Pixel Data encoding details"
+                },
                 "(0028,0120)": {
                     "default": "K",
                     "justification": "If present, it is likely required"
@@ -338,6 +850,10 @@
                     "default": "K",
                     "justification": "If present, it is likely required"
                 },
+                "(0028,2002)": {
+                    "default": "K",
+                    "justification": "Descriptive for the ICC Profile"
+                },
                 "(0028,7FE0)": {
                     "default": "X",
                     "justification": "URL to gather pixel data from"
@@ -366,493 +882,9 @@
                     "default": "K",
                     "justification": "Encodes general equipment frame or reference. No PI."
                 },
-                "(7FE0,0002)": {
+                "(7FE0,0001)": {
                     "default": "K",
-                    "justification": "Describes critical data format"
-                },
-                "(7FE0,0010)": {
-                    "default": "K",
-                    "justification": "Critical data"
-                }
-            }
-        },
-        "1.2.840.10008.5.1.4.1.1.77.1.6": {
-            "tag": {
-                "(0008,0005)": {
-                    "default": "K",
-                    "justification": "Required if an expanded or replacement character set is used"
-                },
-                "(0008,0008)": {
-                    "default": "K",
-                    "justification": "Generally required"
-                },
-                "(0008,0023)": {
-                    "default": "Z",
-                    "justification": "Grand-challenge binds together series as a single value"
-                },
-                "(0008,002A)": {
-                    "default": "D",
-                    "justification": "Required, with an value"
-                },
-                "(0008,0033)": {
-                    "default": "D",
-                    "justification": "Grand-challenge binds together series as a single value"
-                },
-                "(0008,0053)": {
-                    "default": "D",
-                    "justification": "Required if special operation has ever occured to the data."
-                },
-                "(0008,0070)": {
-                    "default": "K",
-                    "justification": "Required, manufacturer might be relevant"
-                },
-                "(0008,0080)": {
-                    "default": "D",
-                    "justification": "Required, under some condition"
-                },
-                "(0008,0100)": {
-                    "default": "K",
-                    "justification": "Required, parent sequence should be targeted for actions"
-                },
-                "(0008,0102)": {
-                    "default": "K",
-                    "justification": "Required, parent sequence should be targeted for actions"
-                },
-                "(0008,0103)": {
-                    "default": "K",
-                    "justification": "Required, parent sequence should be targeted for actions"
-                },
-                "(0008,0105)": {
-                    "default": "K",
-                    "justification": "Required, parent sequence should be targeted for actions"
-                },
-                "(0008,010D)": {
-                    "default": "D",
-                    "justification": "Identifies a person or context group, sometimes required"
-                },
-                "(0008,0119)": {
-                    "default": "K",
-                    "justification": "Required, parent sequence should be targeted for actions"
-                },
-                "(0008,0120)": {
-                    "default": "U",
-                    "justification": "Universal ID: could be traced to all kinds of institutes or entities"
-                },
-                "(0008,1090)": {
-                    "default": "D",
-                    "justification": "Manditory for this particular module"
-                },
-                "(0008,1111)": {
-                    "default": "K",
-                    "justification": "Required for WSI"
-                },
-                "(0008,1140)": {
-                    "default": "X",
-                    "justification": "References other Images, this is not supported"
-                },
-                "(0008,114A)": {
-                    "default": "X",
-                    "justification": "References other Images, this is not supported"
-                },
-                "(0008,1160)": {
-                    "default": "K",
-                    "justification": "If present, it is required"
-                },
-                "(0008,1161)": {
-                    "default": "K",
-                    "justification": "If present, it is required"
-                },
-                "(0008,1162)": {
-                    "default": "K",
-                    "justification": "If present, it is required"
-                },
-                "(0008,1163)": {
-                    "default": "K",
-                    "justification": "If present, it is required"
-                },
-                "(0008,1199)": {
-                    "default": "K",
-                    "justification": "Required, child elements of this sequence are handled separately"
-                },
-                "(0008,1200)": {
-                    "default": "X",
-                    "justification": "References other Images, this is not supported"
-                },
-                "(0008,2112)": {
-                    "default": "X",
-                    "justification": "References other Images, this is not supported"
-                },
-                "(0008,9215)": {
-                    "default": "X",
-                    "justification": "References other Images, this is not supported"
-                },
-                "(0010,0035)": {
-                    "default": "Z",
-                    "justification": "Required under some conditions: zero if present"
-                },
-                "(0010,2201)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0010,2202)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0010,2210)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0010,2292)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0010,2293)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0010,2294)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0010,2298)": {
-                    "default": "X",
-                    "justification": "Counter part was removed in basic profile"
-                },
-                "(0012,0063)": {
-                    "default": "K",
-                    "justification": "De-identifaction trace, should be kept and extended"
-                },
-                "(0012,0064)": {
-                    "default": "K",
-                    "justification": "De-identifaction trace, should be kept and extended"
-                },
-                "(0018,0050)": {
-                    "default": "K",
-                    "justification": "Generally required for viewers"
-                },
-                "(0018,0088)": {
-                    "default": "K",
-                    "justification": "Generally required for viewers"
-                },
-                "(0018,1000)": {
-                    "default": "D",
-                    "justification": "IOD conformance: sometimes required"
-                },
-                "(0018,1020)": {
-                    "default": "D",
-                    "justification": "IOD conformance: sometimes required"
-                },
-                "(0018,5100)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0018,9220)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0018,990C)": {
-                    "default": "K",
-                    "justification": "Describes possibly required acquisition details"
-                },
-                "(0018,990D)": {
-                    "default": "K",
-                    "justification": "Describes possibly required acquisition details"
-                },
-                "(0020,0013)": {
-                    "default": "K",
-                    "justification": "Identifies and orders image within single study. No PI"
-                },
-                "(0020,0020)": {
-                    "default": "K",
-                    "justification": "Describes possibly required acquisition details"
-                },
-                "(0020,0060)": {
-                    "default": "K",
-                    "justification": "Describes possibly required acquisition details"
-                },
-                "(0020,0242)": {
-                    "default": "U",
-                    "justification": "Keeps the concatenation internally consistent"
-                },
-                "(0020,1040)": {
-                    "default": "K",
-                    "justification": "Descriptive for reference frames"
-                },
-                "(0020,9056)": {
-                    "default": "K",
-                    "justification": "Keeps the concatenation internally consistent"
-                },
-                "(0020,9057)": {
-                    "default": "K",
-                    "justification": "Keeps the concatenation internally consistent"
-                },
-                "(0020,9128)": {
-                    "default": "K",
-                    "justification": "Internal temporal index for frames"
-                },
-                "(0020,9157)": {
-                    "default": "K",
-                    "justification": "Multi-frame meta data"
-                },
-                "(0020,9162)": {
-                    "default": "K",
-                    "justification": "Keeps the concatenation internally consistent"
-                },
-                "(0020,9167)": {
-                    "default": "K",
-                    "justification": "If present, pointer is likely required"
-                },
-                "(0020,9172)": {
-                    "default": "K",
-                    "justification": "If not removed via parent sequence: required"
-                },
-                "(0020,9213)": {
-                    "default": "K",
-                    "justification": "If present, pointer is likely required"
-                },
-                "(0020,9222)": {
-                    "default": "K",
-                    "justification": "Multi-frame meta data"
-                },
-                "(0020,9228)": {
-                    "default": "K",
-                    "justification": "Multi-frame meta data"
-                },
-                "(0020,9238)": {
-                    "default": "U",
-                    "justification": "Good to replace consistently, might be relevant"
-                },
-                "(0020,9311)": {
-                    "default": "K",
-                    "justification": "Descriptive for dimension organization"
-                },
-                "(0022,001A)": {
-                    "default": "K",
-                    "justification": "Crucial acquisition data"
-                },
-                "(0022,0055)": {
-                    "default": "K",
-                    "justification": "Crucial acquisition data"
-                },
-                "(0028,0006)": {
-                    "default": "K",
-                    "justification": "Describes crucial data format"
-                },
-                "(0028,0030)": {
-                    "default": "K",
-                    "justification": "Describes crucial data format"
-                },
-                "(0028,0034)": {
-                    "default": "K",
-                    "justification": "Describes crucial data format"
-                },
-                "(0028,0120)": {
-                    "default": "K",
-                    "justification": "Describes crucial data format"
-                },
-                "(0028,0121)": {
-                    "default": "K",
-                    "justification": "Describes crucial data format"
-                },
-                "(0028,0301)": {
-                    "default": "K",
-                    "justification": "No image content analysis is done, so it is good to remember this"
-                },
-                "(0028,1052)": {
-                    "default": "K",
-                    "justification": "Describes crucial data format"
-                },
-                "(0028,1053)": {
-                    "default": "K",
-                    "justification": "Describes crucial data format"
-                },
-                "(0028,1101)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0028,1102)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0028,1103)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0028,1201)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0028,1202)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0028,1203)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0028,2000)": {
-                    "default": "K",
-                    "justification": "Important viewing specification"
-                },
-                "(0028,2110)": {
-                    "default": "K",
-                    "justification": "Important viewing specification"
-                },
-                "(0028,2112)": {
-                    "default": "K",
-                    "justification": "Important data conversion details"
-                },
-                "(0028,2114)": {
-                    "default": "K",
-                    "justification": "Important data conversion details"
-                },
-                "(0028,7FE0)": {
-                    "default": "X",
-                    "justification": "URL to gather pixel data from"
-                },
-                "(0040,0620)": {
-                    "default": "X",
-                    "justification": "Sequence containing dates and possible PI"
-                },
-                "(0040,074A)": {
-                    "default": "K",
-                    "justification": "Crucial acq detail"
-                },
-                "(0040,08EA)": {
-                    "default": "K",
-                    "justification": "Describes possibly required acquisition details"
-                },
-                "(0040,9096)": {
-                    "default": "K",
-                    "justification": "Sequence describing image-to-world details"
-                },
-                "(0040,9211)": {
-                    "default": "K",
-                    "justification": "Sequence describing image-to-world details"
-                },
-                "(0040,9212)": {
-                    "default": "K",
-                    "justification": "Describes crucial data format"
-                },
-                "(0040,9213)": {
-                    "default": "K",
-                    "justification": "Describes critical data format"
-                },
-                "(0040,9214)": {
-                    "default": "K",
-                    "justification": "Describes critical data format"
-                },
-                "(0040,9216)": {
-                    "default": "K",
-                    "justification": "Describes critical data format"
-                },
-                "(0040,9224)": {
-                    "default": "K",
-                    "justification": "Describes critical data format"
-                },
-                "(0040,9225)": {
-                    "default": "K",
-                    "justification": "Describes critical data format"
-                },
-                "(0040,A0B0)": {
-                    "default": "K",
-                    "justification": "Describes critical data format"
-                },
-                "(0040,A160)": {
-                    "default": "K",
-                    "justification": "Generic Sequence Value"
-                },
-                "(0040,A161)": {
-                    "default": "K",
-                    "justification": "Generic Sequence Value"
-                },
-                "(0040,A162)": {
-                    "default": "K",
-                    "justification": "Generic Sequence Value"
-                },
-                "(0040,A163)": {
-                    "default": "K",
-                    "justification": "Generic Sequence Value"
-                },
-                "(0040,A168)": {
-                    "default": "K",
-                    "justification": "Generic Sequence Value"
-                },
-                "(0040,A170)": {
-                    "default": "X",
-                    "justification": "Def. optional, where required the parent-sequence is user optional"
-                },
-                "(0040,A30A)": {
-                    "default": "K",
-                    "justification": "Generic Sequence Value"
-                },
-                "(0040,A390)": {
-                    "default": "X",
-                    "justification": "References outside UIDs"
-                },
-                "(0040,E001)": {
-                    "default": "X",
-                    "justification": "Is a direct identifier"
-                },
-                "(0040,E010)": {
-                    "default": "X",
-                    "justification": "Retrieval URI"
-                },
-                "(0048,0001)": {
-                    "default": "K",
-                    "justification": "Criticial image meta data"
-                },
-                "(0048,0002)": {
-                    "default": "K",
-                    "justification": "Criticial image meta data"
-                },
-                "(0048,0003)": {
-                    "default": "K",
-                    "justification": "Criticial image meta data"
-                },
-                "(0048,0013)": {
-                    "default": "K",
-                    "justification": "Criticial image meta data"
-                },
-                "(0048,0014)": {
-                    "default": "K",
-                    "justification": "Criticial image meta data"
-                },
-                "(0048,0102)": {
-                    "default": "K",
-                    "justification": "Criticial image meta data"
-                },
-                "(0048,0108)": {
-                    "default": "K",
-                    "justification": "Criticial image meta data"
-                },
-                "(0048,0302)": {
-                    "default": "K",
-                    "justification": "Critical data"
-                },
-                "(0048,0303)": {
-                    "default": "K",
-                    "justification": "Criticial image meta data"
-                },
-                "(0062,000B)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(0400,0500)": {
-                    "default": "X",
-                    "justification": "Contains encrypted DICOM data, possibly PI"
-                },
-                "(2050,0020)": {
-                    "default": "K",
-                    "justification": "If present, it is likely required"
-                },
-                "(2200,0005)": {
-                    "default": "Z",
-                    "justification": "Slide ID"
-                },
-                "(5200,9230)": {
-                    "default": "K",
-                    "justification": "Common multiframe meta-data: if present, it is likely required"
+                    "justification": "Crucial Pixel Data encoding details"
                 },
                 "(7FE0,0002)": {
                     "default": "K",
