@@ -2,7 +2,9 @@ from __future__ import annotations
 
 import json
 from collections import defaultdict
-from enum import Enum
+
+from dicom_deid.models import ActionChoices, All_ACTION_CHOICES
+from dicom_deid.procedure_cleanup import remove_unreachable_actions
 
 
 class DICOMStandardError(ValueError):
@@ -38,6 +40,7 @@ class DICOMStandard:
             ciod_to_modules
         )
         self.__module_id_to_tags = self._build_module_id_to_tags(module_to_attributes)
+        self.__module_id_to_paths = self._build_module_id_to_paths(module_to_attributes)
         self.__tag_to_module_ids = self._build_tag_to_module_ids()
 
         # Object lookups
@@ -93,6 +96,27 @@ class DICOMStandard:
             tag = entry["tag"].upper()
 
             result[module_id].add(tag)
+
+        return result
+
+    def _build_module_id_to_paths(self, module_to_attributes):
+        module_to_attributes = module_to_attributes or []
+
+        result = defaultdict(list)
+        for entry in module_to_attributes:
+            module_id = entry["moduleId"]
+
+            if "path" in entry:
+                path = entry["path"].upper()
+                parts = path.split(":")
+                parts = parts[1:]  # Remove module
+            else:
+                parts = []
+
+            # Correct notation
+            parts = [f"({p[:4]},{p[4:]})" for p in parts]
+
+            result[module_id].append(parts)
 
         return result
 
@@ -199,6 +223,15 @@ class DICOMStandard:
 
         return {m["usage"] for m in modules}
 
+    def get_all_attribute_paths_via_sop(self, /, sop_id):
+        module_ids = self.map_sop_to_module_ids(sop_id)
+        paths = []
+        for module_id in module_ids:
+            module_paths = self.__module_id_to_paths[module_id]
+            paths.extend(module_paths)
+
+        return paths
+
     def get_attribute_types_via_tag(self, /, tag, *, sop_id):
         module_ids = self._get_possible_module_ids_via_tag(tag, sop_id=sop_id)
         module_lookup = self.__tag_to_module_lookup[tag]
@@ -263,20 +296,6 @@ class DICOMStandard:
         )
 
 
-class ActionChoices(str, Enum):
-    REMOVE = "X"
-    KEEP = "K"
-
-    REPLACE = "D"
-    REPLACE_0 = "Z"
-    UID = "U"
-
-    REJECT = "R"
-
-
-All_ACTION_CHOICES = {a.value for a in ActionChoices}
-
-
 class Procedure:
 
     Action = ActionChoices
@@ -327,6 +346,12 @@ class Procedure:
                 action["justification"] = justification
 
         self._procedure["sopClass"][sop_id]["tag"][tag] = action
+
+    def remove_action(self, sop_id, tag):
+        tag_actions = self.get_sop_actions(sop_id)
+
+        if tag in tag_actions:
+            del tag_actions[tag]
 
     def get_sop_actions(self, sop_id):
         return self._procedure["sopClass"][sop_id]["tag"]
@@ -579,5 +604,7 @@ def generate_base_procedure(*, dicom_standard_path):
     apply_retired_attribute_actions(procedure=p, dicom_standard=ds)
     apply_basic_dicom_deid_profile_actions(procedure=p, dicom_standard=ds)
     apply_attribute_type_actions(procedure=p, dicom_standard=ds)
+
+    remove_unreachable_actions(procedure=p, dicom_standard=ds)
 
     return p
