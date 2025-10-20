@@ -18,15 +18,15 @@ def find_unreachable_nodes(edges, breaking_nodes):
     breaking nodes.
 
     Args:
-        edges: List of dicts with 'path' key in format 'module:parent:child'
-        breaking_nodes: Set of node IDs that break
+        edges: List of lists, where each inner list is the full path
+        [parent1, ..., node] breaking_nodes: Set of node IDs that break
 
     Returns:
         Set of nodes that are unreachable
     """
 
     # Collect all the possible paths per node
-    node_to_paths = defaultdict(lambda: [])
+    node_to_paths = defaultdict(list)
     for edge in edges:
         node = edge[-1]
 
@@ -50,7 +50,7 @@ def remove_unreachable_actions(procedure, dicom_standard):
     sequences have no effect.
 
     For instance, under sequence A a tag 0000,0000 might have action 'U'. However,
-    if sequence A has action 'X. the action for tag 0000,0000 is redundant.
+    if sequence A has action 'X', the action for tag 0000,0000 is redundant.
 
     However, if another sequence B also uses tag 0000,0000 the tag action is NOT
     redundant. Unless sequence B is also removed (or replaced)!

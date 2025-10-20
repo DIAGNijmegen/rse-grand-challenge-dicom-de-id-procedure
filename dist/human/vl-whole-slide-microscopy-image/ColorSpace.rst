@@ -1,8 +1,8 @@
 -------------------------
 Color Space | (0028,2002)
 -------------------------
-:Action: Remove (X)
-:Justication: [AUTO] Attribute-Module type
+:Action: Keep (K)
+:Justication: Descriptive for the ICC Profile
 :Basic Profile: N/A
 :In Modules:
    - general-image [Mandatory (M)] [Optional (3)]::

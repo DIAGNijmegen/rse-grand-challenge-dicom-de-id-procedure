@@ -1,8 +1,8 @@
 -----------------------------------
 Extended Offset Table | (7FE0,0001)
 -----------------------------------
-:Action: Remove (X)
-:Justication: [AUTO] Attribute-Module type
+:Action: Keep (K)
+:Justication: Crucial Pixel Data encoding details
 :Basic Profile: N/A
 :In Modules:
    - image-pixel [Mandatory (M)] [Optional (3)]::

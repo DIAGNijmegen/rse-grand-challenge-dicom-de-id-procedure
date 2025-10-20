@@ -11,7 +11,7 @@ from dicom_deid.procedure_generation import ActionChoices, DICOMStandard, Proced
     "description, edges, breaking_nodes, expected_redundants",
     (
         (
-            "All empy",
+            "All empty",
             [],
             set(),
             set(),

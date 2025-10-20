@@ -1284,12 +1284,12 @@
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0028,0106)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Useful Pixel Data encoding details"
         },
         "(0028,0107)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Useful Pixel Data encoding details"
         },
         "(0028,0108)": {
           "default": "X",
@@ -1380,8 +1380,8 @@
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0028,2002)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Descriptive for the ICC Profile"
         },
         "(0028,2110)": {
           "default": "X",
@@ -1696,8 +1696,8 @@
           "justification": "[AUTO] Module usage"
         },
         "(7FE0,0001)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Crucial Pixel Data encoding details"
         },
         "(7FE0,0002)": {
           "default": "K",
@@ -2822,12 +2822,12 @@
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0028,0106)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Useful Pixel Data encoding details"
         },
         "(0028,0107)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Useful Pixel Data encoding details"
         },
         "(0028,0108)": {
           "default": "X",
@@ -2898,8 +2898,8 @@
           "justification": "Important viewing specification"
         },
         "(0028,2002)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Descriptive for the ICC Profile"
         },
         "(0028,2110)": {
           "default": "K",
@@ -3330,8 +3330,8 @@
           "justification": "Common multiframe meta-data: if present, it is likely required"
         },
         "(7FE0,0001)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Crucial Pixel Data encoding details"
         },
         "(7FE0,0002)": {
           "default": "K",
