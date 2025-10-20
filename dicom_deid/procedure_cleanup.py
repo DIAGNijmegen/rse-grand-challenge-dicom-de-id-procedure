@@ -18,7 +18,7 @@ def find_unreachable_nodes(edges, breaking_nodes):
     breaking nodes.
 
     Args:
-        edges: List of dicts with 'path' key in format 'module:parent:child'
+        edges: List of lists, where each inner list is the full path [parent1, ..., node]
         breaking_nodes: Set of node IDs that break
 
     Returns:
