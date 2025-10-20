@@ -26,7 +26,7 @@ def find_unreachable_nodes(edges, breaking_nodes):
     """
 
     # Collect all the possible paths per node
-    node_to_paths = defaultdict(lambda: [])
+    node_to_paths = defaultdict(list)
     for edge in edges:
         node = edge[-1]
 
