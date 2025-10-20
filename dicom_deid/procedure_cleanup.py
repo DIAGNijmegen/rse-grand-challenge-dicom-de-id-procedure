@@ -18,8 +18,8 @@ def find_unreachable_nodes(edges, breaking_nodes):
     breaking nodes.
 
     Args:
-        edges: List of lists, where each inner list is the full path [parent1, ..., node]
-        breaking_nodes: Set of node IDs that break
+        edges: List of lists, where each inner list is the full path
+        [parent1, ..., node] breaking_nodes: Set of node IDs that break
 
     Returns:
         Set of nodes that are unreachable
