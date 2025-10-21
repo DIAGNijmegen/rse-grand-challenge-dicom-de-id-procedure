@@ -1,7 +1,7 @@
 -------------------------------
 Software Versions | (0018,1020)
 -------------------------------
-:Action: Replace with a zero length value, or a non-zero length value that may be a dummy value and consistent with the VR (Z)
+:Action: Replace with a non-zero length value that may be a dummy value and consistent with the VR (D)
 :Justication: IOD conformance: sometimes required
 :Basic Profile: N/A
 :In Modules:

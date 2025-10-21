@@ -1,0 +1,220 @@
+------------------------
+Code Value | (0008,0100)
+------------------------
+:Action: Keep (K)
+:Justication: Required, parent sequence should be targeted for actions
+:Basic Profile: N/A
+:In Modules:
+   - acquisition-context [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - clinical-trial-study [User Optional (U)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - general-equipment [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - general-image [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - general-reference [User Optional (U)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - general-series [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - general-study [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - optical-path [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - patient [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - patient-study [User Optional (U)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - sop-common [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - specimen [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+
+   - vl-whole-slide-microscopy-image-multi-frame-functional-groups [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        The identifier of the Coded Entry.
+       </p>
+       <p>
+        See
+        <span href="">
+         Section 8.1
+        </span>
+        .
+       </p>
+       <p>
+        Shall be present if the length of the code value is 16 characters or less, and the code value is not a URN or URL.
+       </p>
+       <h3>
+        Note
+       </h3>
+       <p>
+        Part of the Real World Value Mapping Functional Group Macro with usage: U
+       </p>

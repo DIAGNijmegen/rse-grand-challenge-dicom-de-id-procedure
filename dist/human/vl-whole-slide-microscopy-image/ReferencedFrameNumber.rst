@@ -1,0 +1,148 @@
+-------------------------------------
+Referenced Frame Number | (0008,1160)
+-------------------------------------
+:Action: Keep (K)
+:Justication: If present, it is required
+:Basic Profile: N/A
+:In Modules:
+   - acquisition-context [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Identifies the Frame numbers within the Referenced SOP Instance to which the reference applies. The first Frame shall be denoted as Frame number 1.
+       </p>
+       <div>
+        <h3>
+         Note
+        </h3>
+        <p>
+         This Attribute may be multi-valued.
+        </p>
+       </div>
+       <p>
+        Required if the Referenced SOP Instance is a Multi-frame Image and the reference does not apply to all Frames, and Referenced Segment Number (0062,000B) is not present.
+       </p>
+
+   - general-image [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Identifies the Frame numbers within the Referenced SOP Instance to which the reference applies. The first Frame shall be denoted as Frame number 1.
+       </p>
+       <div>
+        <h3>
+         Note
+        </h3>
+        <p>
+         This Attribute may be multi-valued.
+        </p>
+       </div>
+       <p>
+        Required if the Referenced SOP Instance is a Multi-frame Image and the reference does not apply to all Frames, and Referenced Segment Number (0062,000B) is not present.
+       </p>
+
+   - general-reference [User Optional (U)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Identifies the Frame numbers within the Referenced SOP Instance to which the reference applies. The first Frame shall be denoted as Frame number 1.
+       </p>
+       <div>
+        <h3>
+         Note
+        </h3>
+        <p>
+         This Attribute may be multi-valued.
+        </p>
+       </div>
+       <p>
+        Required if the Referenced SOP Instance is a Multi-frame Image and the reference does not apply to all Frames, and Referenced Segment Number (0062,000B) is not present.
+       </p>
+
+   - general-series [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Identifies the Frame numbers within the Referenced SOP Instance to which the reference applies. The first Frame shall be denoted as Frame number 1.
+       </p>
+       <div>
+        <h3>
+         Note
+        </h3>
+        <p>
+         This Attribute may be multi-valued.
+        </p>
+       </div>
+       <p>
+        Required if the Referenced SOP Instance is a Multi-frame Image and the reference does not apply to all Frames, and Referenced Segment Number (0062,000B) is not present.
+       </p>
+
+   - patient [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Identifies the Frame numbers within the Referenced SOP Instance to which the reference applies. The first Frame shall be denoted as Frame number 1.
+       </p>
+       <div>
+        <h3>
+         Note
+        </h3>
+        <p>
+         This Attribute may be multi-valued.
+        </p>
+       </div>
+       <p>
+        Required if the Referenced SOP Instance is a Multi-frame Image and the reference does not apply to all Frames, and Referenced Segment Number (0062,000B) is not present.
+       </p>
+
+   - sop-common [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Identifies the Frame numbers within the Referenced SOP Instance to which the reference applies. The first Frame shall be denoted as Frame number 1.
+       </p>
+       <div>
+        <h3>
+         Note
+        </h3>
+        <p>
+         This Attribute may be multi-valued.
+        </p>
+       </div>
+       <p>
+        Required if the Referenced SOP Instance is a Multi-frame Image and the reference does not apply to all Frames, and Referenced Segment Number (0062,000B) is not present.
+       </p>
+
+   - specimen [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Identifies the Frame numbers within the Referenced SOP Instance to which the reference applies. The first Frame shall be denoted as Frame number 1.
+       </p>
+       <div>
+        <h3>
+         Note
+        </h3>
+        <p>
+         This Attribute may be multi-valued.
+        </p>
+       </div>
+       <p>
+        Required if the Referenced SOP Instance is a Multi-frame Image and the reference does not apply to all Frames, and Referenced Segment Number (0062,000B) is not present.
+       </p>
+
+   - vl-whole-slide-microscopy-image-multi-frame-functional-groups [Mandatory (M)] [Conditional; required with valid value if condition is met (1C)]::
+
+       <p>
+        Identifies the Frame numbers within the Referenced SOP Instance to which the reference applies. The first Frame shall be denoted as Frame number 1.
+       </p>
+       <div>
+        <h3>
+         Note
+        </h3>
+        <p>
+         This Attribute may be multi-valued.
+        </p>
+       </div>
+       <p>
+        Required if the Referenced SOP Instance is a Multi-frame Image and the reference does not apply to all Frames, and Referenced Segment Number (0062,000B) is not present.
+       </p>
+       <h3>
+        Note
+       </h3>
+       <p>
+        Part of the Real World Value Mapping Functional Group Macro with usage: U
+       </p>
