@@ -1,8 +1,8 @@
 ------------------------------
 Image Laterality | (0020,0062)
 ------------------------------
-:Action: Remove (X)
-:Justication: [AUTO] Attribute-Module type
+:Action: Keep (K)
+:Justication: Describes possibly required acquisition details
 :Basic Profile: N/A
 :In Modules:
    - general-image [Mandatory (M)] [Optional (3)]::

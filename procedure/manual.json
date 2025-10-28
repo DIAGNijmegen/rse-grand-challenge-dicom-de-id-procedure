@@ -893,6 +893,10 @@
                 "(7FE0,0010)": {
                     "default": "K",
                     "justification": "Critical data"
+                },
+                "(0020,0062)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
                 }
             }
         },
@@ -1117,6 +1121,170 @@
                 "(0008,0005)": {
                     "default": "K",
                     "justification": "Required if an expanded or replacement character set is used"
+                },
+                "(0018,0022)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0023)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0025)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0081)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0083)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0084)": {
+                    "default": "X",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0085)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0086)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0087)": {
+                    "default": "X",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0089)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0091)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0093)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0094)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0095)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1062)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1080)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1081)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1082)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1083)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1084)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1086)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1088)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1090)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1094)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1100)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1250)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1251)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1310)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1312)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1314)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1315)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1316)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1318)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,1320)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0020,0100)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0020,0105)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0020,0110)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0054,0500)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(300A,012C)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0018,0050)": {
+                    "default": "K",
+                    "justification": "Acquisition metadata"
+                },
+                "(0020,0062)": {
+                    "default": "K",
+                    "justification": "Describes possibly required acquisition details"
                 }
             }
         }

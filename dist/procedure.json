@@ -1208,8 +1208,8 @@
           "justification": "Describes possibly required acquisition details"
         },
         "(0020,0062)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Describes possibly required acquisition details"
         },
         "(0020,0200)": {
           "default": "U",
@@ -2446,80 +2446,80 @@
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0018,0022)": {
-          "default": "Z",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0023)": {
-          "default": "Z",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0024)": {
           "default": "X",
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0018,0025)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0050)": {
-          "default": "Z",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0080)": {
           "default": "K",
           "justification": "Describes crucial data acquisition details"
         },
         "(0018,0081)": {
-          "default": "Z",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0082)": {
           "default": "K",
           "justification": "Describes crucial data acquisition details"
         },
         "(0018,0083)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0084)": {
           "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "justification": "Acquisition metadata"
         },
         "(0018,0085)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0086)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0087)": {
           "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "justification": "Acquisition metadata"
         },
         "(0018,0088)": {
           "default": "X",
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0018,0089)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0091)": {
-          "default": "Z",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0093)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0094)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,0095)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1000)": {
           "default": "D",
@@ -2594,52 +2594,52 @@
           "justification": "Describes crucial data acquisition details"
         },
         "(0018,1062)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1080)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1081)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1082)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1083)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1084)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1085)": {
           "default": "X",
           "justification": "[AUTO] Attribute-Module type"
         },
         "(0018,1086)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1088)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1090)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1094)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1100)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1200)": {
           "default": "X",
@@ -2658,40 +2658,40 @@
           "justification": "[AUTO] Basic Profile"
         },
         "(0018,1250)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1251)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1310)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1312)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1314)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1315)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1316)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1318)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,1320)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0018,5100)": {
           "default": "K",
@@ -2770,20 +2770,20 @@
           "justification": "Describes possibly required acquisition details"
         },
         "(0020,0062)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Describes possibly required acquisition details"
         },
         "(0020,0100)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0020,0105)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0020,0110)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0020,1002)": {
           "default": "X",
@@ -3090,8 +3090,8 @@
           "justification": "[AUTO] Module usage"
         },
         "(0054,0500)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(0062,000B)": {
           "default": "K",
@@ -3138,8 +3138,8 @@
           "justification": "[AUTO] Basic Profile"
         },
         "(300A,012C)": {
-          "default": "X",
-          "justification": "[AUTO] Attribute-Module type"
+          "default": "K",
+          "justification": "Acquisition metadata"
         },
         "(300A,0675)": {
           "default": "K",
