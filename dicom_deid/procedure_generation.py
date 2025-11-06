@@ -590,6 +590,8 @@ def generate_base_procedure(*, dicom_standard_path):
         "1.2.840.10008.5.1.4.1.1.2",
         # VL Whole Slide Microscopy Image Storage (i.e. "DICOM WSI" )
         "1.2.840.10008.5.1.4.1.1.77.1.6",
+        # MR Image
+        "1.2.840.10008.5.1.4.1.1.4",
     ]
 
     p = Procedure()

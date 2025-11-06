@@ -1,0 +1,12 @@
+--------------------------------
+Isocenter Position | (300A,012C)
+--------------------------------
+:Action: Keep (K)
+:Justication: Acquisition metadata
+:Basic Profile: N/A
+:In Modules:
+   - mr-image [Mandatory (M)] [Optional (3)]::
+
+       <p>
+        Isocenter coordinates (x,y,z), in mm. Specifies the location of the machine isocenter in the Patient-Based Coordinate System associated with the Frame of Reference. It allows transformation from the Equipment-Based Coordinate System to the Patient-Based Coordinate System.
+       </p>
