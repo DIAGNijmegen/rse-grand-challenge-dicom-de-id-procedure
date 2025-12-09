@@ -9,7 +9,10 @@ dependencies = [
 ]
 
 [dependency-groups]
-dev = ["pytest"]
+dev = [
+    "pre-commit",
+    "pytest",
+]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
