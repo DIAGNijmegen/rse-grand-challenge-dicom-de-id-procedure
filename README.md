@@ -8,6 +8,9 @@ It is based on the DICOM Basic Profile of the [Standard DICOM de-identification 
 
 More information about de-identification choices can be found in the [standard-operation procedure](SOP.md).
 
+## Supported SOP Classes
+
+The procedure only applies to a limited set of [SOP classes](https://github.com/DIAGNijmegen/rse-grand-challenge-dicom-de-id-procedure/blob/main/dicom_deid/procedure_generation.py#L588C4-L595). Others should, by default, be rejected.
 
 ## Procedure Usage
 
