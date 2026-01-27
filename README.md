@@ -14,9 +14,6 @@ The procedure only applies to a limited set of [SOP classes](https://github.com/
 
 ## Procedure Usage
 
-For JavaScript you can use the ESM + UDM bundles via the npmjs package:
-- https://www.npmjs.com/package/@diagnijmegen/rse-grand-challenge-dicom-deid-procedure
-
 The `procedure.json` has two lookups: firstly by SOPClassUID and secondly by the data element tag. This results in a `"default"` action that is to be executed for the data element in question. The action can be any of:
 
 Code | Action
@@ -29,6 +26,16 @@ Code | Action
 "U" |	replace with a non-zero length UID that is internally consistent within a set of Instances
 "R" |	reject the entire DICOM file
 
+#### Manual
+
+If you want to verify how a specific DICOM tag is handled during the de-identification process, you can consult the [manual](procedure/manual-human) section of this repository. Select the folder corresponding to the IOD of your data, then locate the DICOM tag you want to inspect. The associated .rst file will show which of the actions listed above is applied to that tag.
+
+#### Javascript
+
+For JavaScript you can use the ESM + UDM bundles via the npmjs package:
+- https://www.npmjs.com/package/@diagnijmegen/rse-grand-challenge-dicom-deid-procedure
+
+#### Python
 For Python you can use the PyPi package: https://pypi.org/project/grand-challenge-dicom-de-id-procedure/
 
     $ pip install grand-challenge-dicom-de-id-procedure
